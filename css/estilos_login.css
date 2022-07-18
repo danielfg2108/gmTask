@@ -11,17 +11,12 @@
   left: 50%;
   top: 50%;
 }
-
 body{
-  background-image: url("images/camaro.jpg");
+  background-image: url("../images/camaro.jpg");
   backgroud-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   
-}
-
-img{
-	width: 100%;
 }
 .login {
     height: 1000px;
@@ -29,7 +24,7 @@ img{
     position: relative;
 }
 .login_box {
-    width: 1050px;
+    width: 700px;
     height: 600px;
     position: absolute;
     top: 50%;
@@ -42,13 +37,13 @@ img{
     overflow: hidden;
 }
 .login_box .left{
-  width: 41%;
+  width: 90%;
   height: 100%;
   padding: 25px 25px;
   
 }
 .login_box .right{
-  width: 59%;
+  width: 90%;
   height: 100%  
 }
 .left .top_link a {
@@ -70,6 +65,8 @@ img{
 .left h3{
   text-align: center;
   margin-bottom: 40px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 35px;
 }
 .left input {
     border: none;
@@ -86,31 +83,31 @@ img{
 .left{
 	background: linear-gradient(-45deg, #dcd7e0, #fff);
 }
-.submit {
+.submit{
     border: none;
     padding: 15px 70px;
     border-radius: 8px;
     display: block;
     margin: auto;
-    margin-top: 120px;
+    margin-top: 50px;
     background: rgba(5, 126, 196, 0.71);
     color: #fff;
     font-weight: bold;
     -webkit-box-shadow: 0px 9px 15px -11px rgba(3, 42, 89, 0.7);
     -moz-box-shadow: 0px 9px 15px -11px rgba(3, 42, 89, 0.7);
     box-shadow: 0px 9px 15px -11px rgba(3, 42, 89, 0.7);
+    margin-bottom: 180px;
+    font-size: 20px;
 }
-
-
 
 .right {
 	background: linear-gradient(212.38deg, rgba(3, 42, 89, 0.7) 0%, rgba(5, 126, 196, 0.71) 100%);
 	color: #fff;
-	position: relative;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .right .right-text{
-  height: 100%;
+  height: 80%;
   position: relative;
   transform: translate(0%, 45%);
 }
@@ -118,7 +115,7 @@ img{
   display: block;
   width: 100%;
   text-align: center;
-  font-size: 50px;
+  font-size: 100px;
   font-weight: 500;
 }
 .right-text h5{
@@ -143,6 +140,13 @@ img{
     padding-right: 7px;
     margin-top: -3px;
 }
-
-
+.small{
+  color: rgba(5, 126, 196, 0.71);
+  font-weight: bold;
+  text-align: center;
+}
+footer{
+  color: #fff;
+  text-align: center;
+}
 
