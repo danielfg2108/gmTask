@@ -1,3 +1,14 @@
+<?php
+session_start(); //iniciar session de usuario
+
+if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
+    header("Location: index.php");
+}
+
+$nombre = $_SESSION['nombre']; //obtener el nombre del usuario
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -17,7 +28,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="home.html">Task</a>
+            <a class="navbar-brand ps-3" href="home.php">Task</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -32,8 +43,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-add fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="tareas.html">Tarea</a></li>
-                        <li><a class="dropdown-item" href="proyectos.html">Proyecto</a></li>
+                        <li><a class="dropdown-item" href="tareas.php">Tarea</a></li>
+                        <li><a class="dropdown-item" href="">Proyecto</a></li>
                         <li><a class="dropdown-item" href="#!">Mensaje</a></li>
                         <li><a class="dropdown-item" href="#!">Equipo</a></li>
                         <li><a class="dropdown-item" href="#!">Invitación</a></li>
@@ -44,12 +55,15 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <?php echo $nombre; ?>  
+                      <i class="fas fa-user fa-fw"></i>
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Configuracion</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Salir</a></li>
                     </ul>
                 </li>
             </ul>
@@ -64,11 +78,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             
-                            <a class="nav-link" href="home.html">
+                            <a class="nav-link" href="home.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                                 Inicio
                             </a>
-                            <a class="nav-link" href="tareas.html">
+                            <a class="nav-link" href="tareas.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                                 Mis tareas
                             </a>
@@ -106,9 +120,9 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="index.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
+                                            <a class="nav-link" href="index.php">Login</a>
+                                            <a class="nav-link" href="register.php">Register</a>
+                                            <a class="nav-link" href="password.php">Forgot Password</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -124,7 +138,7 @@
                                     </div>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="proyectos.html">
+                            <a class="nav-link" href="proyectos.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
                                 Agregar proyecto
                             </a>
@@ -163,7 +177,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <?php echo $nombre; ?>
                     </div>
                 </nav>
             </div>
