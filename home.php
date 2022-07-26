@@ -1,17 +1,28 @@
+<?php
+session_start(); //iniciar session de usuario
+
+if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
+    header("Location: index.php");
+}
+
+$nombre = $_SESSION['nombre']; //obtener el nombre del usuario
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content=""/>
-        <meta name="author" content="" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content="sistema para el control y gestion de tareas"/>
+        <meta name="author" content="jafet daniel fonseca garcia"/>
         <title>Home Task</title>
-        <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
+        <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet"/>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="librerias/fontawesome.js"></script>
 
-        <link href="css/mis_estilos.css" rel="stylesheet" />
+        <link href="css/mis_estilos.css" rel="stylesheet"/>
 
     </head>
     <body class="sb-nav-fixed">
@@ -44,12 +55,15 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       <?php echo $nombre; ?> 
+                     <i class="fas fa-user fa-fw"></i>
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Configuracion</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Salir</a></li>
                     </ul>
                 </li>
             </ul>
@@ -174,7 +188,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">General Motors</li>
                         </ol>
-                        <h1 id="saludo" class="mt-4">Bienvenid@, "Nombre"</h1>
+                        <h1 id="saludo" class="mt-4">Bienvenid@, <?php echo $nombre; ?> </h1>
 
                       
                         <div class="row">
