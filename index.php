@@ -10,17 +10,17 @@ if($_POST){
 	$resultado = $mysqli->query($sql); //guardar consulta
 	$num = $resultado->num_rows; //si la consulta genero resultados
 
-	if($num > 0){
+	if($num > 0){ //si devolvio filas la consulta
 		$row = $resultado->fetch_assoc();
 		$password_bd = $row['password'];
 
-		$pass_cifrado = sha1($password);
+		$pass_cifrado = sha1($password); //cifrar password
 
 		if ($password_bd == $pass_cifrado) {
 			$_SESSION['nombre'] = $row['nombre'];
 			$_SESSION['id'] = $row['id_usuario'];
 
-			header("Location: home.php");
+			header("Location: home.php"); //mandar llamar a la siguiente pagina
 
 		}else{
 			echo "la contraseña no coincide";
