@@ -1,6 +1,8 @@
 <?php
 require "bd/conexion.php"; //llamar a la conexion
 session_start(); //iniciar session
+$mensaje = "";
+
 if($_POST){
 	$correo = $_POST['correo']; //obtener correo ingresado
 	$password = $_POST['password']; //obtener password ingresada
@@ -15,18 +17,20 @@ if($_POST){
 		$password_bd = $row['password'];
 
 		$pass_cifrado = sha1($password); //cifrar password
+		$mensaje = "";
 
 		if ($password_bd == $pass_cifrado) {
 			$_SESSION['nombre'] = $row['nombre'];
 			$_SESSION['id'] = $row['id_usuario'];
 
 			header("Location: home.php"); //mandar llamar a la siguiente pagina
-
+			$mensaje = "";
 		}else{
-			echo "la contraseña no coincide";
+			$mensaje = "la contraseña es incorrecta";
 		}
+
 	}else{
-		echo "no existe usuario";
+		$mensaje = "el correo es incorrecto";
 	}
 
 }
@@ -37,6 +41,8 @@ if($_POST){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="sistema para el control y gestion de tareas"/>
+    <meta name="author" content="jafet daniel fonseca garcia"/>
     <title>Task - login</title>
 
     <link rel="stylesheet" href="css/estilos_login.css">
@@ -48,8 +54,9 @@ if($_POST){
 				<div class="contact">
 					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						<h3>Iniciar Sesion</h3>
-						<input type="email" placeholder="EMAIL" name="correo">
-						<input type="password" placeholder="PASSWORD" name="password">				
+						<input type="email" placeholder="EMAIL" name="correo">					
+						<input type="password" placeholder="PASSWORD" name="password">		
+						<h4 style="color: red;"><?php echo $mensaje ?></h4>							
  					    <button class="submit">Ingresar</button>
 						<a class="small" href="password.html">¿Olvido su contraseña?</a>
 						<br>
