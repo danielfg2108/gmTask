@@ -16,7 +16,7 @@ if($_POST){
 		$row = $resultado->fetch_assoc();
 		$password_bd = $row['password'];
 
-		$pass_cifrado = sha1($password); //cifrar password
+		$pass_cifrado = sha1($password); //cifrar password ingresada
 		$mensaje = "";
 
 		if ($password_bd == $pass_cifrado) {

@@ -2,11 +2,10 @@
 session_start(); //iniciar session de usuario
 
 if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
-
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +17,9 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
         <meta name="description" content=""/>
         <meta name="author" content="" />
         <title>Home Task</title>
-        <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="librerias/fontawesome.js"></script>
+        <link href="../librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="../librerias/fontawesome.js"></script>
 
         <link href="css/mis_estilos.css" rel="stylesheet" />
 
@@ -43,7 +42,7 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-add fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="tareas.php">Tarea</a></li>
+                        <li><a class="dropdown-item" href="../tareas/tareas.php">Tarea</a></li>
                         <li><a class="dropdown-item" href="proyectos.php">Proyecto</a></li>
                         <li><a class="dropdown-item" href="#!">Mensaje</a></li>
                         <li><a class="dropdown-item" href="#!">Equipo</a></li>
@@ -60,10 +59,9 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
                     <i class="fas fa-user fa-fw"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Configuración</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><a class="dropdown-item" href="usuarios/usuarios.php">Configuración</a></li>            
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="logout.php">Salir</a></li>
+                        <li><a class="dropdown-item" href="../logout.php">Salir</a></li>
                     </ul>
                 </li>
             </ul>
@@ -78,11 +76,11 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             
-                            <a class="nav-link" href="home.php">
+                            <a class="nav-link" href="../home.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                                 Inicio
                             </a>
-                            <a class="nav-link" href="tareas.php">
+                            <a class="nav-link" href="../tareas/tareas.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                                 Mis tareas
                             </a>
@@ -418,12 +416,12 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
                 </footer>
             </div>
         </div>
-        <script src="librerias/bootstrap.js"></script>
-        <script src="js/scripts.js"></script>
-        <script src="librerias/ajax_chart.js"></script>
-        <script src="demo/chart-area-demo.js"></script>
-        <script src="demo/chart-bar-demo.js"></script>
-        <script src="librerias/jsdelivr_simple_datatables.js"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="../librerias/bootstrap.js"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="../librerias/ajax_chart.js"></script>
+        <script src="../demo/chart-area-demo.js"></script>
+        <script src="../demo/chart-bar-demo.js"></script>
+        <script src="../librerias/jsdelivr_simple_datatables.js"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>
