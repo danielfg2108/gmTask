@@ -10,7 +10,7 @@
 
     $sql = "SELECT id_usuario, nombre, apellidos, correo, password  FROM usuarios WHERE id_usuario = '$id'"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
-	$num = $resultado->num_rows; //si la consulta genero resultados
+	  $num = $resultado->num_rows; //si la consulta genero resultados
 
     //////////////////
     $row=mysqli_fetch_array($resultado);
@@ -42,25 +42,33 @@
                                 </thead>
                                 <tbody>
                                             <tr>
-                                                <th>Id: <?php  echo $row['id_usuario']?></th>
+                                                <th>Id: <?php  echo $row['id_usuario']?></th>   
+                                                <th></th>     
                                             </tr>
                                             <tr>
-                                                <th>Nombre: <?php  echo $row['nombre']?></th>                       
+                                                <th>Nombre: <?php  echo $row['nombre']?></th>    
+                                                <th>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNombre" data-bs-whatever="@mdo">Editar</button>
+                                                </th>                    
                                             </tr>
                                             <tr>
                                                 <th>Apellidos: <?php  echo $row['apellidos']?></th>    
+                                                <th>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalApellidos" data-bs-whatever="@mdo">Editar</button>
+                                                </th> 
                                             </tr>
                                             <tr>
-                                                <th>Correo: <?php  echo $row['correo']?></th>    
+                                                <th>Correo: <?php  echo $row['correo']?></th>  
+                                                <th>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCorreo" data-bs-whatever="@mdo">Editar</button>
+                                                </th>   
                                             </tr>
                                             <tr>
                                                 <th>Contraseña: -----</th>    
-                                            </tr>
-                                            <tr>
                                                 <th>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar</button>
-                                                </th>                                       
-                                            </tr>                                      
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalContraseña" data-bs-whatever="@mdo">Editar</button>
+                                                </th> 
+                                            </tr>                                                                           
                                 </tbody>
                             </table>
                             <a href="../home.php" class="btn btn-secondary" style="margin-top: 80px;">Regresar</a></th>
@@ -70,35 +78,72 @@
 
 
  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalNombre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar infromación personal</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modificar nombre</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="">
+        <form action="update_nombre.php" method="POST" >
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" id="" value="<?php  echo $row['nombre']?>">
+            <input name="nombre" type="text" class="form-control" value="<?php  echo $row['nombre']?>">
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Apellidos:</label>
-            <input type="text" class="form-control" id="" value="<?php  echo $row['apellidos']?>">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Correo:</label>
-            <input type="text" class="form-control" id="" value="<?php  echo $row['correo']?>">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Contraseña:</label>
-            <input type="text" class="form-control" id="" value="">
-          </div>
-   
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Agregar</button>
+            <input type="submit" class="btn btn-primary" value="Modificar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+ <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+ <div class="modal fade" id="modalApellidos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar apellidos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="update_apellidos.php" method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Apellidos:</label>
+            <input name="apellidos" type="text" class="form-control" value="<?php  echo $row['apellidos']?>">
+          </div>    
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Modificar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+ <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+ <div class="modal fade" id="modalCorreo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar correo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="update_correo.php" method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Correo:</label>
+            <input name="correo" type="text" class="form-control" value="<?php  echo $row['correo']?>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Modificar">
           </div>
         </form>
       </div>
@@ -108,6 +153,33 @@
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
 
+ <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+ <div class="modal fade" id="modalContraseña" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar contraseña</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="update_password.php" method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Ingrese contraseña nueva:</label>
+            <input name="password" type="text" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Modificar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+
         <script src="../librerias/bootstrap.js"></script>
         <script src="../js/scripts.js"></script>
         <script src="../librerias/ajax_chart.js"></script>
@@ -115,6 +187,5 @@
         <script src="../demo/chart-bar-demo.js"></script>
         <script src="../librerias/jsdelivr_simple_datatables.js"></script>
         <script src="../js/datatables-simple-demo.js"></script>
-
     </body>
 </html>

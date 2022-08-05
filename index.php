@@ -75,7 +75,7 @@ if($_POST){
 	</section>
 	<footer>
 		<div >
-				<div class="text-muted">Copyright &copy; Your Website 2022</div>
+				<div class="text-muted">Copyright &copy; Your Website 2022. By Jafet Daniel Fonseca Garcia</div>
 		</div>
 	</footer>
 </body>
