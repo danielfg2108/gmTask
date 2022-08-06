@@ -1,5 +1,15 @@
 <?php require_once '../header.php';?>
 
+<?php   
+    require "../bd/conexion.php"; //llamar a la conexion
+    $sql = "SELECT * FROM reporte_servicios"; //generar consulta
+    $resultado = $mysqli->query($sql); //guardar consulta
+    
+    //////////////////
+    $row=mysqli_fetch_array($resultado);
+    
+?>
+
                         <h1 class="mt-4">Reporte de servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -90,83 +100,35 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    <?php
+                                            while($row=mysqli_fetch_array($resultado)){
+                                        ?>
                                         <tr>
                                             <td>
-                                              <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
+                                              <a type="button" href="detalles_reportes.php?id=<?php echo $row['id_servicio'] ?>" class="btn btn-primary">Ver</a></th>
                                             </td>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td><?php echo $row['planta']?></td>
+                                            <td><?php echo $row['sc_creation_date']?></td>
+                                            <td><?php echo $row['shopping_cart_no']?></td>
+                                            <td><?php echo $row['sc_description']?></td>
+                                            <td><?php echo $row['product_description']?></td>
+                                            <td><?php echo $row['created_by_name']?></td>
+                                            <td><?php echo $row['document_status']?></td>
+                                            <td><?php echo $row['po_number']?></td>
+                                            <td><?php echo $row['ir']?></td>
+                                            <td><?php echo $row['vendor_duns']?></td>
+                                            <td><?php echo $row['vendor_name']?></td>
+                                            <td><?php echo $row['product_type_text']?></td>
+                                            <td><?php echo $row['item_net_value']?></td>
+                                            <td><?php echo $row['document_currency']?></td>
+                                            <td><?php echo $row['cost_center']?></td>
+                                            <td><?php echo $row['tarea']?></td>
+                                            <td><?php echo $row['status']?></td>
+                                            <td><?php echo $row['observaciones']?></td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02</td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <a type="button" href="detalles_reportes.php" class="btn btn-primary">Ver</a></th>
-                                            </td>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>59</td>
-                                            <td>2012/08/06</td>
-                                            <td>$137,500</td>
-                                        </tr>                         
+                                        <?php 
+                                            }
+                                        ?>        
                                     </tbody>
                                 </table>
                             </div>
