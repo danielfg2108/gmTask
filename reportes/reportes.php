@@ -1,15 +1,11 @@
 <?php require_once '../header.php';?>
-
 <?php   
     require "../bd/conexion.php"; //llamar a la conexion
     $sql = "SELECT * FROM reporte_servicios"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
-    
     //////////////////
     $row=mysqli_fetch_array($resultado);
-    
 ?>
-
                         <h1 class="mt-4">Reporte de servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -133,6 +129,5 @@
                                 </table>
                             </div>
                         </div>
-
 
 <?php require_once '../footer.php';?>

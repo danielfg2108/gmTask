@@ -86,10 +86,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="update_nombre.php" method="POST" >
+        <form action="update_nombre.php" method="POST">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre:</label>
-            <input name="nombre" type="text" class="form-control" value="<?php  echo $row['nombre']?>">
+            <input name="nombre" type="text" class="form-control" value="<?php  echo $row['nombre']?>" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -114,7 +114,7 @@
         <form action="update_apellidos.php" method="POST">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Apellidos:</label>
-            <input name="apellidos" type="text" class="form-control" value="<?php  echo $row['apellidos']?>">
+            <input name="apellidos" type="text" class="form-control" value="<?php  echo $row['apellidos']?>" required>
           </div>    
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -139,7 +139,7 @@
         <form action="update_correo.php" method="POST">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Correo:</label>
-            <input name="correo" type="text" class="form-control" value="<?php  echo $row['correo']?>">
+            <input name="correo" type="text" class="form-control" value="<?php  echo $row['correo']?>" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -165,7 +165,7 @@
         <form action="update_password.php" method="POST">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Ingrese contraseña nueva:</label>
-            <input name="password" type="text" class="form-control">
+            <input name="password" type="text" class="form-control" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -5,6 +5,7 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
     header("Location: index.php"); //sino esta loggeado redirigir al home
 }
 $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
+$apellidos = $_SESSION['apellidos']; //obtener apellidos del usuario
 $id = $_SESSION['id'];
 ?>
 
@@ -99,16 +100,16 @@ $id = $_SESSION['id'];
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reportes
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="reportes/create_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agrega reporte
+                                Agregar servicio
                             </a>
 
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <?php echo $nombre;?>
+                        <?php echo $nombre.' '.$apellidos; ?>
                     </div>
                 </nav>
             </div>
@@ -120,7 +121,7 @@ $id = $_SESSION['id'];
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">general motors</li>
                         </ol>
-                        <h1 id="saludo" class="mt-4">Bienvenid@, <?php echo $nombre; ?> </h1>
+                        <h1 id="saludo" class="mt-4">Bienvenid@, <?php echo $nombre.' '.$apellidos; ?> </h1>
 
                         <div class="row">
                             <div class="col-xl-6">

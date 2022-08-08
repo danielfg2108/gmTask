@@ -3,11 +3,11 @@ require "bd/conexion.php"; //llamar a la conexion
 session_start(); //iniciar session
 $mensaje = "";
 
-if($_POST){
+if($_POST){//si ya se ingresaron los datos
 	$correo = $_POST['correo']; //obtener correo ingresado
 	$password = $_POST['password']; //obtener password ingresada
 
-	$sql = "SELECT id_usuario, correo, nombre, password FROM usuarios WHERE correo ='$correo'"; //generar consulta
+	$sql = "SELECT id_usuario, correo, nombre, apellidos, password FROM usuarios WHERE correo ='$correo'"; //generar consulta
 
 	$resultado = $mysqli->query($sql); //guardar consulta
 	$num = $resultado->num_rows; //si la consulta genero resultados
@@ -21,6 +21,7 @@ if($_POST){
 
 		if ($password_bd == $pass_cifrado) {
 			$_SESSION['nombre'] = $row['nombre'];
+			$_SESSION['apellidos'] = $row['apellidos'];
 			$_SESSION['id'] = $row['id_usuario'];
 
 			header("Location: home.php"); //mandar llamar a la siguiente pagina
@@ -54,13 +55,13 @@ if($_POST){
 				<div class="contact">
 					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						<h3>Iniciar Sesion</h3>
-						<input type="email" placeholder="EMAIL" name="correo">					
-						<input type="password" placeholder="PASSWORD" name="password">		
+						<input type="email" placeholder="EMAIL" name="correo" required>					
+						<input type="password" placeholder="PASSWORD" name="password" required>		
 						<h4 style="color: red;"><?php echo $mensaje ?></h4>							
  					    <button class="submit">Ingresar</button>
 						<a class="small" href="password.html">¿Olvido su contraseña?</a>
 						<br>
-						<a class="small" href="register.html">Crear una nueva cuenta</a>						
+						<a class="small" href="register.php">Crear una nueva cuenta</a>						
  				</form>		
 				</div>
 				

@@ -2,9 +2,10 @@
 session_start(); //iniciar session de usuario
 
 if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
-    header("Location: index.php"); //sino esta loggeado redirigir al home
+    header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
 $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
+$apellidos = $_SESSION['apellidos']; //obtener apellidos
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 ?>
 
@@ -54,7 +55,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       <?php echo $nombre; ?> 
+                       <?php echo $nombre; ?>
                      <i class="fas fa-user fa-fw"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -98,16 +99,16 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reportes
                             </a>
-                            <a class="nav-link" href="../charts.html">
+                            <a class="nav-link" href="../reportes/create_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agrega reporte
+                                Agregar servicio
                             </a>
 
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <?php echo $nombre;?>
+                        <?php echo $nombre.' '.$apellidos; ?>
                     </div>
                 </nav>
             </div>
