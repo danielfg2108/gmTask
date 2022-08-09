@@ -6,6 +6,7 @@
     //////////////////
     $row=mysqli_fetch_array($resultado);
 ?>
+
                         <h1 class="mt-4">Reporte de servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -17,11 +18,12 @@
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">Reporte Excel</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Generar</a>
+                                        <a class="small text-white stretched-link" data-bs-toggle="modal" data-bs-target="#modalExcel" data-bs-whatever="@mdo">Generar</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">Reporte PDF</div>
@@ -31,6 +33,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Enviar Reporte</div>
@@ -58,10 +61,10 @@
                                             <th>SC Description</th>
                                             <th>Product Description</th>
                                             <th>Created By Name</th>
-                                            <th>Document Status</th>
+                                          
                                             <th>PO Number</th>
                                             <th>IR</th>
-                                            <th>Vendor DUNS</th>
+
                                             <th>Vendor Name</th>
                                             <th>Product Type Text</th>
                                             <th>Item Net Value</th>
@@ -81,10 +84,10 @@
                                             <th>SC Description</th>
                                             <th>Product Description</th>
                                             <th>Created By Name</th>
-                                            <th>Document Status</th>
+                                        
                                             <th>PO Number</th>
                                             <th>IR</th>
-                                            <th>Vendor DUNS</th>
+                                           
                                             <th>Vendor Name</th>
                                             <th>Product Type Text</th>
                                             <th>Item Net Value</th>
@@ -109,10 +112,10 @@
                                             <td><?php echo $row['sc_description']?></td>
                                             <td><?php echo $row['product_description']?></td>
                                             <td><?php echo $row['created_by_name']?></td>
-                                            <td><?php echo $row['document_status']?></td>
+                                    
                                             <td><?php echo $row['po_number']?></td>
                                             <td><?php echo $row['ir']?></td>
-                                            <td><?php echo $row['vendor_duns']?></td>
+                                
                                             <td><?php echo $row['vendor_name']?></td>
                                             <td><?php echo $row['product_type_text']?></td>
                                             <td><?php echo $row['item_net_value']?></td>
@@ -131,3 +134,29 @@
                         </div>
 
 <?php require_once '../footer.php';?>
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalExcel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Exportar Excel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="create_excel.php">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">¿Desea generar archivo Excel?</label>
+          </div>     
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-success" value="Generar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+

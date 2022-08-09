@@ -1,7 +1,86 @@
 <?php require_once '../header.php';?>
 <?php
+require "../bd/conexion.php"; //llamar a la conexion
+$con = conectar(); //llamar al metodo para hacer conexion a la BD
+$mensaje = "";
 
+if($_POST){//si ya se ingresaron los datos
+   
+$planta=$_POST['planta'];
+$sc_creation_date=$_POST['sc_creation_date'];
+$shopping_cart_no=$_POST['shopping_cart_no'];
+$sc_description=$_POST['sc_description'];
+$product_description=$_POST['product_description'];
+$created_by_name=$_POST['created_by_name'];
+$po_number=$_POST['po_number'];
+$ir=$_POST['ir'];
+$vendor_name=$_POST['vendor_name'];
+$product_type_text=$_POST['product_type_text'];
+$item_net_value=$_POST['item_net_value'];
+$document_currency=$_POST['document_currency'];
+$cost_center=$_POST['cost_center'];
+$tarea=$_POST['tarea'];
+$status=$_POST['status'];
+$observaciones=$_POST['observaciones'];
 
+  if (!empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no) 
+      && !empty($sc_description) && !empty($product_description) && !empty($created_by_name)
+      && !empty($po_number) && !empty($ir) && !empty($vendor_name)
+      && !empty($product_type_text) && !empty($item_net_value) && !empty($document_currency)
+      && !empty($cost_center) && !empty($tarea) && !empty($status) && !empty($observaciones)) {//validar que los campos no esten vacios
+   
+            $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, sc_description,
+                    product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
+                    item_net_value, document_currency, cost_center, tarea, status, observaciones)
+                    VALUES (' $planta','$sc_creation_date',' $shopping_cart_no','$sc_description',
+                    '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
+                    '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones')";
+
+            $result=mysqli_query($con, $sql); //ejecutar query
+            
+            if ($result) {//si se ejecuto correctamente el query
+                echo "<script>alert('servicio agregado exitosamente')</script>";
+
+                $planta="";
+                $sc_creation_date="";
+                $shopping_cart_no="";
+                $sc_description="";
+                $product_description="";
+                $created_by_name="";
+                $po_number="";
+                $ir="";
+                $vendor_name="";
+                $product_type_text="";
+                $item_net_value="";
+                $document_currency="";
+                $cost_center="";
+                $tarea="";
+                $status="";
+                $observaciones="";
+
+                $_POST['planta']="";
+                $_POST['sc_creation_date']="";
+                $_POST['shopping_cart_no']="";
+                $_POST['sc_description']="";
+                $_POST['product_description']="";
+                $_POST['created_by_name']="";
+                $_POST['po_number']="";
+                $_POST['ir']="";
+                $_POST['vendor_name']="";
+                $_POST['product_type_text']="";
+                $_POST['item_net_value']="";
+                $_POST['document_currency']="";
+                $_POST['cost_center']="";
+                $_POST['tarea']="";
+                $_POST['status']="";
+                $_POST['observaciones']="";
+
+                $mensaje = "";              
+            }else{
+                echo "<script>alert('ERROR al registrar servicio')</script>";               
+            }       
+  }//validar que los campos no esten vacios
+}
 ?>
     <h1 class="mt-4">Agregar nuevo servicio</h1>
     <br>
@@ -37,10 +116,7 @@
          <input type="text" class="form-control" name="created_by_name" required>
       </div>
 
-      <div class="mb-3">
-         <label class="form-label">Document Status:</label>
-         <input type="text" class="form-control" name="document_status" required>
-      </div>
+    
 
       <div class="mb-3">
          <label class="form-label">PO Number:</label>
@@ -50,11 +126,6 @@
       <div class="mb-3">
          <label class="form-label">IR:</label>
          <input type="text" class="form-control" name="ir" required>
-      </div>
-
-      <div class="mb-3">
-         <label class="form-label">Vendor DUNS:</label>
-         <input type="text" class="form-control" name="vendor_duns" required>
       </div>
 
       <div class="mb-3">

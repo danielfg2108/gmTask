@@ -97,7 +97,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                             <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
                             <a class="nav-link" href="../reportes/reportes.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Reportes
+                                Reporte
                             </a>
                             <a class="nav-link" href="../reportes/create_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>

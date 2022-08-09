@@ -55,11 +55,7 @@
                                           <td><?php echo $row['created_by_name']?></td>
                                         </tr>
 
-                                        <tr>
-                                          <td>Document Status:</td>
-                                          <td><?php echo $row['document_status']?></td>                                        
-                                        </tr>
-
+                                       
                                         <tr>
                                           <td>PO Number:</td>
                                           <td><?php echo $row['po_number']?></td>                                        
@@ -70,10 +66,7 @@
                                           <td><?php echo $row['ir']?></td>                                        
                                         </tr> 
 
-                                        <tr>
-                                          <td>Vendor DUNS:</td>
-                                          <td><?php echo $row['vendor_duns']?></td>                                        
-                                        </tr> 
+                                    
 
                                         <tr>
                                           <td>Vendor Name:</td>
@@ -163,10 +156,7 @@
             <label for="recipient-name" class="col-form-label">Created By Name:</label>
             <input name="created_by_name" type="text" class="form-control" value="<?php echo $row['created_by_name']?>">
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Document Status:</label>
-            <input name="document_status" type="text" class="form-control" value="<?php echo $row['document_status']?>">
-          </div>
+         
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">PO Number:</label>
             <input name="po_number" type="text" class="form-control" value="<?php echo $row['po_number']?>">
@@ -175,10 +165,7 @@
             <label for="recipient-name" class="col-form-label">IR:</label>
             <input name="ir" type="text" class="form-control" value="<?php echo $row['ir']?>">
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Vendor DUNS:</label>
-            <input name="vendor_duns" type="text" class="form-control" value="<?php echo $row['vendor_duns']?>">
-          </div>
+         
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Vendor Name:</label>
             <input name="vendor_name" type="text" class="form-control" value="<?php echo $row['vendor_name']?>">

@@ -98,7 +98,7 @@ $id = $_SESSION['id'];
                             <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
                             <a class="nav-link" href="reportes/reportes.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Reportes
+                                Reporte
                             </a>
                             <a class="nav-link" href="reportes/create_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
@@ -142,7 +142,6 @@ $id = $_SESSION['id'];
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
-
 
                         </div>
                        
