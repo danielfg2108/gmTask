@@ -3,8 +3,7 @@
     require "../bd/conexion.php"; //llamar a la conexion
     $sql = "SELECT * FROM reporte_servicios"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
-    //////////////////
-    $row=mysqli_fetch_array($resultado);
+    
 ?>
 
                         <h1 class="mt-4">Reporte de servicios</h1>
@@ -100,7 +99,7 @@
                                     </tfoot>
                                     <tbody>
                                     <?php
-                                            while($row=mysqli_fetch_array($resultado)){
+                                            while($row = mysqli_fetch_array($resultado)){
                                         ?>
                                         <tr>
                                             <td>

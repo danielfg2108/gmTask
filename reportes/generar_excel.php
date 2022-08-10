@@ -1,4 +1,10 @@
 <?php
+session_start(); //iniciar session de usuario
+if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
+    header("Location: ../index.php"); //sino esta loggeado redirigir al home
+}
+
+
 require "../librerias/Spreadsheet/vendor/autoload.php";
 require "../bd/conexion.php";
 
