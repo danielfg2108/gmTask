@@ -28,7 +28,7 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">Reporte PDF</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Generar</a>
+                                    <a class="small text-white stretched-link" data-bs-toggle="modal" data-bs-target="#modalPDF" data-bs-whatever="@mdo">Generar</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -145,12 +145,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="create_excel.php">
+        <form action="generar_excel.php">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">¿Desea generar archivo Excel?</label>
           </div>     
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <input type="submit" class="btn btn-success" value="Generar">
           </div>
         </form>
@@ -159,4 +159,30 @@
   </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalPDF" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Exportar PDF</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="generar_pdf.php">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">¿Desea generar archivo PDF?</label>
+          </div>     
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" class="btn btn-danger" value="Generar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
 
