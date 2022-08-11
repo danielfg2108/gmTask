@@ -3,13 +3,12 @@
     require "../bd/conexion.php"; //llamar a la conexion
     $sql = "SELECT * FROM reporte_servicios"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
-    
 ?>
 
                         <h1 class="mt-4">Reporte de servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
-                            <li class="breadcrumb-item active">Reportes</li>
+                            <li class="breadcrumb-item active">Reporte</li>
                         </ol>
                         
                         <div class="row">
@@ -103,7 +102,7 @@
                                         ?>
                                         <tr>
                                             <td>
-                                              <a type="button" href="detalles_reportes.php?id=<?php echo $row['id_servicio'] ?>" class="btn btn-primary">Ver</a></th>
+                                              <a type="button" href="detalles_reportes.php?id=<?php echo $row['id_servicio'] ?>" class="btn btn-primary">Ver</a>
                                             </td>
                                             <td><?php echo $row['planta']?></td>
                                             <td><?php echo $row['sc_creation_date']?></td>

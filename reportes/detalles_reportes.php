@@ -5,14 +5,17 @@
 
     $id=$_GET['id'];
     $sql = "SELECT * FROM reporte_servicios WHERE id_servicio='$id'"; //generar consulta
+    $sql_archivos = "SELECT * FROM archivos_reporte_servicios WHERE id_servicio='$id'"; //generar consulta archivos
+
     $resultado = $mysqli->query($sql); //guardar consulta
+    $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
     //////////////////
     $row=mysqli_fetch_array($resultado);
 ?>
                         <h1 class="mt-4">Detalles</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="reportes.php">Reportes</a></li>
+                            <li class="breadcrumb-item"><a href="reportes.php">Reporte</a></li>
                             <li class="breadcrumb-item active">Detalles</li>
                         </ol>
 
@@ -66,8 +69,6 @@
                                           <td><?php echo $row['ir']?></td>                                        
                                         </tr> 
 
-                                    
-
                                         <tr>
                                           <td>Vendor Name:</td>
                                           <td><?php echo $row['vendor_name']?></td>                                        
@@ -107,17 +108,52 @@
                                           <td>Observaciones:</td>
                                           <td><?php echo $row['observaciones']?></td>                                        
                                         </tr> 
-
+                                  
                                         <tr>
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReporte" data-bs-whatever="@mdo">Modificar</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReporte" data-bs-whatever="@mdo">Modificar datos</button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-whatever="@mdo">Eliminar</button>
                                             </td>
                                             <td></td>    
-                                        </tr> 
-                                                                            
+                                        </tr>                         
                                     </tbody>
                                 </table>
+
+                                
+                                <!-- TABLA DE ARCHIVOS-->
+                                <br>
+                                <h6 class="mt-4">Archivos adjuntados</h6>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Archivo</th> 
+                                            <th></th>                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>    
+                                    <?php
+                                            while($row_archivos = mysqli_fetch_array($resultado_archivos)){
+                                        ?> 
+                                        <tr>
+                                        <td><?php echo $row_archivos['descripcion']?></td>
+                                          <td>
+                                                <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio']?>/<?php echo $row_archivos['descripcion']?>"><i class="fa-solid fa-eye"></i></a>
+                                                <a type="button" class="btn btn-danger" href=""><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                          <td>                              
+                                        </tr>
+                                        <?php 
+                                            }
+                                        ?>    
+                                         <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalArchivo" data-bs-whatever="@mdo">Agregar nuevo</button>
+                                            </td>
+                                            <td></td>    
+                                        </tr>                                
+                                    </tbody>
+                                </table>
+                        
                            
 <?php require_once '../footer.php';?>
 
@@ -131,7 +167,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="update_reporte.php?id=<?php echo $row['id_servicio'] ?>" method="POST">
+        <form action="update_reporte.php?id=<?php echo $row['id_servicio'] ?>" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Planta:</label>
             <input name="planta" type="text" class="form-control" value="<?php echo $row['planta']?>">
@@ -202,6 +238,7 @@
             <label for="recipient-name" class="col-form-label">Observaciones:</label>
             <textarea name="observaciones" type="text" class="form-control"><?php echo $row['observaciones']?>"</textarea>
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <input type="submit" class="btn btn-primary" value="Actualizar">
@@ -231,6 +268,32 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <input type="submit" class="btn btn-danger" value="Eliminar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalArchivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar archivo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="agregar_archivo.php?id=<?php echo $row['id_servicio'] ?>" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Adjuntar nuevo archivo:</label>
+            <input name="archivo" type="file" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Agregar">
           </div>
         </form>
       </div>

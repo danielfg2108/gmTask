@@ -23,6 +23,8 @@ $tarea=$_POST['tarea'];
 $status=$_POST['status'];
 $observaciones=$_POST['observaciones'];
 
+
+
   if (!empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no) 
       && !empty($sc_description) && !empty($product_description) && !empty($created_by_name)
       && !empty($po_number) && !empty($ir) && !empty($vendor_name)
@@ -32,13 +34,14 @@ $observaciones=$_POST['observaciones'];
             $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, sc_description,
                     product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
                     item_net_value, document_currency, cost_center, tarea, status, observaciones)
-                    VALUES (' $planta','$sc_creation_date',' $shopping_cart_no','$sc_description',
+                    VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','$sc_description',
                     '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
                     '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones')";
 
             $result=mysqli_query($con, $sql); //ejecutar query
             
             if ($result) {//si se ejecuto correctamente el query
+
                 echo "<script>alert('servicio agregado exitosamente')</script>";
 
                 $planta="";
@@ -86,7 +89,7 @@ $observaciones=$_POST['observaciones'];
     <br>
     
     <div class="container mt-3">
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
          <label class="form-label">Planta:</label>
          <input type="text" class="form-control" name="planta" required>
@@ -171,6 +174,11 @@ $observaciones=$_POST['observaciones'];
       <div class="mb-3">
             <label class="form-label">Observaciones:</label>
             <textarea name="observaciones" type="text" class="form-control" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Adjuntar archivo: (Opcional)</label>
+            <input type="file" class="form-control" name="archivo">
           </div>
       
       <input type="submit" class="btn btn-primary" value="Agregar">

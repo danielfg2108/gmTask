@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html>
+   <head>
+     <title>Formulario</title>
+
+   </head>
+   <body>
+   <p> </p>
+
+   </body>
+</html>
+
+<!-- date: YYYY-MM-DD 
+SELECT @date AS '@date', @smalldatetime AS '@smalldatetime';
+--!>
+
+
+
+DECLARE @date date = '1912-10-25'  
+DECLARE @datetime2 datetime2(3) = @date;
+SELECT @date AS '@date', @datetime2 AS '@datetime2(3)';
+--Result  
+--@date      @datetime2(3)  
+------------ -----------------------  
+--1912-10-25 1912-10-25 00:00:00.000  
+--(1 row(s) affected)
+
+--conexion con sqlServer
+http://acodigo.blogspot.com/2013/06/conectar-sql-server-con-java.html
+
+--servelt
+http://www.jtech.ua.es/historico/ias/restringido/apuntes/sesion03-apuntes.htm
+
+--tomcat
+https://programacion.net/articulo/tomcat_introduccion_134
+
+https://programacion.net/articulo/desplegar_servlets_y_aplicaciones_web_en_tomcat_y_weblogic_server_175

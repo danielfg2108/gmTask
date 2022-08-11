@@ -1,0 +1,4 @@
+Copia y pega esta linea al final del documento "tomcat-users.xml"
+ antes de la etiqueta de cierre </tomcat-users>
+
+<user password="admin" roles="manager-script,admin,manager-gui" username="admin"/>

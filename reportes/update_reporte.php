@@ -14,10 +14,8 @@ $id=$_GET['id'];
         $sc_description=$_POST['sc_description'];
         $product_description=$_POST['product_description'];
         $created_by_name=$_POST['created_by_name'];
-       
         $po_number=$_POST['po_number'];
         $ir=$_POST['ir'];
-     
         $vendor_name=$_POST['vendor_name'];
         $product_type_text=$_POST['product_type_text'];
         $item_net_value=$_POST['item_net_value'];
@@ -33,10 +31,8 @@ $id=$_GET['id'];
               sc_description=' $sc_description',
               product_description='$product_description', 
               created_by_name=' $created_by_name', 
-              
               po_number=' $po_number', 
               ir='$ir', 
-        
               vendor_name='$vendor_name', 
               product_type_text='$product_type_text', 
               item_net_value='$item_net_value', 
