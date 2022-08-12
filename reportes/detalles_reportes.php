@@ -10,7 +10,7 @@
     $resultado = $mysqli->query($sql); //guardar consulta
     $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
     //////////////////
-    $row=mysqli_fetch_array($resultado);
+    $row=mysqli_fetch_array($resultado);//ejecutar consulta (fetch devuelve un solo registro)
 ?>
                         <h1 class="mt-4">Detalles</h1>
                         <ol class="breadcrumb mb-4">
@@ -118,7 +118,6 @@
                                         </tr>                         
                                     </tbody>
                                 </table>
-
                                 
                                 <!-- TABLA DE ARCHIVOS-->
                                 <br>
@@ -138,7 +137,7 @@
                                         <td><?php echo $row_archivos['descripcion']?></td>
                                           <td>
                                                 <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio']?>/<?php echo $row_archivos['descripcion']?>"><i class="fa-solid fa-eye"></i></a>
-                                                <a type="button" class="btn btn-danger" href=""><i class="fa-solid fa-trash-can"></i></a>
+                                                <a type="button" class="btn btn-danger" href="eliminar_archivo.php?id_archivo=<?php echo $row_archivos['id_archivo']?>&id_servicio=<?php echo $id?>" ><i class="fa-solid fa-trash-can"></i></a>
                                             </td>
                                           <td>                              
                                         </tr>
@@ -153,8 +152,7 @@
                                         </tr>                                
                                     </tbody>
                                 </table>
-                        
-                           
+                                                
 <?php require_once '../footer.php';?>
 
 
@@ -301,3 +299,5 @@
   </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+

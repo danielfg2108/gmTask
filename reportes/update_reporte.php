@@ -8,22 +8,22 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
 
 $id=$_GET['id'];
 
-        $planta=$_POST['planta'];
-        $sc_creation_date=$_POST['sc_creation_date'];
-        $shopping_cart_no=$_POST['shopping_cart_no'];
-        $sc_description=$_POST['sc_description'];
-        $product_description=$_POST['product_description'];
-        $created_by_name=$_POST['created_by_name'];
-        $po_number=$_POST['po_number'];
-        $ir=$_POST['ir'];
-        $vendor_name=$_POST['vendor_name'];
-        $product_type_text=$_POST['product_type_text'];
-        $item_net_value=$_POST['item_net_value'];
-        $document_currency=$_POST['document_currency'];
-        $cost_center=$_POST['cost_center'];
-        $tarea=$_POST['tarea'];
-        $status=$_POST['status'];
-        $observaciones=$_POST['observaciones'];
+$planta = addslashes($_POST['planta']);
+$sc_creation_date = addslashes($_POST['sc_creation_date']);
+$shopping_cart_no = addslashes($_POST['shopping_cart_no']);
+$sc_description = addslashes($_POST['sc_description']);
+$product_description = addslashes($_POST['product_description']);
+$created_by_name = addslashes($_POST['created_by_name']);
+$po_number = addslashes($_POST['po_number']);
+$ir = addslashes($_POST['ir']);
+$vendor_name = addslashes($_POST['vendor_name']);
+$product_type_text = addslashes($_POST['product_type_text']);
+$item_net_value = addslashes($_POST['item_net_value']);
+$document_currency = addslashes($_POST['document_currency']);
+$cost_center = addslashes($_POST['cost_center']);
+$tarea = addslashes($_POST['tarea']);
+$status = addslashes($_POST['status']);
+$observaciones = addslashes($_POST['observaciones']);
 
         $sql="UPDATE reporte_servicios SET planta='$planta', 
               sc_creation_date='$sc_creation_date', 
@@ -43,7 +43,7 @@ $id=$_GET['id'];
               observaciones='$observaciones'
               WHERE id_servicio='$id'";
       
-             $query=mysqli_query($con,$sql);
+             $query=mysqli_query($con,$sql); //ejecutar consulta
 
         if($query){
                 Header("Location: detalles_reportes.php?id=$id");

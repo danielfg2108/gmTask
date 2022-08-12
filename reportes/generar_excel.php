@@ -12,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 $sql = "SELECT * FROM reporte_servicios";
-$resultado = $mysqli->query($sql); 
+$resultado = $mysqli->query($sql);  //guardar consulta
 
 $excel = new Spreadsheet();
 $hojaActiva = $excel->getActiveSheet();

@@ -8,10 +8,30 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
 
 $id=$_GET['id'];
 
-        $sql="DELETE FROM reporte_servicios WHERE id_servicio='$id'";
-             $query=mysqli_query($con,$sql);
+$ruta = "../archivos_servicios/".$id;
+rrmdir($ruta); //eliminar carpeta fisicamente (con todo y sus archivos)
 
-        if($query){
+function rrmdir($dir) {
+    if (is_dir($dir)) {
+      $objects = scandir($dir);
+      foreach ($objects as $object) {
+        if ($object != "." && $object != "..") {
+          if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object);
+        }
+      }
+      reset($objects);
+      rmdir($dir);
+    }
+ } 
+
+
+       $sql_archivos="DELETE FROM archivos_reporte_servicios WHERE id_servicio='$id'";
+       $query_archivos=mysqli_query($con,$sql_archivos); //ejecutar consulta para eliminar archivos
+
+        $sql="DELETE FROM reporte_servicios WHERE id_servicio='$id'";
+             $query=mysqli_query($con,$sql); //ejecutar consulta para eliminar servicio
+
+        if( $query_archivos && $query){
                 header("Location: reportes.php");
                 echo "<script>alert('Elemento eliminado')</script>";               
             }else{
