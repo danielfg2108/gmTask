@@ -22,6 +22,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="../librerias/fontawesome.js"></script>
         <link href="../css/mis_estilos.css" rel="stylesheet"/>
+        <script src="../librerias/jquery.js"></script>
 
     </head>
     <body class="sb-nav-fixed">
@@ -99,9 +100,14 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reporte
                             </a>
-                            <a class="nav-link" href="../reportes/create_reporte.php">
+                            <a class="nav-link" href="../reportes/tipo_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agregar servicio
+                                Agregar nuevo
+                            </a>
+                            
+                            <a class="nav-link" href="../reportes/status_reporte.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Status
                             </a>
 
                         </div>

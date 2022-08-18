@@ -21,6 +21,7 @@
         <script src="../demo/chart-bar-demo.js"></script>
         <script src="../librerias/jsdelivr_simple_datatables.js"></script>
         <script src="../js/datatables-simple-demo.js"></script>
+        <script src="../js/datatables-simple-demo_2.js"></script>
 
     </body>
 </html>

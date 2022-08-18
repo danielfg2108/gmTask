@@ -93,16 +93,21 @@ $id = $_SESSION['id'];
                                 Mensajes
                             </a>
 
-
                             <!-- seccion "reportes" del menu lateral-->
                             <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
                             <a class="nav-link" href="reportes/reportes.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reporte
                             </a>
-                            <a class="nav-link" href="reportes/create_reporte.php">
+                            
+                            <a class="nav-link" href="reportes/tipo_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agregar servicio
+                                Agregar nuevo
+                            </a>
+
+                            <a class="nav-link" href="reportes/status_reporte.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Status
                             </a>
 
                         </div>
@@ -117,6 +122,7 @@ $id = $_SESSION['id'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
+                        <img src="images/general_motors_marcas_.jpg" class="img-fluid" style="display:block; margin:auto;">
                         <h1 class="mt-4">Task</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">general motors</li>
