@@ -11,6 +11,7 @@ $id=$_GET['id'];
 $planta = addslashes($_POST['planta']);
 $sc_creation_date = addslashes($_POST['sc_creation_date']);
 $shopping_cart_no = addslashes($_POST['shopping_cart_no']);
+$shipper_no = addslashes($_POST['shipper_no']);
 $sc_description = addslashes($_POST['sc_description']);
 $product_description = addslashes($_POST['product_description']);
 $created_by_name = addslashes($_POST['created_by_name']);
@@ -28,6 +29,7 @@ $observaciones = addslashes($_POST['observaciones']);
         $sql="UPDATE reporte_servicios SET planta='$planta', 
               sc_creation_date='$sc_creation_date', 
               shopping_cart_no=' $shopping_cart_no', 
+              shipper_no=' $shipper_no', 
               sc_description=' $sc_description',
               product_description='$product_description', 
               created_by_name=' $created_by_name', 

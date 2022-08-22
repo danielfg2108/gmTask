@@ -204,13 +204,11 @@ if ($_POST) { //si ya se ingresaron los datos
 } //POST
 ?>
 <script>
-   $("#cerrado").hide(); //con jquery oculta etiqueta al cargar la pagina
-
    $(document).ready(function(){
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#abierto"){
+        if(selectValor == "#ABIERTO"){
             document.querySelector('#archivo1').required = false;
             document.querySelector('#archivo2').required = false;
            }else{
@@ -305,14 +303,14 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label for="inputState">Status</label>
-         <select id="select" class="form-control" name="status" style="width: 150px;">
-            <option value="abierto">ABIERTO</option>
-            <option value="cerrado">CERRADO</option>
+         <select id="select" class="form-control" name="status" style="width: 150px;">        
+            <option value="CERRADO">CERRADO</option>
+            <option value="ABIERTO">ABIERTO</option>
          </select>
       </div>
 
       <div id="pai">
-         <div id="cerrado" class="mb-3">
+         <div id="CERRADO" class="mb-3">
             <label class="form-label" style="color:orange">Si cambias a status CERRADO es necesario adjuntar el reporte y shipper</label>
             <br>
             <label class="form-label" style="color: orange;">Agregar reporte:</label>
@@ -321,7 +319,7 @@ if ($_POST) { //si ya se ingresaron los datos
             <label class="form-label " style="color: orange;">Agregar shipper:</label>
             <input type="file" class="form-control" id="archivo2" name="archivo2" required>
          </div>
-         <div id="abierto"></div>
+         <div id="ABIERTO"></div>
       </div>
 
       <div class="mb-3">
@@ -334,13 +332,11 @@ if ($_POST) { //si ya se ingresaron los datos
 </div>
 
 <script>
-   $("#cerrado").hide(); //con jquery oculta etiqueta al cargar la pagina
-
    $(document).ready(function(){
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#abierto"){
+        if(selectValor == "#ABIERTO"){
             document.querySelector('#archivo1').required = false;
             document.querySelector('#archivo2').required = false;
            }else{

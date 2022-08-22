@@ -30,91 +30,175 @@ if ($_POST) { //si ya se ingresaron los datos
    $observaciones = addslashes($_POST['observaciones']);
 
    if (
-      !empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no)
+      !empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no) 
       && !empty($sc_description) && !empty($product_description) && !empty($created_by_name)
       && !empty($po_number) && !empty($ir) && !empty($vendor_name)
       && !empty($product_type_text) && !empty($item_net_value) && !empty($document_currency)
       && !empty($cost_center) && !empty($tarea) && !empty($status) && !empty($observaciones)
    ) { //validar que los campos no esten vacios
 
+      if ($status == ('CERRADO' || 'cerrado')) {
+
+        // if (!empty($_FILES['archivo1'])) { //si se envio algo 
+
       $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
-                    product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
-                    item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
-                    VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','null','$sc_description',
-                    '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
-                    '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones', 'SERVICIO')"; //generar query
+      product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
+      item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
+      VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','sin shipper','$sc_description',
+      '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
+      '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones', 'SERVICIO')"; //generar query
 
-      $result = mysqli_query($con, $sql); //ejecutar query
+            $result = mysqli_query($con, $sql); //ejecutar query
 
-      if ($result) { //si se ejecuto correctamente el query
+            if ($result) { //si se ejecuto correctamente el query  
 
-         $ultimo_id = mysqli_insert_id($con); //recibo el último id insertado
+               $ultimo_id = mysqli_insert_id($con); //recibo el último id insertado
 
-         //agregar archivo
-         if ($_FILES["archivo"]) { //si se subio un archivo
-            $nombre_base = basename($_FILES["archivo"]["name"]); //obtener el nombre del archivo
-            $nombre_final = date("d-m-y") . "_" . date("H-i-s") . "-" . $nombre_base; //agregar fecha y hora al nombre
-            $ruta = "../archivos_servicios/" . $ultimo_id . "/" . $nombre_final;
+               //agregar archivo1
+               if ($_FILES["archivo1"]) { //si se subio un archivo
+                  $nombre_base = basename($_FILES["archivo1"]["name"]); //obtener el nombre del archivo
+                  $nombre_final = date("d-m-y") . "_" . date("H-i-s") . "-" . $nombre_base; //agregar fecha y hora al nombre
+                  $ruta = "../archivos_servicios/" . $ultimo_id . "/" . $nombre_final;
 
-            if (!file_exists("../archivos_servicios/" . $ultimo_id . "/")) { //sino existe la ruta, crearla
-               mkdir("../archivos_servicios/" . $ultimo_id . "/"); //crear ruta
-            }
-            $subirarchivo = move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
-            if ($subirarchivo) { //si se movio el archivo en la ruta que le indique
-               $insertar = "INSERT INTO archivos_reporte_servicios(descripcion, id_servicio) VALUES ('$nombre_final', '$ultimo_id')"; //query
-               $resultado_archivo = mysqli_query($con, $insertar); //ejecutar query
-               if ($resultado_archivo) { //si se inserto el archivo en la bd
-                  //echo "<script>alert('se ha enviado archivo')</script>";
-               } else {
-                 // echo "<script>alert('error al guardar archivo')</script>";
+                  if (!file_exists("../archivos_servicios/" . $ultimo_id . "/")) { //sino existe la ruta, crearla
+                     mkdir("../archivos_servicios/" . $ultimo_id . "/"); //crear ruta
+                  }
+                  $subirarchivo = move_uploaded_file($_FILES["archivo1"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
+                  if ($subirarchivo) { //si se movio el archivo en la ruta que le indique
+                     $insertar = "INSERT INTO archivos_reporte_servicios(descripcion, id_servicio) VALUES ('$nombre_final', '$ultimo_id')"; //query
+                     $resultado_archivo = mysqli_query($con, $insertar); //ejecutar query
+                     if ($resultado_archivo) { //si se inserto el archivo en la bd
+                        //echo "<script>alert('se ha enviado archivo')</script>";
+                     } else {
+                        // echo "<script>alert('error al guardar archivo')</script>";
+                     }
+                  }
                }
+          
+
+               $planta = ""; //limpiar campos
+               $sc_creation_date = "";
+               $shopping_cart_no = "";
+    
+               $sc_description = "";
+               $product_description = "";
+               $created_by_name = "";
+               $po_number = "";
+               $ir = "";
+               $vendor_name = "";
+               $product_type_text = "";
+               $item_net_value = "";
+               $document_currency = "";
+               $cost_center = "";
+               $tarea = "";
+               $status = "";
+               $observaciones = "";
+
+               $_POST['planta'] = ""; //limpiar campos post
+               $_POST['sc_creation_date'] = "";
+               $_POST['shopping_cart_no'] = "";
+            
+               $_POST['sc_description'] = "";
+               $_POST['product_description'] = "";
+               $_POST['created_by_name'] = "";
+               $_POST['po_number'] = "";
+               $_POST['ir'] = "";
+               $_POST['vendor_name'] = "";
+               $_POST['product_type_text'] = "";
+               $_POST['item_net_value'] = "";
+               $_POST['document_currency'] = "";
+               $_POST['cost_center'] = "";
+               $_POST['tarea'] = "";
+               $_POST['status'] = "";
+               $_POST['observaciones'] = "";
+
+               echo "<script>alert('Servicio agregado exitosamente')</script>";
+            } else {
+               echo "<script>alert('ERROR al registrar servicio')</script>";
             }
-         }
 
-         $planta = ""; //limpiar campos
-         $sc_creation_date = "";
-         $shopping_cart_no = "";
+         /*} else {
+            echo '<h3 style="color: red;">NO FUE POSIBLE REALIZAR EL REGISTRO, FAVOR DE ADJUNTAR LOS ARCHIVOS NECESARIOS PARA EL STATUS "CERRADO"</h3>';
+         }*/
+
+
+      } else 
+        if($status == ('ABIERTO' || 'abierto') ){
+         //si el status es abierto
+      $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
+      product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
+      item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
+      VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','sin shipper','$sc_description',
+      '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
+      '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones', 'SERVICIO')"; //generar query
+
+            $result = mysqli_query($con, $sql); //ejecutar query
+
+            if ($result) { //si se ejecuto correctamente el query  
         
-         $sc_description = "";
-         $product_description = "";
-         $created_by_name = "";
-         $po_number = "";
-         $ir = "";
-         $vendor_name = "";
-         $product_type_text = "";
-         $item_net_value = "";
-         $document_currency = "";
-         $cost_center = "";
-         $tarea = "";
-         $status = "";
-         $observaciones = "";
+               $planta = ""; //limpiar campos
+               $sc_creation_date = "";
+               $shopping_cart_no = "";
+             
+               $sc_description = "";
+               $product_description = "";
+               $created_by_name = "";
+               $po_number = "";
+               $ir = "";
+               $vendor_name = "";
+               $product_type_text = "";
+               $item_net_value = "";
+               $document_currency = "";
+               $cost_center = "";
+               $tarea = "";
+               $status = "";
+               $observaciones = "";
 
-         $_POST['planta'] = "";//limpiar campos post
-         $_POST['sc_creation_date'] = "";
-         $_POST['shopping_cart_no'] = "";
+               $_POST['planta'] = ""; //limpiar campos post
+               $_POST['sc_creation_date'] = "";
+               $_POST['shopping_cart_no'] = "";
+             
+               $_POST['sc_description'] = "";
+               $_POST['product_description'] = "";
+               $_POST['created_by_name'] = "";
+               $_POST['po_number'] = "";
+               $_POST['ir'] = "";
+               $_POST['vendor_name'] = "";
+               $_POST['product_type_text'] = "";
+               $_POST['item_net_value'] = "";
+               $_POST['document_currency'] = "";
+               $_POST['cost_center'] = "";
+               $_POST['tarea'] = "";
+               $_POST['status'] = "";
+               $_POST['observaciones'] = "";
+
+               echo "<script>alert('reparacion agregado exitosamente')</script>";
+            } else {
+               echo "<script>alert('ERROR al registrar servicio')</script>";
+            }
          
-         $_POST['sc_description'] = "";
-         $_POST['product_description'] = "";
-         $_POST['created_by_name'] = "";
-         $_POST['po_number'] = "";
-         $_POST['ir'] = "";
-         $_POST['vendor_name'] = "";
-         $_POST['product_type_text'] = "";
-         $_POST['item_net_value'] = "";
-         $_POST['document_currency'] = "";
-         $_POST['cost_center'] = "";
-         $_POST['tarea'] = "";
-         $_POST['status'] = "";
-         $_POST['observaciones'] = "";
-
-         $mensaje = "";
-         echo "<script>alert('servicio agregado exitosamente')</script>";
-      } else {
-         echo "<script>alert('ERROR al registrar servicio')</script>";
-      }
+      }//si el status es abierto
    } //validar que los campos no esten vacios
-}
+
+} //POST
 ?>
+<script>
+   $(document).ready(function(){
+    $('#select').on('change', function(){
+        var selectValor = '#'+$(this).val();
+
+        if(selectValor == "#ABIERTO"){
+            document.querySelector('#archivo1').required = false;
+           }else{
+            document.querySelector('#archivo1').required = true;
+           }
+
+        $('#pai').children('div').hide();
+        $('#pai').children(selectValor).show();
+    })
+})
+</script>
+
 <h1 class="mt-4">Registrar nuevo Servicio</h1>
 <br>
 
@@ -133,6 +217,7 @@ if ($_POST) { //si ya se ingresaron los datos
          <label class="form-label">Shopping Cart num.:</label>
          <input type="text" class="form-control" name="shopping_cart_no" required>
       </div>
+
 
       <div class="mb-3">
          <label class="form-label">SC Description:</label>
@@ -190,25 +275,47 @@ if ($_POST) { //si ya se ingresaron los datos
       </div>
 
       <div class="mb-3">
-      <label for="inputState">Status</label>
-      <select class="form-control" name="status" style="width: 150px;">
-        <option selected>ABIERTO</option>
-        <option>CERRADO</option>
-      </select>
-    </div>
+         <label for="inputState">Status</label>
+         <select id="select" class="form-control" name="status" style="width: 150px;">        
+            <option value="CERRADO">CERRADO</option>
+            <option value="ABIERTO">ABIERTO</option>
+         </select>
+      </div>
+
+      <div id="pai">
+         <div id="CERRADO" class="mb-3">
+            <label class="form-label" style="color:orange">Si cambias a status CERRADO es necesario adjuntar el reporte</label>
+            <br>
+            <label class="form-label" style="color: orange;">Agregar reporte:</label>
+            <input type="file" class="form-control" id="archivo1" name="archivo1" required>         
+         </div>
+         <div id="ABIERTO"></div>
+      </div>
 
       <div class="mb-3">
          <label class="form-label">Observaciones:</label>
          <textarea name="observaciones" type="text" class="form-control" required></textarea>
       </div>
 
-      <div class="mb-3">
-         <label class="form-label">Adjuntar reporte:</label>
-         <input type="file" class="form-control" name="archivo">
-      </div>
-
-      <input type="submit" class="btn btn-primary" value="Agregar">
+      <input type="submit" class="btn btn-primary" value="Agregar" onclick="">
    </form>
 </div>
+
+<script>
+   $(document).ready(function(){
+    $('#select').on('change', function(){
+        var selectValor = '#'+$(this).val();
+
+        if(selectValor == "#ABIERTO"){
+            document.querySelector('#archivo1').required = false;
+           }else{
+            document.querySelector('#archivo1').required = true;
+           }
+
+        $('#pai').children('div').hide();
+        $('#pai').children(selectValor).show();
+    })
+})
+</script>
 
 <?php require_once '../footer.php'; ?>

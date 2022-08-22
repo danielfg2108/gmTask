@@ -5,7 +5,7 @@
     $resultado = $mysqli->query($sql); //guardar consulta
 ?>
 
-                        <h1 class="mt-4">Reporte de servicios</h1>
+                        <h1 class="mt-4">Reporte de reparaciones y servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
                             <li class="breadcrumb-item active">Reporte</li>
@@ -55,7 +55,8 @@
                                             <th>Ver</th>
                                             <th>Planta</th>
                                             <th>SC Creation Date</th>
-                                            <th>Shopping Cart No.</th>
+                                            <th>Shopping Cart Num.</th>
+                                            <th>Shipper Num.</th>
                                             <th>SC Description</th>
                                             <th>Product Description</th>
                                             <th>Created By Name</th>
@@ -70,7 +71,8 @@
                                             <th>Cost Center</th>
                                             <th>Tarea</th>
                                             <th>Status</th>
-                                            <th>Observaciones</th>                        
+                                            <th>Observaciones</th>    
+                                            <th>Tipo</th>                     
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -78,7 +80,8 @@
                                             <th>Ver</th>
                                             <th>Planta</th>
                                             <th>SC Creation Date</th>
-                                            <th>Shopping Cart No.</th>
+                                            <th>Shopping Cart Num.</th>
+                                            <th>Shipper Num.</th>
                                             <th>SC Description</th>
                                             <th>Product Description</th>
                                             <th>Created By Name</th>
@@ -93,7 +96,8 @@
                                             <th>Cost Center</th>
                                             <th>Tarea</th>
                                             <th>Status</th>
-                                            <th>observaciones</th>       
+                                            <th>observaciones</th> 
+                                            <th>Tipo</th>      
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -107,6 +111,7 @@
                                             <td><?php echo $row['planta']?></td>
                                             <td><?php echo $row['sc_creation_date']?></td>
                                             <td><?php echo $row['shopping_cart_no']?></td>
+                                            <td><?php echo $row['shipper_no']?></td>
                                             <td><?php echo $row['sc_description']?></td>
                                             <td><?php echo $row['product_description']?></td>
                                             <td><?php echo $row['created_by_name']?></td>
@@ -122,6 +127,7 @@
                                             <td><?php echo $row['tarea']?></td>
                                             <td><?php echo $row['status']?></td>
                                             <td><?php echo $row['observaciones']?></td>
+                                            <td><?php echo $row['tipo']?></td>
                                         </tr>
                                         <?php 
                                             }

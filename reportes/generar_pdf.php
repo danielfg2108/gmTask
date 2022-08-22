@@ -42,53 +42,59 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','',9);
 
 while ($row = mysqli_fetch_array($resultado)) {
-    $pdf->Cell(40,15, 'planta', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['planta'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'planta', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['planta'], 1, 1,'',0);
 
-    $pdf->Cell(40,15,'sc_creation_date', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['sc_creation_date'], 1, 1,'',0);
+    $pdf->Cell(40,13,'sc_creation_date', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['sc_creation_date'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'shopping_cart_no', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['shopping_cart_no'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'shopping_cart_no', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['shopping_cart_no'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'sc_description', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['sc_description'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'shipper_no', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['shipper_no'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'product_description', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['product_description'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'sc_description', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['sc_description'], 1, 1,'',0);
 
-    $pdf->Cell(40,15,'created_by_name', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['created_by_name'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'product_description', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['product_description'], 1, 1,'',0);
 
-    $pdf->Cell(40,15,'po_number', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['po_number'], 1, 1,'',0);
+    $pdf->Cell(40,13,'created_by_name', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['created_by_name'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'ir', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['ir'], 1, 1,'',0);
+    $pdf->Cell(40,10,'po_number', 1, 0,'',0);
+    $pdf->Cell(150,10, $row['po_number'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'vendor_name', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['vendor_name'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'ir', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['ir'], 1, 1,'',0);
+
+    $pdf->Cell(40,13, 'vendor_name', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['vendor_name'], 1, 1,'',0);
 
     $pdf->Cell(40,15, 'product_type_text', 1, 0,'',0);
     $pdf->Cell(150,15, $row['product_type_text'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'item_net_value', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['item_net_value'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'item_net_value', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['item_net_value'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'document_currency', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['document_currency'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'document_currency', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['document_currency'], 1, 1,'',0);
 
-    $pdf->Cell(40,15,'cost_center', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['cost_center'], 1, 1,'',0);
+    $pdf->Cell(40,13,'cost_center', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['cost_center'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'tarea', 1, 0,'',0);
-    $pdf->Cell(150,15,  $row['tarea'], 1, 1,'',0);
+    $pdf->Cell(40,20, 'tarea', 1, 0,'',0);
+    $pdf->Cell(150,20,  $row['tarea'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'status', 1, 0,'',0);
-    $pdf->Cell(150,15, $row['status'], 1, 1,'',0);
+    $pdf->Cell(40,13, 'status', 1, 0,'',0);
+    $pdf->Cell(150,13, $row['status'], 1, 1,'',0);
 
-    $pdf->Cell(40,15, 'observaciones', 1, 0,'',0);  
-    $pdf->Cell(150,15, $row['observaciones'], 1, 1,'',0);    
+    $pdf->Cell(40,13, 'observaciones', 1, 0,'',0);  
+    $pdf->Cell(150,13, $row['observaciones'], 1, 1,'',0);    
+
+    $pdf->Cell(40,13, 'tipo', 1, 0,'',0);  
+    $pdf->Cell(150,13, $row['tipo'], 1, 1,'',0);   
      
     }
 
