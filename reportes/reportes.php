@@ -36,7 +36,7 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Enviar Reporte</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Enviar</a>
+                                        <a class="small text-white stretched-link" href="enviar_correo.php">Enviar</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

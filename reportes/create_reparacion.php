@@ -1,6 +1,4 @@
 <?php require_once '../header.php'; ?>
-
-
 <?php
 require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar(); //llamar al metodo para hacer conexion a la BD

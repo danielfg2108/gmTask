@@ -8,63 +8,9 @@ $sql_archivos = "SELECT * FROM archivos_reporte_servicios WHERE id_servicio='$id
 
 $resultado = $mysqli->query($sql); //guardar consulta
 $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
+$num_archivos = $resultado_archivos->num_rows; //si la consulta genero resultados
 //////////////////
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
-$mensaje = "";
-
-
-if ($_POST) { //si ya se ingresaron los datos para modificar
-  $planta = addslashes($_POST['planta']);
-  $sc_creation_date = addslashes($_POST['sc_creation_date']);
-  $shopping_cart_no = addslashes($_POST['shopping_cart_no']);
-  $shipper_no = addslashes($_POST['shipper_no']);
-  $sc_description = addslashes($_POST['sc_description']);
-  $product_description = addslashes($_POST['product_description']);
-  $created_by_name = addslashes($_POST['created_by_name']);
-  $po_number = addslashes($_POST['po_number']);
-  $ir = addslashes($_POST['ir']);
-  $vendor_name = addslashes($_POST['vendor_name']);
-  $product_type_text = addslashes($_POST['product_type_text']);
-  $item_net_value = addslashes($_POST['item_net_value']);
-  $document_currency = addslashes($_POST['document_currency']);
-  $cost_center = addslashes($_POST['cost_center']);
-  $tarea = addslashes($_POST['tarea']);
-  $status = addslashes($_POST['status']);
-  $observaciones = addslashes($_POST['observaciones']);
-
-
-  if ($status == ('ABIERTO' || 'abierto' || 'CERRADO' || 'cerrado')) {
-    $mensaje = "";
-
-  $sql = "UPDATE reporte_servicios SET planta='$planta', 
-  sc_creation_date='$sc_creation_date', 
-  shopping_cart_no=' $shopping_cart_no', 
-  shipper_no=' $shipper_no', 
-  sc_description=' $sc_description',
-  product_description='$product_description', 
-  created_by_name=' $created_by_name', 
-  po_number=' $po_number', 
-  ir='$ir', 
-  vendor_name='$vendor_name', 
-  product_type_text='$product_type_text', 
-  item_net_value='$item_net_value', 
-  document_currency='$document_currency', 
-  cost_center=' $cost_center',
-  tarea=' $tarea', 
-  status=' $status', 
-  observaciones='$observaciones'
-  WHERE id_servicio='$id'";
-
-    $query = mysqli_query($con, $sql); //ejecutar consulta
-    if ($query) {
-      echo("<meta http-equiv='refresh' content='0.1'>"); //refrecar pagina / llamarse asi misma
-    }
-
-
-  } else {
-    $mensaje = "ERROR: ingrese un status valido (ABIERTO/CERRADO)";
-  }
-}
 ?>
 
 <h1 class="mt-4">Detalles</h1>
@@ -230,7 +176,7 @@ if ($_POST) { //si ya se ingresaron los datos para modificar
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="update_reporte.php?id=<?php echo $row['id_servicio'] ?>" method="POST" enctype="multipart/form-data" id="formModificar">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Planta:</label>
             <input name="planta" type="text" class="form-control" value="<?php echo $row['planta'] ?>">
@@ -302,7 +248,6 @@ if ($_POST) { //si ya se ingresaron los datos para modificar
               <option value="ABIERTO">
               <option value="CERRADO">
             </datalist>
-            <div id="msg"><? echo $mensaje ?></div>
           </div>
 
           <div class="mb-3">
@@ -372,3 +317,66 @@ if ($_POST) { //si ya se ingresaron los datos para modificar
   </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+<script>
+  $(function() {
+    var url = $("#formModificar").attr("action"); //obtener url del action
+
+    $("#formModificar").submit(function(e) { //si se presiono el boton
+      e.preventDefault();
+      var selectValor = document.getElementById("select").value; //obtener valor de input
+
+      if ((selectValor == "ABIERTO") || (selectValor == "abierto") || (selectValor == "CERRADO") || (selectValor == "cerrado")) {
+
+        if ((selectValor == "ABIERTO") || (selectValor == "abierto")) { //si el status es ABIERTO
+
+          var formData = $("#formModificar").serializeArray(); //obtener datos de formulario
+          $.ajax({
+              url: url,
+              method: "POST",
+              data: formData
+            })
+            .done(function(r, textStatus, xhr) { //si se logro ejecutar
+              if (xhr.status == 200) {
+                location.reload(true); //recargar la pagina
+              } else {
+                alert("error al enviar datos");
+              }
+            }).fail(function(error) {
+              alert(error.response);
+            });
+
+        } else { //si el status es CERRADO
+          var num = '<?php echo $num_archivos; ?>';
+
+          if (num > 0) { //si hay archivos adjuntados
+
+            var formData = $("#formModificar").serializeArray(); //obtener datos de formulario
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: formData
+              })
+              .done(function(r, textStatus, xhr) { //si se logro ejecutar
+                if (xhr.status == 200) {
+                  location.reload(true); //recargar la pagina
+                } else {
+                  alert("error al enviar datos");
+                }
+              }).fail(function(error) {
+                alert(error.response);
+              });
+
+          } else { //sino se han adjuntado archivos
+            alert("ERROR: si cambia a status CERRADO, primero tiene que adjuntar los archivos del shipper y reporte.\nFavor de adjuntar los archivos antes de continuar");
+          } //sino se han adjuntado archivos
+
+
+        } //si el status es CERRADO
+      } else { //si el status es CERRADO o ABIERTO
+        alert("ERROR: ingrese un status valido (ABIERTO/CERRADO)");
+      } //si el status es CERRADO O ABIERTO
+
+    })
+  });
+</script>

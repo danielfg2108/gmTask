@@ -30,5 +30,7 @@ $id=$_GET['id'];
         
         if($resultado){
                 Header("Location: detalles_reportes.php?id=$id");
+            }else{
+               echo "<script>alert('error al cargar archivo')</script>";
             }
 ?>
