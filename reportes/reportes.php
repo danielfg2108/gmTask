@@ -36,7 +36,7 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Enviar Reporte</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="enviar_correo.php">Enviar</a>
+                                        <a class="small text-white stretched-link" data-bs-toggle="modal" data-bs-target="#modalCorreo" data-bs-whatever="@mdo">Enviar</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -181,6 +181,56 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <input type="submit" class="btn btn-danger" value="Generar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalCorreo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enviar correo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="enviar_correo.php" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Ingrese los datos de envío</label>
+          </div>  
+            
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Datos de remitente: </label><br>
+            <label for="recipient-name" class="col-form-label">Ingrese su nombre:</label>
+            <input name="nombre_remitente" type="text" class="form-control" value="<?php echo $nombre." ".$apellidos?>">
+            <label for="recipient-name" class="col-form-label">Ingrese su correo electrónico:</label>
+            <input name="correo_remitente" type="email" class="form-control" value="<?php echo $correo?>">
+          </div>
+          <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Datos de destinatario: </label><br>
+            <label for="recipient-name" class="col-form-label">Correo electronico de destino:</label>
+            <input name="correo_destino" type="email" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Asunto:</label>
+            <input name="asunto" type="text" class="form-control">
+          </div> 
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Descripcion:</label>
+            <textarea name="descripcion" type="text" class="form-control" rows="10"></textarea>
+            <label for="recipient-name" class="col-form-label">Nota: como comprobación, se te enviara tambien una copia a tu correo</label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" class="btn btn-warning" value="Enviar">
           </div>
         </form>
       </div>

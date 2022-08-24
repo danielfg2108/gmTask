@@ -7,7 +7,7 @@ if($_POST){//si ya se ingresaron los datos
 	$correo = $_POST['correo']; //obtener correo ingresado
 	$password = $_POST['password']; //obtener password ingresada
 
-	$sql = "SELECT id_usuario, correo, nombre, apellidos, password FROM usuarios WHERE correo ='$correo'"; //generar consulta
+	$sql = "SELECT id_usuario, nombre, apellidos, correo, password FROM usuarios WHERE correo ='$correo'"; //generar consulta
 
 	$resultado = $mysqli->query($sql); //guardar consulta
 	$num = $resultado->num_rows; //si la consulta genero resultados
@@ -22,6 +22,7 @@ if($_POST){//si ya se ingresaron los datos
 		if ($password_bd == $pass_cifrado) {
 			$_SESSION['nombre'] = $row['nombre'];
 			$_SESSION['apellidos'] = $row['apellidos'];
+			$_SESSION['correo'] = $row['correo'];
 			$_SESSION['id'] = $row['id_usuario'];
 
 			header("Location: home.php"); //mandar llamar a la siguiente pagina

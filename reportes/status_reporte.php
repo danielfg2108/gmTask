@@ -1,10 +1,10 @@
 <?php require_once '../header.php';?>
 <?php   
     require "../bd/conexion.php"; //llamar a la conexion
-    $sql = "SELECT * FROM reporte_servicios WHERE status ='abierta' OR status='abierto'"; //generar consulta
+    $sql = "SELECT * FROM reporte_servicios WHERE status LIKE '%abiert%' OR status LIKE '%ABIERT%'"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
 
-    $sql_cerrado = "SELECT * FROM reporte_servicios WHERE status ='cerrada' OR status='cerrado'"; //generar consulta
+    $sql_cerrado = "SELECT * FROM reporte_servicios WHERE status LIKE '%cerrad%' OR status LIKE '%CERRAD%'"; //generar consulta
     $resultado_cerrado = $mysqli->query($sql_cerrado); //guardar consulta
 ?>
 
@@ -14,7 +14,7 @@
                             <li class="breadcrumb-item active">Status</li>
                         </ol>
                         
-                        <h1 class="mt-4">Servicios Activos</h1>
+                        <h1 class="mt-4">Servicios Abiertos</h1>
 
                         <div class="card mb-4">
                             <div class="card-header">
@@ -75,7 +75,7 @@
                         </div>
 
 
-                        <h1 class="mt-4">Servicios Inactivos</h1>
+                        <h1 class="mt-4">Servicios Cerrados</h1>
 
                         <div class="card mb-4">
                             <div class="card-header">

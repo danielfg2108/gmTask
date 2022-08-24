@@ -6,6 +6,7 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
 }
 $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
 $apellidos = $_SESSION['apellidos']; //obtener apellidos
+$correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 ?>
 
@@ -114,7 +115,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <?php echo $nombre.' '.$apellidos; ?>
+                        <?php echo $correo ?>
                     </div>
                 </nav>
             </div>
