@@ -18,23 +18,59 @@ $excel = new Spreadsheet();
 $hojaActiva = $excel->getActiveSheet();
 $hojaActiva->setTitle("SP SERVICIOS FINAL_CSV");
 
+
+$hojaActiva->getColumnDimension('A')->setWidth(15);
 $hojaActiva->setCellValue('A1','Planta');
+
+$hojaActiva->getColumnDimension('B')->setWidth(15);
 $hojaActiva->setCellValue('B1','SC Creation Date');
+
+$hojaActiva->getColumnDimension('C')->setWidth(15);
 $hojaActiva->setCellValue('C1','Shopping Cart No.');
+
+$hojaActiva->getColumnDimension('D')->setWidth(15);
 $hojaActiva->setCellValue('D1','Shipper No.');
+
+$hojaActiva->getColumnDimension('E')->setWidth(50);
 $hojaActiva->setCellValue('E1','SC Description');
+
+$hojaActiva->getColumnDimension('F')->setWidth(50);
 $hojaActiva->setCellValue('F1','Product Description');
+
+$hojaActiva->getColumnDimension('G')->setWidth(30);
 $hojaActiva->setCellValue('G1','Created By Name');
+
+$hojaActiva->getColumnDimension('H')->setWidth(15);
 $hojaActiva->setCellValue('H1','PO Number');
+
+$hojaActiva->getColumnDimension('I')->setWidth(15);
 $hojaActiva->setCellValue('I1','IR');
+
+$hojaActiva->getColumnDimension('J')->setWidth(50);
 $hojaActiva->setCellValue('J1','Vendor Name');
+
+$hojaActiva->getColumnDimension('K')->setWidth(15);
 $hojaActiva->setCellValue('K1','Product Type Text');
+
+$hojaActiva->getColumnDimension('L')->setWidth(15);
 $hojaActiva->setCellValue('L1','Item Net Value');
+
+$hojaActiva->getColumnDimension('M')->setWidth(15);
 $hojaActiva->setCellValue('M1','Document Currency');
+
+$hojaActiva->getColumnDimension('N')->setWidth(15);
 $hojaActiva->setCellValue('N1','Cost Center');
+
+$hojaActiva->getColumnDimension('O')->setWidth(80);
 $hojaActiva->setCellValue('O1','Tarea');
+
+$hojaActiva->getColumnDimension('P')->setWidth(15);
 $hojaActiva->setCellValue('P1','Status');
+
+$hojaActiva->getColumnDimension('Q')->setWidth(50);
 $hojaActiva->setCellValue('Q1','Observaciones');
+
+$hojaActiva->getColumnDimension('A')->setWidth(15);
 $hojaActiva->setCellValue('R1','Tipo');
 
 $fila = 2;
