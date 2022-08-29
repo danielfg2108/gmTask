@@ -143,9 +143,7 @@ try {
     $mail->CharSet = 'UTF-8';
 
     $mail->send();
-    echo '<script>alert("Correo enviado exitosamente");
-                  window.history.go(-1);
-          </script>';
+    //echo '<script>alert("Correo enviado exitosamente"); window.history.go(-1); </script>';
 } catch (Exception $e) {
     echo "error al enviar mensaje: {$mail->ErrorInfo}";
 }

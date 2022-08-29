@@ -13,7 +13,7 @@ function Header()
 {
     // Arial bold 15
     $this->SetFont('Arial','B',15);
-    $this->Image('../images/fondo_carta.jpg', 0,0,210);      
+    //$this->Image('../images/fondo_carta.jpg', 0,0,210);      
     $this->Image('../images/gm_logo.jpg', 10,5,20); //x,y,tamaño
     // Movernos a la derecha
     $this->Cell(60);
@@ -44,7 +44,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
 $pdf=new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',9);
-$pdf->SetFillColor(233,234,234); //color de fondo
+$pdf->SetFillColor( 116, 203, 238); //color de fondo
 //$pdf->SetDrawColor(); //color de lineas
 
 while ($row = mysqli_fetch_array($resultado)) {

@@ -1,3 +1,4 @@
+<script src="../librerias/sweetalert.js"></script>
 <?php
 include("../bd/conexion.php");
 $con = conectar();

@@ -201,7 +201,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="enviar_correo.php" method="POST" enctype="multipart/form-data">
+        <form id="formCorreo" action="enviar_correo.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Ingrese los datos de envío</label>
           </div>  
@@ -209,23 +209,25 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Datos de remitente: </label><br>
             <label for="recipient-name" class="col-form-label">Ingrese su nombre:</label>
-            <input name="nombre_remitente" type="text" class="form-control" value="<?php echo $nombre." ".$apellidos?>">
+            <input id="nombre_remitente" name="nombre_remitente" type="text" class="form-control" value="<?php echo $nombre." ".$apellidos?>">
             <label for="recipient-name" class="col-form-label">Ingrese su correo electrónico:</label>
-            <input name="correo_remitente" type="email" class="form-control" value="<?php echo $correo?>">
+            <input id="correo_remitente" name="correo_remitente" type="email" class="form-control" value="<?php echo $correo?>">
           </div>
+          <br>
+          <hr style="text-align:left; margin-left:0">
           <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Datos de destinatario: </label><br>
             <label for="recipient-name" class="col-form-label">Correo electronico de destino:</label>
-            <input name="correo_destino" type="email" class="form-control">
+            <input id="correo_destino" name="correo_destino" type="email" class="form-control">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Asunto:</label>
-            <input name="asunto" type="text" class="form-control">
+            <input id="asunto" name="asunto" type="text" class="form-control">
           </div> 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Descripcion:</label>
-            <textarea name="descripcion" type="text" class="form-control" rows="10"></textarea>
-            <label for="recipient-name" class="col-form-label">Nota: como comprobación, se te enviara tambien una copia a tu correo</label>
+            <textarea id="descripcion" name="descripcion" type="text" class="form-control" rows="10"></textarea>
+            <label for="recipient-name" class="col-form-label">Nota: como comprobación, se te enviara una copia a tu correo</label>
           </div>
 
           <div class="modal-footer">
@@ -240,3 +242,34 @@
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
 
 
+<script>
+  $(function() {
+    var url = $("#formCorreo").attr("action"); //obtener url del action
+
+    $("#formCorreo").submit(function(e) { //si se presiono el boton
+      e.preventDefault();
+
+          var formData = $("#formCorreo").serializeArray(); //obtener datos de formulario
+          $.ajax({
+              url: url,
+              method: "POST",
+              data: formData
+            })
+            .done(function(r, textStatus, xhr) { //si se logro ejecutar
+              if (xhr.status == 200) {
+                swal("correo enviado exitosamente", "", "success");
+
+                document.getElementById("correo_destino").value = ""; //limpiar campos
+                document.getElementById("asunto").value = "";
+                document.getElementById("descripcion").value = "";
+
+              } else {
+                swal("error al enviar correo", "", "error");
+              }
+            }).fail(function(error) {
+              swal('', error.response, 'error');
+            });
+    
+    })
+  });
+</script>

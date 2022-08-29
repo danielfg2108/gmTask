@@ -112,9 +112,9 @@ if ($_POST) { //si ya se ingresaron los datos
                $_POST['status'] = "";
                $_POST['observaciones'] = "";
 
-               echo "<script>alert('Servicio agregado exitosamente')</script>";
+               echo "<script>swal('Servicio agregado exitosamente', '', 'success')</script>";
             } else {
-               echo "<script>alert('ERROR al registrar servicio')</script>";
+               echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
 
          /*} else {
@@ -172,9 +172,9 @@ if ($_POST) { //si ya se ingresaron los datos
                $_POST['status'] = "";
                $_POST['observaciones'] = "";
 
-               echo "<script>alert('reparacion agregado exitosamente')</script>";
+               echo "<script>swal('Servicio agregado exitosamente', '', 'success')</script>";
             } else {
-               echo "<script>alert('ERROR al registrar servicio')</script>";
+               echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
          
       }//si el status es abierto
@@ -204,10 +204,15 @@ if ($_POST) { //si ya se ingresaron los datos
 
 <div class="container mt-3">
    <form action="" method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
-         <label class="form-label">Planta:</label>
-         <input type="text" class="form-control" name="planta" required>
-      </div>
+
+         <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Planta:</label>
+            <input  type="text" class="form-control" list="planta" name="planta" required style="width: 150px;">
+            <datalist id="planta">
+              <option value="MXFD">
+            </datalist>
+          </div>
+
       <div class="mb-3">
          <label class="form-label">SC Creation Date:</label>
          <input type="text" class="form-control" name="sc_creation_date" required>

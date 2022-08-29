@@ -343,10 +343,10 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
               if (xhr.status == 200) {
                 location.reload(true); //recargar la pagina
               } else {
-                alert("error al enviar datos");
+                swal("error al enviar datos", "", "error");
               }
             }).fail(function(error) {
-              alert(error.response);
+              swal('', error.response, 'error');
             });
 
         } else { //si el status es CERRADO
@@ -361,23 +361,23 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
                 data: formData
               })
               .done(function(r, textStatus, xhr) { //si se logro ejecutar
-                if (xhr.status == 200) {
-                  location.reload(true); //recargar la pagina
+                if (xhr.status == 200) {                 
+                 location.reload(true); //recargar la pagina
                 } else {
-                  alert("error al enviar datos");
+                  swal("error al enviar datos", "", "error");
                 }
               }).fail(function(error) {
-                alert(error.response);
+                swal('',error.response, 'error');
               });
 
           } else { //sino se han adjuntado archivos
-            alert("ERROR: si cambia a status CERRADO, primero tiene que adjuntar los archivos del shipper y reporte.\nFavor de adjuntar los archivos antes de continuar");
+            swal("ERROR", "si cambia a status CERRADO, primero tiene que adjuntar los archivos del shipper y reporte.\nFavor de adjuntar los archivos antes de continuar", "error");
           } //sino se han adjuntado archivos
 
 
         } //si el status es CERRADO
       } else { //si el status es CERRADO o ABIERTO
-        alert("ERROR: ingrese un status valido (ABIERTO/CERRADO)");
+        swal("ERROR","ingrese un status valido (ABIERTO/CERRADO)", "error");
       } //si el status es CERRADO O ABIERTO
 
     })
