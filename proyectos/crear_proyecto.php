@@ -1,57 +1,59 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventana Modal</title>
+<?php require_once '../header.php'; ?>
+<?php
+require "../bd/conexion.php"; //llamar a la conexion
+$con = conectar(); //llamar al metodo para hacer conexion a la BD
 
-    <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet"/>
-    <link href="../css/styles.css" rel="stylesheet" />
-    <script src="librerias/fontawesome.js"></script>
-</head>
-<body>
+if ($_POST) { //si ya se ingresaron los datos
+  $nombre = addslashes($_POST['nombre']);
+  $privacidad = addslashes($_POST['privacidad']);
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal</button>
-<!-- -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Proyecto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Nombre del proyecto:</label>
-            <input type="text" class="form-control" id="">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Equipo:</label>
-            <input type="text" class="form-control" id="">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Privacidad:</label>
-            <input type="text" class="form-control" id="">
-          </div>
-   
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Agregar</button>
-          </div>
-        </form>
-      </div>
-      
+  if (!empty($nombre) && !empty($privacidad)) { //validar que los campos no esten vacios
+
+      $sql = "INSERT INTO proyectos (nombre, correo_creador, privacidad)
+              VALUES ('$nombre','$correo','$privacidad')"; //generar query
+
+            $result = mysqli_query($con, $sql); //ejecutar query
+
+            if ($result) { //si se ejecuto correctamente el query 
+              
+               $nombre = ""; //limpiar campos
+               $privacidad = "";
+               $_POST['nombre'] = ""; //limpiar campos post
+               $_POST['privacidad'] = "";
+            
+               echo "<script>swal('Proyecto creado exitosamente', '', 'success')</script>";
+            }else{            
+                echo "<script>swal('ERROR al registrar proyecto', '', 'error')</script>";
+            }
+  }
+
+} //POST
+?>
+
+<h1 class="mt-4">Crear nuevo Proyecto</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
+  <li class="breadcrumb-item active">Nuevo proyecto</li>
+</ol>
+
+<div class="container mt-3">
+  <form action="" method="POST">
+
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label">Nombre del proyecto:</label>
+      <input type="text" class="form-control"  name="nombre" required style="width: 300px;">
     </div>
-  </div>
+
+    <div class="mb-3">
+      <label for="inputState">Privacidad</label>
+      <select id="select" class="form-control" name="privacidad" required style="width: 300px;">
+        <option >PUBLICO</option>
+        <option >PRIVADO</option>
+      </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Crear">
+  </form>
 </div>
-        <script src="../librerias/bootstrap.js"></script>
-        <script src="../js/scripts.js"></script>
-        <script src="../librerias/ajax_chart.js"></script>
-        <script src="../demo/chart-area-demo.js"></script>
-        <script src="../demo/chart-bar-demo.js"></script>
-        <script src="../librerias/jsdelivr_simple_datatables.js"></script>
-        <script src="../js/datatables-simple-demo.js"></script>
-</body>
-</html>
+
+
+<?php require_once '../footer.php'; ?>
