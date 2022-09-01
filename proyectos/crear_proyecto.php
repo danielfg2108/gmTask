@@ -9,8 +9,8 @@ if ($_POST) { //si ya se ingresaron los datos
 
   if (!empty($nombre) && !empty($privacidad)) { //validar que los campos no esten vacios
 
-      $sql = "INSERT INTO proyectos (nombre, correo_creador, privacidad)
-              VALUES ('$nombre','$correo','$privacidad')"; //generar query
+      $sql = "INSERT INTO proyectos (nombre, correo_creador, privacidad, id_usuario)
+              VALUES ('$nombre','$correo','$privacidad', '$id')"; //generar query
 
             $result = mysqli_query($con, $sql); //ejecutar query
 

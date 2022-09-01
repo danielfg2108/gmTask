@@ -13,6 +13,9 @@ if ($_POST) { //si ya se ingresaron los datos
    */
    $planta = addslashes($_POST['planta']);
    $sc_creation_date = addslashes($_POST['sc_creation_date']);
+   $date_sc = strtotime($sc_creation_date);
+   $date = date('d/m/Y', $date_sc);
+
    $shopping_cart_no = addslashes($_POST['shopping_cart_no']);
 
    $sc_description = addslashes($_POST['sc_description']);
@@ -44,7 +47,7 @@ if ($_POST) { //si ya se ingresaron los datos
       $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
       product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
       item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
-      VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','sin shipper','$sc_description',
+      VALUES ('$planta','$date',' $shopping_cart_no','sin shipper','$sc_description',
       '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
       '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones', 'SERVICIO')"; //generar query
 
@@ -78,6 +81,8 @@ if ($_POST) { //si ya se ingresaron los datos
 
                $planta = ""; //limpiar campos
                $sc_creation_date = "";
+               $date_sc = "";
+               $date = "";
                $shopping_cart_no = "";
     
                $sc_description = "";
@@ -128,7 +133,7 @@ if ($_POST) { //si ya se ingresaron los datos
       $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
       product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
       item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
-      VALUES ('$planta','$sc_creation_date',' $shopping_cart_no','sin shipper','$sc_description',
+      VALUES ('$planta','$date',' $shopping_cart_no','sin shipper','$sc_description',
       '$product_description','$created_by_name',' $po_number','$ir','$vendor_name',' $product_type_text',
       '$item_net_value','$document_currency','$cost_center','$tarea','$status','$observaciones', 'SERVICIO')"; //generar query
 
@@ -138,6 +143,8 @@ if ($_POST) { //si ya se ingresaron los datos
         
                $planta = ""; //limpiar campos
                $sc_creation_date = "";
+               $date_sc = "";
+               $date = "";
                $shopping_cart_no = "";
              
                $sc_description = "";
@@ -215,7 +222,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label class="form-label">SC Creation Date:</label>
-         <input type="text" class="form-control" name="sc_creation_date" required>
+         <input type="date" class="form-control" name="sc_creation_date" required style="width: 150px;">
       </div>
 
       <div class="mb-3">

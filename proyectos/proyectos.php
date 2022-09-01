@@ -1,7 +1,7 @@
 <?php require_once '../header.php'; ?>
 <?php
 require "../bd/conexion.php"; //llamar a la conexion
-$sql = "SELECT * FROM proyectos WHERE correo_creador='$correo' OR privacidad ='PUBLICO'"; //generar consulta
+$sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 ?>
 <h1 id="saludo" class="mt-4">Mis Proyectos</h1>
@@ -47,7 +47,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
                 ?>
                     <tr>
                         <td>
-                            <a type="button" href="detalles_proyecto.php?id=<?php echo $row['id_proyecto'] ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            <a type="button" href="detalles_proyecto.php?id_proyecto=<?php echo $row['id_proyecto'] ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                         </td>
                         <td><?php echo $row['nombre'] ?></td>
                         <td><?php echo $row['correo_creador'] ?></td>

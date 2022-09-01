@@ -7,9 +7,9 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
 
-$id=$_GET['id'];
+$id_proyecto=$_GET['id_proyecto'];
 
-        $sql_proyecto="DELETE FROM proyectos WHERE id_proyecto='$id'";
+        $sql_proyecto="DELETE FROM proyectos WHERE id_proyecto='$id_proyecto'";
         $query_proyecto=mysqli_query($con,$sql_proyecto); //ejecutar consulta para eliminar proyecto
 
         if($query_proyecto){
