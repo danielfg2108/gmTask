@@ -81,18 +81,6 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                                 Mis tareas
                             </a>
-                           
-                            <!-- seccion "proyectos" del menu lateral-->
-                            <div class="sb-sidenav-menu-heading">Proyectos</div>     
-                            <a class="nav-link" href="../proyectos/proyectos.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                                Mis Proyectos
-                            </a>                  
-                            <a class="nav-link" href="../proyectos/crear_proyecto.php">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agregar proyecto
-                            </a>
-                         
 
                             <!-- seccion "reportes" del menu lateral-->
                             <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
@@ -109,6 +97,18 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Status
                             </a>
+                           
+                            <!-- seccion "proyectos" del menu lateral-->
+                            <div class="sb-sidenav-menu-heading">Proyectos</div>     
+                            <a class="nav-link" href="../proyectos/proyectos.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                                Mis Proyectos
+                            </a>                  
+                            <a class="nav-link" href="../proyectos/crear_proyecto.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
+                                Agregar proyecto
+                            </a>
+                         
 
                         </div>
                     </div>

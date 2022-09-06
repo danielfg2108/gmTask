@@ -89,19 +89,8 @@ $id = $_SESSION['id'];
                         </a>
 
 
-                        <div class="sb-sidenav-menu-heading">Proyectos</div>
-                        <a class="nav-link" href="proyectos/proyectos.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                            Mis Proyectos
-                        </a>
-                        <a class="nav-link" href="proyectos/crear_proyecto.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                            Agregar proyecto
-                        </a>
-
-
-                        <!-- seccion "reportes" del menu lateral-->
-                        <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
+                           <!-- seccion "reportes" del menu lateral-->
+                           <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
                         <a class="nav-link" href="reportes/reportes.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Reporte
@@ -116,6 +105,20 @@ $id = $_SESSION['id'];
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Status
                         </a>
+
+                     <!-- seccion "proyectos del menu lateral-->
+                        <div class="sb-sidenav-menu-heading">Proyectos</div>
+                        <a class="nav-link" href="proyectos/proyectos.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                            Mis Proyectos
+                        </a>
+                        <a class="nav-link" href="proyectos/crear_proyecto.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
+                            Agregar proyecto
+                        </a>
+
+
+                     
 
                     </div>
                 </div>

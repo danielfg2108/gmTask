@@ -8,10 +8,8 @@ $resultado = $mysqli->query($sql); //guardar consulta
 //////////////////
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
 
-
 $sql_secciones = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta
 $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
-
 ?>
 
 <h1 class="mt-4"></h1>
@@ -42,21 +40,19 @@ if ($row['correo_creador'] == $correo && $row['id_usuario'] == $id) {
         </div>
     </form>
     <a type="button" class="btn btn-secondary" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalSeccion">Agregar sección</a>
-    <a type="button" class="btn btn-secondary" style="height: 30px; padding-top: 3px;" href="../secciones/admin_secciones.php?id_proyecto=<?php echo $row['id_proyecto'] ?>">Administrar secciones</a>
 </div>
+<br>
 
 <link rel="stylesheet" href="../css/estilos_cards.css">
-
 
 
 <?php
 while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 ?>
-<br>
-<br>
 <div style="text-align: center;">
     <h4 style="display: inline-block;"><?php echo $row_secciones['nombre'] ?></h4>
-    <a type="button" href="update_seccion.php?id_seccion=<?php echo $row_secciones['id_seccion'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a type="button" onclick="GetDetails('<?php echo $row_secciones['id_seccion'] ?>')"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a type="button" onclick="Delete('<?php echo $row_secciones['id_seccion'] ?>')"><i class="fa-solid fa-trash-can"></i></a>
 </div>
 <section class="product">
     <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>
@@ -70,14 +66,14 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
             <div class="product-info">
                 <p class="product-short-description">a short line about the cloth..</p>
                 <p class="price">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <a href="#">Ir</a>
+                <a href="#">Ver</a>
             </div>
         </div>
 
     </div>
 </section>
 <?php
-   }
+}
 ?>
 
 
@@ -261,7 +257,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="../secciones/create_seccion.php?id_proyecto=<?php echo $id_proyecto?>" method="POST">
+                <form action="../secciones/create_seccion.php?id_proyecto=<?php echo $id_proyecto ?>" method="POST">
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Nombre:</label>
@@ -280,6 +276,60 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
 
 
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalSeccionUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar sección</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formUpdateSeccion">
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input name="nombre_seccion_update" id="nombre_seccion_update" type="text" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Modificar">
+                        <input type="hidden" id="hiddendata">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalSeccionDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar sección</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formDeleteSeccion">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">¿Esta seguro que desea eliminar esta sección?</label>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-danger" value="Eliminar">
+            <input type="hidden" id="hiddendata2">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
 
 <script>
     const productContainers = [...document.querySelectorAll('.product-container')];
@@ -297,5 +347,49 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         preBtn[i].addEventListener('click', () => {
             item.scrollLeft -= containerWidth;
         })
+    })
+</script>
+
+<script>
+    function GetDetails(updateid){
+        $('#hiddendata').val(updateid); //ponerle de texto el id al input oculto del modal
+
+        $.post("../secciones/consulta_update.php", {updateid:updateid}, function(data, status){
+            var userid=JSON.parse(data); //guardar consulta extraida
+            $('#nombre_seccion_update').val(userid.nombre); //mostrar valor en input
+        });
+        $('#modalSeccionUpdate').modal('show'); //mostrar modal
+    }
+
+
+    $("#formUpdateSeccion").submit(function(e) { //si se presiono el boton
+        e.preventDefault();
+        var id = $('#hiddendata').val(); //obteenr id
+        var nombre_seccion_update = $('#nombre_seccion_update').val(); //obtener nombre
+
+        $.post("../secciones/update_seccion.php",{ //llamar a pagina update
+            id_seccion:id, //pasando paramatros
+            nombre:nombre_seccion_update
+        }, function (data,status) { 
+            location.reload(true); //recargar la pagina
+         });
+    })
+
+
+    
+    function Delete(updateid){
+        $('#hiddendata2').val(updateid); //ponerle de texto el id al input oculto del modal
+        $('#modalSeccionDelete').modal('show'); //mostrar modal
+    }
+
+    $("#formDeleteSeccion").submit(function(e) { //si se presiono el boton
+        e.preventDefault();
+        var id = $('#hiddendata2').val(); //obteenr id
+
+        $.post("../secciones/delete_seccion.php",{ //llamar a pagina update
+            id_seccion:id //pasando paramatros
+        }, function (data,status) { 
+            location.reload(true); //recargar la pagina
+         });
     })
 </script>
