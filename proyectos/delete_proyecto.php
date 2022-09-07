@@ -12,10 +12,7 @@ $id_proyecto=$_GET['id_proyecto'];
         $sql_proyecto="DELETE FROM proyectos WHERE id_proyecto='$id_proyecto'";
         $query_proyecto=mysqli_query($con,$sql_proyecto); //ejecutar consulta para eliminar proyecto
 
-        $sql_seccion="DELETE FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'";
-        $query_seccion=mysqli_query($con, $sql_seccion); //ejecutar consulta para eliminar proyecto
-
-        if($query_proyecto && $query_seccion){
+        if($query_proyecto){
                 header("Location: proyectos.php");
                 echo "<script>alert('Elemento eliminado')</script>";               
             }else{

@@ -25,14 +25,10 @@ function rrmdir($dir) {
     }
  } 
 
-
-       $sql_archivos="DELETE FROM archivos_reporte_servicios WHERE id_servicio='$id'";
-       $query_archivos=mysqli_query($con,$sql_archivos); //ejecutar consulta para eliminar archivos
-
         $sql="DELETE FROM reporte_servicios WHERE id_servicio='$id'";
              $query=mysqli_query($con,$sql); //ejecutar consulta para eliminar servicio
 
-        if( $query_archivos && $query){
+        if($query){
                 header("Location: reportes.php");
                 echo "<script>alert('Elemento eliminado')</script>";               
             }else{

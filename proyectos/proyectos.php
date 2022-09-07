@@ -11,7 +11,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
         <div class="card bg-primary text-white mb-4">
             <div class="card-body">Nuevo proyecto</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="crear_proyecto.php">Crear</a>
+                <a class="small text-white stretched-link" href="create_proyecto.php">Crear</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -24,7 +24,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
         Proyectos
     </div>
     <div class="card-body">
-        <table id="datatablesSimple">
+        <table id="datatablesSimple" class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>Acciones</th>

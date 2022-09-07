@@ -43,8 +43,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-add fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="../tareas/tareas.php">Tarea</a></li>
-                        <li><a class="dropdown-item" href="../proyectos/proyectos.php">Proyecto</a></li>
-    
+                        <li><a class="dropdown-item" href="../proyectos/create_proyecto.php">Proyecto</a></li>
                     </ul>
                 </li>
             </ul>
@@ -104,7 +103,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
                                 Mis Proyectos
                             </a>                  
-                            <a class="nav-link" href="../proyectos/crear_proyecto.php">
+                            <a class="nav-link" href="../proyectos/create_proyecto.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
                                 Agregar proyecto
                             </a>
