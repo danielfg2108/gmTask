@@ -77,7 +77,7 @@ $id = $_SESSION['id'];
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-add fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="tareas/tareas.php">Tarea</a></li>
+                    <li><a class="dropdown-item" href="tareas/create_tarea.php">Tarea</a></li>
                     <li><a class="dropdown-item" href="proyectos/create_proyecto.php">Proyecto</a></li>
 
                 </ul>
@@ -173,7 +173,7 @@ $id = $_SESSION['id'];
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">general motors</li>
                     </ol>
-                    <h1 id="saludo" class="mt-4" style="font-family: 'Tangerine', serif; text-shadow: 4px 4px 4px #aaa;">Welcome, <?php echo $nombre . ' ' . $apellidos; ?></h1>
+                    <h1 id="saludo" class="mt-4" style="font-family: 'Tangerine', serif; text-shadow: 4px 4px 4px #aaa;">Welcome <?php echo $nombre . ' ' . $apellidos; ?></h1>
 
                     <div class="row">
                         <div class="col-xl-6">

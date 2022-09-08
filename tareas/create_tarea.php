@@ -3,7 +3,6 @@
 require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar(); //llamar al metodo para hacer conexion a la BD
 
-
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta proyectos
 $resultado = $mysqli->query($sql); //guardar consulta proyectos
 
@@ -31,7 +30,7 @@ if ($_POST) { //si ya se ingresaron los datos
       $id_tarea =  mysqli_insert_id($con);
 
       if (!empty($proyecto)) { //validar que los campos no esten vacios
-        if (($proyecto == "SIN PROYECTO") || ($proyecto == "sin proyeto")) { //si se asigno un proyecto
+        if (($proyecto == "SIN PROYECTO") || ($proyecto == "sin proyeto")) { //si NO se asigno un proyecto
           $nombre_tarea = ""; //limpiar campos
           $descripcion = "";
           $fecha_entrega = "";
@@ -42,6 +41,7 @@ if ($_POST) { //si ya se ingresaron los datos
           $_POST['fecha_entrega'] = "";
           $_POST['proyecto'] = "";
         } else {
+
           $sql_pt = "INSERT INTO proyectos_tareas (id_proyecto, id_tarea)
                   VALUES ('$proyecto','$id_tarea')"; //generar query
           $result_pt = mysqli_query($con, $sql_pt); //ejecutar query
@@ -69,7 +69,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
 <h1 class="mt-4">Crear nueva Tarea</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
+  <li class="breadcrumb-item"><a href="tareas.php">Mis Tareas</a></li>
   <li class="breadcrumb-item active">Nueva Tarea</li>
 </ol>
 

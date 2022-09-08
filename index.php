@@ -25,7 +25,7 @@ if($_POST){//si ya se ingresaron los datos
 			$_SESSION['correo'] = $row['correo'];
 			$_SESSION['id'] = $row['id_usuario'];
 
-			header("Location: home.php"); //mandar llamar a la siguiente pagina
+			header("Location: loader.php"); //mandar llamar a la siguiente pagina
 			$mensaje = "";
 		}else{
 			$mensaje = "la contraseña es incorrecta";

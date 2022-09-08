@@ -8,8 +8,11 @@ $resultado = $mysqli->query($sql); //guardar consulta
 //////////////////
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
 
-$sql_secciones = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta
+$sql_secciones = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
 $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
+
+$sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
+$resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 ?>
 
 <h1 class="mt-4"></h1>
@@ -45,7 +48,42 @@ if ($row['correo_creador'] == $correo && $row['id_usuario'] == $id) {
 
 <link rel="stylesheet" href="../css/estilos_cards.css">
 
+<!-- TAREAS SIN SECCIÓN-->
+<section class="product">
+    <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>
+    <button class="nxt-btn"><img src="../images/arrow.png" alt=""></button>
+    <div class="product-container">
+<?php
+while ($row_tareas = mysqli_fetch_array($resultado_tareas)) {
 
+    $id_t = $row_tareas['id_tarea'];
+    $sql_t = "SELECT * FROM tareas WHERE id_tarea='$id_t'"; //generar consulta
+    $resultado_t = $mysqli->query($sql_t); //guardar consulta
+    $row_t = mysqli_fetch_array($resultado_t); //ejecutar consulta (fetch devuelve un solo registro)
+    $num = $resultado_t->num_rows; //si la consulta genero resultados
+
+    if ($num > 0) {
+?>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZ9DMNFHxwZcfPXJrJeBMITxPMP3FMZk_ixXzTfzt4G_C-G058" class="product-thumb" alt="">
+            </div>
+            <div class="product-info">
+                <p class="product-short-description"><?php echo $row_t['fecha_entrega'] ?></p>
+                <p class="price"><?php echo $row_t['nombre']?></p>
+                <a href="#">Ver</a>
+            </div>
+        </div> 
+<?php
+ }
+}
+?>
+</div>
+</section><!-- TAREAS SIN SECCIÓN-->
+
+
+<!-- SECCIÓNES y sus tareas-->
+<br>
 <?php
 while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 ?>
@@ -74,16 +112,13 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 </section>
 <?php
 }
-?>
-
-
+?><!-- SECCIÓNES y sus tareas-->
 
 
 <br>
 <br>
 <div style="text-align: center;">
-    <h4 style="display: inline-block;">Máximo</h4>
-    <a type="button"><i class="fa-solid fa-pen-to-square"></i></a>
+    <h4 style="display: inline-block;">Example</h4>
 </div>
 <section class="product">
     <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>

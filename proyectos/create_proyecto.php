@@ -10,14 +10,22 @@ if ($_POST) { //si ya se ingresaron los datos
   if (!empty($nombre) && !empty($privacidad)) { //validar que los campos no esten vacios
 
       $sql = "INSERT INTO proyectos (nombre, correo_creador, privacidad, id_usuario)
-              VALUES ('$nombre','$correo','$privacidad', '$id')"; //generar query
+              VALUES ('$nombre','$correo','$privacidad', '$id')"; //generar query para registrar nuevo proyecto
 
             $result = mysqli_query($con, $sql); //ejecutar query
 
-            if ($result) { //si se ejecuto correctamente el query 
+
+            $id_proyecto =  mysqli_insert_id($con); //obtener ultimo id
+            $sql_seccion = "INSERT INTO secciones_proyecto (nombre, id_proyecto)
+            VALUES ('mi sección','$id_proyecto')"; //generar query para insertar seccion en  proyecto
+             $result_seccion = mysqli_query($con, $sql_seccion); //ejecutar query
+
+
+            if ($result && $result_seccion) { //si se ejecuto correctamente el query 
               
                $nombre = ""; //limpiar campos
                $privacidad = "";
+               $id_proyecto="";
                $_POST['nombre'] = ""; //limpiar campos post
                $_POST['privacidad'] = "";
             
@@ -32,7 +40,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
 <h1 class="mt-4">Crear nuevo Proyecto</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
+  <li class="breadcrumb-item"><a href="proyectos.php">Mis proyectos</a></li>
   <li class="breadcrumb-item active">Nuevo proyecto</li>
 </ol>
 

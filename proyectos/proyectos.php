@@ -27,7 +27,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
         <table id="datatablesSimple" class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th>Acciones</th>
+                    <th>Ver</th>
                     <th>Nombre</th>
                     <th>Creador</th>
                     <th>Privacidad</th>
@@ -35,7 +35,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
             </thead>
             <tfoot>
                 <tr>
-                    <th>Acciones</th>
+                    <th>Ver</th>
                     <th>Nombre</th>
                     <th>Creador</th>
                     <th>Privacidad</th>
@@ -46,7 +46,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
                 while ($row = mysqli_fetch_array($resultado)) {
                 ?>
                     <tr>
-                        <td>
+                        <td style="width: 1px;">
                             <a type="button" href="detalles_proyecto.php?id_proyecto=<?php echo $row['id_proyecto'] ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                         </td>
                         <td><?php echo $row['nombre'] ?></td>
