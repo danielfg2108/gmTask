@@ -50,7 +50,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
                 ?>
                     <tr>
                         <td style="width: 1px;">
-                            <a type="button" href="detalles_tarea.php?id_tarea=<?php echo $row['id_tarea'] ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            <a type="button" href="detalles_tarea.php?id_tarea=<?php echo $row['id_tarea']?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                         </td>
                         <td><?php echo $row['nombre'] ?></td>
                         <td><?php echo $row['descripcion'] ?></td>

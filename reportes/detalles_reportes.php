@@ -182,15 +182,15 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
         <form action="update_reporte.php?id=<?php echo $row['id_servicio'] ?>" method="POST" enctype="multipart/form-data" id="formModificar">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Planta:</label>
-            <input name="planta" type="text" class="form-control" value="<?php echo ltrim($row['planta']) ?>">
+            <input name="planta" type="text" class="form-control" value="<?php echo ltrim($row['planta']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">SC Creation Date:</label>
-            <input name="sc_creation_date" type="text" class="form-control" value="<?php echo ltrim($row['sc_creation_date']) ?>">
+            <input name="sc_creation_date" type="text" class="form-control" value="<?php echo ltrim($row['sc_creation_date']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Shopping Cart Num. :</label>
-            <input name="shopping_cart_no" type="text" class="form-control" value="<?php echo ltrim($row['shopping_cart_no']) ?>">
+            <input name="shopping_cart_no" type="text" class="form-control" value="<?php echo ltrim($row['shopping_cart_no']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Shipper Num. :</label>
@@ -199,45 +199,45 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">SC Description:</label>
-            <input name="sc_description" type="text" class="form-control" value="<?php echo ltrim($row['sc_description']) ?>">
+            <input name="sc_description" type="text" class="form-control" value="<?php echo ltrim($row['sc_description']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Product Description:</label>
-            <input name="product_description" type="text" class="form-control" value="<?php echo ltrim($row['product_description']) ?>">
+            <input name="product_description" type="text" class="form-control" value="<?php echo ltrim($row['product_description']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Created By Name:</label>
-            <input name="created_by_name" type="text" class="form-control" value="<?php echo ltrim($row['created_by_name']) ?>">
+            <input name="created_by_name" type="text" class="form-control" value="<?php echo ltrim($row['created_by_name']) ?>" required>
           </div>
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">PO Number:</label>
-            <input name="po_number" type="text" class="form-control" value="<?php echo ltrim($row['po_number']) ?>">
+            <input name="po_number" type="text" class="form-control" value="<?php echo ltrim($row['po_number']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">IR:</label>
-            <input name="ir" type="text" class="form-control" value="<?php echo ltrim($row['ir']) ?>">
+            <input name="ir" type="text" class="form-control" value="<?php echo ltrim($row['ir']) ?>" required>
           </div>
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Vendor Name:</label>
-            <input name="vendor_name" type="text" class="form-control" value="<?php echo ltrim($row['vendor_name']) ?>">
+            <input name="vendor_name" type="text" class="form-control" value="<?php echo ltrim($row['vendor_name']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Product Tipe Text:</label>
-            <input name="product_type_text" type="text" class="form-control" value="<?php echo ltrim($row['product_type_text']) ?>">
+            <input name="product_type_text" type="text" class="form-control" value="<?php echo ltrim($row['product_type_text']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Item Net Value:</label>
-            <input name="item_net_value" type="text" class="form-control" value="<?php echo ltrim($row['item_net_value']) ?>">
+            <input name="item_net_value" type="text" class="form-control" value="<?php echo ltrim($row['item_net_value']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Document Currency:</label>
-            <input name="document_currency" type="text" class="form-control" value="<?php echo ltrim($row['document_currency']) ?>">
+            <input name="document_currency" type="text" class="form-control" value="<?php echo ltrim($row['document_currency']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Cost Center:</label>
-            <input name="cost_center" type="text" class="form-control" value="<?php echo ltrim($row['cost_center']) ?>">
+            <input name="cost_center" type="text" class="form-control" value="<?php echo ltrim($row['cost_center']) ?>" required>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Tarea:</label>
@@ -246,7 +246,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Status:</label>
-            <input name="status" id="select" type="text" class="form-control" list="status" value="<?php echo ltrim($row['status'])?>">
+            <input name="status" id="select" type="text" class="form-control" list="status" value="<?php echo ltrim($row['status'])?>" required>
             <datalist id="status">
               <option value="ABIERTO">
               <option value="CERRADO">
@@ -308,7 +308,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
         <form action="agregar_archivo.php?id=<?php echo $row['id_servicio'] ?>" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Adjuntar nuevo archivo:</label>
-            <input name="archivo" type="file" class="form-control">
+            <input name="archivo" type="file" class="form-control" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

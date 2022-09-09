@@ -62,10 +62,10 @@ if ($_POST) { //si ya se ingresaron los datos
                if ($_FILES["archivo1"]) { //si se subio un archivo
                   $nombre_base = basename($_FILES["archivo1"]["name"]); //obtener el nombre del archivo
                   $nombre_final = date("d-m-y") . "_" . date("H-i-s") . "-" . $nombre_base; //agregar fecha y hora al nombre
-                  $ruta = "../archivos_servicios/" . $ultimo_id . "/" . $nombre_final;
+                  $ruta = "../archivos_servicios/".$ultimo_id."/".$nombre_final;
 
-                  if (!file_exists("../archivos_servicios/" . $ultimo_id . "/")) { //sino existe la ruta, crearla
-                     mkdir("../archivos_servicios/" . $ultimo_id . "/"); //crear ruta
+                  if (!file_exists("../archivos_servicios/".$ultimo_id."/")) { //sino existe la ruta, crearla
+                     mkdir("../archivos_servicios/".$ultimo_id."/"); //crear ruta
                   }
                   $subirarchivo = move_uploaded_file($_FILES["archivo1"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
                   if ($subirarchivo) { //si se movio el archivo en la ruta que le indique

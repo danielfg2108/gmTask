@@ -19,11 +19,10 @@ if ($_POST) { //si ya se ingresaron los datos
 
   if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { //validar que los campos no esten vacios
 
-    $sql = "INSERT INTO tareas (nombre, descripcion, fecha_entrega, id_usuario)
-              VALUES ('$nombre_tarea','$descripcion','$date', '$id')"; //generar query
+    $sql = "INSERT INTO tareas (nombre, descripcion, fecha_entrega, status, id_usuario)
+              VALUES ('$nombre_tarea','$descripcion','$date', 'ACTIVA', '$id')"; //generar query
 
     $result = mysqli_query($con, $sql); //ejecutar query insercion en tareas
-
 
     if ($result) { //si se ejecuto correctamente el query 
 

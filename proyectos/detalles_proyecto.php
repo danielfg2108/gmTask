@@ -71,7 +71,7 @@ while ($row_tareas = mysqli_fetch_array($resultado_tareas)) {
             <div class="product-info">
                 <p class="product-short-description"><?php echo $row_t['fecha_entrega'] ?></p>
                 <p class="price"><?php echo $row_t['nombre']?></p>
-                <a href="#">Ver</a>
+                <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_tareas['id_tarea']?>&id_proyecto=<?php echo $id_proyecto?>">Ver</a>
             </div>
         </div> 
 <?php
