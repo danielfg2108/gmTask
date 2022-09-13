@@ -20,6 +20,6 @@ if (
     $query = mysqli_query($con, $sql); //ejecutar consulta
 
     if ($query) {
-        Header("Location: detalles_proyecto.php?id=$id");
+        Header("Location: detalles_proyecto.php?id_proyecto=$id_proyecto");
     }
 }

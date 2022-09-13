@@ -8,13 +8,9 @@ if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
 
 $id_tarea = $_GET['id_tarea'];
 
-$nombre_tarea = addslashes($_POST['nombre_tarea']);
-$descripcion = addslashes($_POST['descripcion']);
-$fecha_entrega = addslashes($_POST['fecha_entrega']);
+if (!empty($id_tarea)) { //validar que los campos no esten vacios
 
-if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { //validar que los campos no esten vacios
-
-    $sql = "UPDATE tareas SET nombre='$nombre_tarea', descripcion ='$descripcion', fecha_entrega ='$fecha_entrega' WHERE id_tarea='$id_tarea'";
+    $sql = "UPDATE tareas SET status='FINALIZADA' WHERE id_tarea='$id_tarea'";
 
     $query = mysqli_query($con, $sql); //ejecutar consulta
 

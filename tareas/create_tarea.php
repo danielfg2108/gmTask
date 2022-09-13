@@ -30,11 +30,11 @@ if ($_POST) { //si ya se ingresaron los datos
 
       if (!empty($proyecto)) { //validar que los campos no esten vacios
         if (($proyecto == "SIN PROYECTO") || ($proyecto == "sin proyeto")) { //si NO se asigno un proyecto
+          
           $nombre_tarea = ""; //limpiar campos
           $descripcion = "";
           $fecha_entrega = "";
           $proyecto = "";
-          $id_tarea = "";
           $_POST['nombre_tarea'] = ""; //limpiar campos post
           $_POST['descripcion'] = "";
           $_POST['fecha_entrega'] = "";
@@ -49,13 +49,46 @@ if ($_POST) { //si ya se ingresaron los datos
           $descripcion = "";
           $fecha_entrega = "";
           $proyecto = "";
-          $id_tarea = "";
           $_POST['nombre_tarea'] = ""; //limpiar campos post
           $_POST['descripcion'] = "";
           $_POST['fecha_entrega'] = "";
           $_POST['proyecto'] = "";
         }
       }
+
+
+      //agregar archivo
+      if($_FILES["archivo1"]){ //si se subio un archivo
+        $nombre_base = basename($_FILES["archivo1"]["name"]); //obtener el nombre del archivo
+        $nombre_final = date("d-m-y")."_".date("H-i-s")."-".$nombre_base; //agregar fecha y hora al nombre
+        $ruta = "../archivos_tareas/".$id_tarea."/".$nombre_final;
+        
+        if(!file_exists("../archivos_tareas/".$id_tarea."/")){ //sino existe la ruta, crearla
+            mkdir("../archivos_tareas/".$id_tarea."/"); //crear ruta
+        }
+        $subirarchivo = move_uploaded_file($_FILES["archivo1"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
+        if($subirarchivo){ //si se movio el archivo en la ruta que le indique
+           $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
+           $resultado = mysqli_query($con, $insertar); //ejecutar query
+          
+        }
+     }
+
+     if($_FILES["archivo2"]){ //si se subio un archivo
+      $nombre_base = basename($_FILES["archivo2"]["name"]); //obtener el nombre del archivo
+      $nombre_final = date("d-m-y")."_".date("H-i-s")."-".$nombre_base; //agregar fecha y hora al nombre
+      $ruta = "../archivos_tareas/".$id_tarea."/".$nombre_final;
+      
+      if(!file_exists("../archivos_tareas/".$id_tarea."/")){ //sino existe la ruta, crearla
+          mkdir("../archivos_tareas/".$id_tarea."/"); //crear ruta
+      }
+      $subirarchivo = move_uploaded_file($_FILES["archivo2"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
+      if($subirarchivo){ //si se movio el archivo en la ruta que le indique
+         $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
+         $resultado = mysqli_query($con, $insertar); //ejecutar query
+         
+      }
+   }
 
 
       echo "<script>swal('Tarea creada exitosamente', '', 'success')</script>";
@@ -73,7 +106,7 @@ if ($_POST) { //si ya se ingresaron los datos
 </ol>
 
 <div class="container mt-3">
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
       <label for="recipient-name" class="col-form-label">Nombre de la tarea:</label>
@@ -89,6 +122,14 @@ if ($_POST) { //si ya se ingresaron los datos
       <label class="form-label">Fecha de Entrega:</label>
       <input type="date" class="form-control" name="fecha_entrega" required style="width: 300px;">
     </div>
+
+         <div class="mb-3">
+            <label class="form-label">Adjunar Archivos</label>
+            <input type="file" class="form-control" name="archivo1" style="width: 300px;"> 
+            <br>
+            <input type="file" class="form-control" name="archivo2" style="width: 300px;">         
+         </div>
+
 
     <div class="mb-3">
       <label for="inputState">Asignar a Proyecto:</label>
