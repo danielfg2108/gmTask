@@ -3,6 +3,7 @@
 require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 $id_proyecto = $_GET['id_proyecto'];
+
 $sql = "SELECT * FROM proyectos WHERE id_proyecto='$id_proyecto'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
@@ -15,7 +16,6 @@ $resultado_secciones2 = $mysqli->query($sql_secciones2); //guardar consulta
 
 $sql_secciones3 = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
 $resultado_secciones3 = $mysqli->query($sql_secciones3); //guardar consulta
-
 
 $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
@@ -37,10 +37,10 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 <a type="button" class="btn btn-danger" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalEliminar_p">Eliminar</a>
 <br>
 <div style="text-align: right;">
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="busqueda.php?id_proyecto=<?php echo $id_proyecto?>" method="POST" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Buscar ..." aria-label="Buscar ..." aria-describedby="btnNavbarSearch" />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+            <input class="form-control" type="text" placeholder="Ingrese palabra clave ..." name="busqueda"/>
+            <input type="submit" class="btn btn-primary" value="Buscar"/>
         </div>
     </form>
     <a type="button" class="btn btn-secondary" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalSeccion">Agregar sección</a>
