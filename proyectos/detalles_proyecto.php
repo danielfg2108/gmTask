@@ -17,7 +17,7 @@ $resultado_secciones2 = $mysqli->query($sql_secciones2); //guardar consulta
 $sql_secciones3 = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
 $resultado_secciones3 = $mysqli->query($sql_secciones3); //guardar consulta
 
-$sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
+$sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'  ORDER BY id_tarea"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
 ?>
@@ -59,7 +59,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
             $id_tarea_sin = $row_tareas['id_tarea']; //guardar id en variable
 
-            $sql_tareas_seccion_sin = "SELECT * FROM tareas_seccion WHERE id_tarea='$id_tarea_sin'"; //consultar para ver si las tareas tiene una seccion
+            $sql_tareas_seccion_sin = "SELECT * FROM tareas_seccion WHERE id_tarea='$id_tarea_sin' ORDER BY id_tarea"; //consultar para ver si las tareas tiene una seccion
             $resultado_tareas_seccion_sin = $mysqli->query($sql_tareas_seccion_sin); //guardar consulta
             $num_sin = $resultado_tareas_seccion_sin->num_rows; //si la consulta genero resultados
 
@@ -87,9 +87,8 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                             }
                             ?>
                             <img src="../<?php echo $ruta_imagen?>" class="product-thumb" alt="">
-                            <a type="button" class="btn btn-secondary" onclick="AsignarSeccion('<?php echo $row_todas['id_tarea'] ?>')">MOVER A SECCIÓN</a>
+                            <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $id_tarea_sin?>')">MOVER A SECCIÓN</a>
                         </div>
-
 
                         <div class="product-info">
                             <p class="product-short-description"><?php echo $row_todas['fecha_entrega'] ?></p>
@@ -369,45 +368,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id_tarea_cambiar" id="hiddendata3">
-
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <input type="submit" class="btn btn-primary" value="Mover">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
-
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-<div class="modal fade" id="modalAsignarSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Asignar de sección</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="../secciones/asignar_seccion.php?id_proyecto=<?php echo $id_proyecto?>" method="POST">
-
-                    <div class="mb-3">
-                       <label for="recipient-name" class="col-form-label">Asignar a:</label>
-                        <select class="form-control" name="asignar_seccion" style="width: 300px;">
-                           
-                            <?php
-                            while ($row_secciones3 = mysqli_fetch_array($resultado_secciones3)) {
-                            ?>
-                                <option value="<?php echo $row_secciones3['id_seccion'] ?>"><?php echo $row_secciones3['nombre'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id_tarea_asignar" id="hiddendata4">
+                        <input type="hidden" name="id_tarea_cambio_sec" id="hiddendata3">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <input type="submit" class="btn btn-primary" value="Mover">
@@ -488,10 +449,5 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
     function CambiarSeccion(updateid) {
         $('#hiddendata3').val(updateid); //ponerle de texto el id al input oculto del modal
         $('#modalCambiarSeccion').modal('show'); //mostrar modal
-    }
-
-    function AsignarSeccion(updateid) {
-        $('#hiddendata4').val(updateid); //ponerle de texto el id al input oculto del modal
-        $('#modalAsignarSeccion').modal('show'); //mostrar modal
     }
 </script>

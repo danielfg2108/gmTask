@@ -1,4 +1,8 @@
-<?php require_once '../header.php'; ?>
+<?php 
+header('Cache-Control: no cache'); //no cache (para que NO genere error a la hora de regresar a la pagina anterior)
+session_cache_limiter('private_no_expire'); //works (para que NO genere error a la hora de regresar a la pagina anterior)
+require_once '../header.php';
+ ?>
 <?php
 require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
@@ -9,6 +13,9 @@ $busqueda = addslashes($_POST['busqueda']);
 
 $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
+
+$sql_secciones = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
+$resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
 ?>
 
 <h1 class="mt-4"></h1>
@@ -18,7 +25,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
     <li class="breadcrumb-item active">Detalles</li>
 </ol>
 
-<h2 style="display:inline;">Resultados de la Busqueda</h2>
+<h2 style="display:inline;">Resultados de la Busqueda "<?php echo $busqueda?>"</h2>
 <br>
 
 <link rel="stylesheet" href="../css/estilos_cards.css">
@@ -34,15 +41,15 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
         <?php
         while ($row_tareas = mysqli_fetch_array($resultado_tareas)) { //id de todas las tareas que tiene el proyecto
 
-            $id_tarea_sin = $row_tareas['id_tarea']; //guardar id en variable
+            $id_tarea = $row_tareas['id_tarea']; //guardar id en variable
 
-            $sql_busqueda1 = "SELECT * FROM tareas WHERE id_tarea='$id_tarea_sin' AND nombre LIKE '%$busqueda%'
+            $sql_busqueda1 = "SELECT * FROM tareas WHERE id_tarea='$id_tarea' AND nombre LIKE '%$busqueda%'
                               UNION
-                              SELECT * FROM tareas WHERE id_tarea='$id_tarea_sin' AND descripcion LIKE '%$busqueda%'
+                              SELECT * FROM tareas WHERE id_tarea='$id_tarea' AND descripcion LIKE '%$busqueda%'
                               UNION
-                              SELECT * FROM tareas WHERE id_tarea='$id_tarea_sin' AND fecha_entrega LIKE '%$busqueda%'
+                              SELECT * FROM tareas WHERE id_tarea='$id_tarea' AND fecha_entrega LIKE '%$busqueda%'
                               UNION
-                              SELECT * FROM tareas WHERE id_tarea='$id_tarea_sin' AND status LIKE '%$busqueda%';"; //generar consulta secciones
+                              SELECT * FROM tareas WHERE id_tarea='$id_tarea' AND status LIKE '%$busqueda%';"; //generar consulta secciones
             
             $resultado_busqueda1 = $mysqli->query($sql_busqueda1); //guardar consulta
             $num_busqueda1 = $resultado_busqueda1->num_rows; //si la consulta genero resultados
@@ -53,18 +60,18 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                     <div class="product-card">
                         <div class="product-image">
                             <?php
-                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_tarea_sin' AND descripcion LIKE '%.%g' LIMIT 1"; //generar archivos
+                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_tarea' AND descripcion LIKE '%.%g' LIMIT 1"; //generar archivos
                             $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
                             $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_imagen = $resultado_imagen->num_rows; //si la consulta genero resultados          
                             if($num_imagen > 0){
-                                $ruta_imagen =  "archivos_tareas/".$id_tarea_sin."/".$row_imagen['descripcion'];
+                                $ruta_imagen =  "archivos_tareas/".$id_tarea."/".$row_imagen['descripcion'];
                             }else{
                                 $ruta_imagen = "images/tarea.jpg";
                             }
                             ?>
                             <img src="../<?php echo $ruta_imagen?>" class="product-thumb" alt="">
-                            <a type="button" class="btn btn-secondary" onclick="AsignarSeccion('<?php echo $row_todas['id_tarea'] ?>')">MOVER A SECCIÓN</a>
+                            <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $id_tarea?>')">MOVER A SECCIÓN</a>
                         </div>
 
                         <div class="product-info">
@@ -104,3 +111,47 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
 
 
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalCambiarSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mover de sección</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="../secciones/cambiar_seccion.php?id_proyecto=<?php echo $id_proyecto?>" method="POST">
+
+                    <div class="mb-3">
+                       <label for="recipient-name" class="col-form-label">Mover a:</label>
+                        <select class="form-control" name="cambio_seccion" style="width: 300px;">
+                            <option value="SIN SECCION">SIN SECCION</option>
+                            <?php
+                            while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
+                            ?>
+                                <option value="<?php echo $row_secciones['id_seccion'] ?>"><?php echo $row_secciones['nombre'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_tarea_cambio_sec" id="hiddendata">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Mover">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+<script>
+     function CambiarSeccion(updateid) {
+        $('#hiddendata').val(updateid); //ponerle de texto el id al input oculto del modal
+        $('#modalCambiarSeccion').modal('show'); //mostrar modal
+    }
+</script>

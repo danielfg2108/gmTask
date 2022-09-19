@@ -60,7 +60,7 @@ if($_POST){//si ya se ingresaron los datos
 						<input type="password" placeholder="PASSWORD" name="password" required>		
 						<h4 style="color: red;"><?php echo $mensaje ?></h4>							
  					    <button class="submit">Ingresar</button>
-						<a class="small" href="password.html">¿Olvido su contraseña?</a>
+						
 						<br>
 						<a class="small" href="register.php">Crear una nueva cuenta</a>						
  				</form>		

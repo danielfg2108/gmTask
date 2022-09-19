@@ -8,6 +8,13 @@ $nombre = $_SESSION['nombre']; //obtener el nombre del usuario
 $apellidos = $_SESSION['apellidos']; //obtener apellidos del usuario
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];
+
+require "bd/conexion.php"; //llamar a la conexion
+$sql = "SELECT * FROM tareas WHERE id_usuario='$id' LIMIT 3"; //generar consulta
+$resultado = $mysqli->query($sql); //guardar consulta
+
+$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 3"; //generar consulta
+$resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 ?>
 
 <!DOCTYPE html>
@@ -31,16 +38,19 @@ $id = $_SESSION['id'];
         0% {
             background-position: 0% 50%;
         }
+
         100% {
             background-position: 100% 50%;
         }
     }
+
     p {
         text-transform: uppercase;
         border: 4px double rgba(255, 255, 255, .25);
         text-align: center;
         font-size: 130%;
     }
+
     span {
         font: 900 4em/1 'Oswald', Tangerine;
         padding: .25em 0 .325em;
@@ -166,7 +176,7 @@ $id = $_SESSION['id'];
                 <div class="container-fluid px-4">
 
                     <p>
-                        <span>Maintenance</span>
+                        <span>Mantenimiento</span>
                     </p>
 
                     <h1 class="mt-4">Task</h1>
@@ -174,24 +184,65 @@ $id = $_SESSION['id'];
                         <li class="breadcrumb-item active">general motors</li>
                     </ol>
                     <h1 id="saludo" class="mt-4" style="font-family: 'Tangerine', serif; text-shadow: 4px 4px 4px #aaa;">Welcome <?php echo $nombre . ' ' . $apellidos; ?></h1>
+                    <br>
 
                     <div class="row">
+
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
                                     Tareas Recientes
                                 </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body">
+                                    <table class="table table-primary table-striped">
+
+                                        <tbody>
+                                            <?php
+                                            while ($row = mysqli_fetch_array($resultado)) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <a href="tareas/detalles_tarea.php?id_tarea=<?php echo $row['id_tarea'] ?>"><i class="fa-solid fa-eye" style="width: 23px; height: 23px;"></i></a>
+                                                        <?php echo $row['nombre'] ?>
+                                                    </td>
+                                                    <td><?php echo $row['fecha_entrega'] ?></td>
+
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    Proyectos
+                                    Proyectos recientes
                                 </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body">
+                                    <table class="table table-primary table-striped">
+                                        <tbody>
+                                            <?php
+                                            while ($row_proy = mysqli_fetch_array($resultado_proy)) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <a href="proyectos/detalles_proyecto.php?id_proyecto=<?php echo $row_proy['id_proyecto'] ?>"><i class="fa-solid fa-eye" style="width: 23px; height: 23px;"></i></a>
+                                                        <?php echo $row_proy['nombre'] ?>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
 
@@ -202,7 +253,7 @@ $id = $_SESSION['id'];
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                        <div class="text-muted">Copyright &copy; Your Website 2022.</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
