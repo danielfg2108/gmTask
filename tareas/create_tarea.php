@@ -6,96 +6,12 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta proyectos
 $resultado = $mysqli->query($sql); //guardar consulta proyectos
 
+$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
+
 
 if ($_POST) { //si ya se ingresaron los datos
-  $nombre_tarea = addslashes($_POST['nombre_tarea']);
-  $descripcion = addslashes($_POST['descripcion']);
-
-  $fecha_entrega = addslashes($_POST['fecha_entrega']);
-  $date_entrega = strtotime($fecha_entrega);
-  $date = date('d/m/Y', $date_entrega);
-
-  $proyecto = addslashes($_POST['proyecto']);
-
-  if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { //validar que los campos no esten vacios
-
-    $sql = "INSERT INTO tareas (nombre, descripcion, fecha_entrega, status, id_usuario)
-              VALUES ('$nombre_tarea','$descripcion','$date', 'ACTIVA', '$id')"; //generar query
-
-    $result = mysqli_query($con, $sql); //ejecutar query insercion en tareas
-
-    if ($result) { //si se ejecuto correctamente el query 
-
-      $id_tarea =  mysqli_insert_id($con);
-
-      if (!empty($proyecto)) { //validar que los campos no esten vacios
-        if (($proyecto == "SIN PROYECTO") || ($proyecto == "sin proyeto")) { //si NO se asigno un proyecto
-          
-          $nombre_tarea = ""; //limpiar campos
-          $descripcion = "";
-          $fecha_entrega = "";
-          $proyecto = "";
-          $_POST['nombre_tarea'] = ""; //limpiar campos post
-          $_POST['descripcion'] = "";
-          $_POST['fecha_entrega'] = "";
-          $_POST['proyecto'] = "";
-        } else {
-
-          $sql_pt = "INSERT INTO proyectos_tareas (id_proyecto, id_tarea)
-                  VALUES ('$proyecto','$id_tarea')"; //generar query
-          $result_pt = mysqli_query($con, $sql_pt); //ejecutar query
-
-          $nombre_tarea = ""; //limpiar campos
-          $descripcion = "";
-          $fecha_entrega = "";
-          $proyecto = "";
-          $_POST['nombre_tarea'] = ""; //limpiar campos post
-          $_POST['descripcion'] = "";
-          $_POST['fecha_entrega'] = "";
-          $_POST['proyecto'] = "";
-        }
-      }
-
-
-      //agregar archivo
-      if($_FILES["archivo1"]){ //si se subio un archivo
-        $nombre_base = basename($_FILES["archivo1"]["name"]); //obtener el nombre del archivo
-        $nombre_final = date("d-m-y")."_".date("H-i-s")."-".$nombre_base; //agregar fecha y hora al nombre
-        $ruta = "../archivos_tareas/".$id_tarea."/".$nombre_final;
-        
-        if(!file_exists("../archivos_tareas/".$id_tarea."/")){ //sino existe la ruta, crearla
-            mkdir("../archivos_tareas/".$id_tarea."/"); //crear ruta
-        }
-        $subirarchivo = move_uploaded_file($_FILES["archivo1"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
-        if($subirarchivo){ //si se movio el archivo en la ruta que le indique
-           $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
-           $resultado = mysqli_query($con, $insertar); //ejecutar query
-          
-        }
-     }
-
-     if($_FILES["archivo2"]){ //si se subio un archivo
-      $nombre_base = basename($_FILES["archivo2"]["name"]); //obtener el nombre del archivo
-      $nombre_final = date("d-m-y")."_".date("H-i-s")."-".$nombre_base; //agregar fecha y hora al nombre
-      $ruta = "../archivos_tareas/".$id_tarea."/".$nombre_final;
-      
-      if(!file_exists("../archivos_tareas/".$id_tarea."/")){ //sino existe la ruta, crearla
-          mkdir("../archivos_tareas/".$id_tarea."/"); //crear ruta
-      }
-      $subirarchivo = move_uploaded_file($_FILES["archivo2"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
-      if($subirarchivo){ //si se movio el archivo en la ruta que le indique
-         $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
-         $resultado = mysqli_query($con, $insertar); //ejecutar query
-         
-      }
-   }
-
-
-      echo "<script>swal('Tarea creada exitosamente', '', 'success')</script>";
-    } else {
-      echo "<script>swal('ERROR al registrar tarea', '', 'error')</script>";
-    }
-  }
+ 
 } //POST
 ?>
 
@@ -106,34 +22,47 @@ if ($_POST) { //si ya se ingresaron los datos
 </ol>
 
 <div class="container mt-3">
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="createBD_tarea.php" method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
       <label for="recipient-name" class="col-form-label">Nombre de la tarea:</label>
-      <input type="text" class="form-control" name="nombre_tarea" required style="width: 300px;">
+      <input type="text" class="form-control" name="nombre_tarea" required style="width: 400px;">
+    </div>
+
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label">Agregar Responsable:</label>
+            <select id="responsable" class="form-control" name="responsable" style="width: 400px;">
+            <option value="0">sin responsable</option>
+              <?php
+                while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
+              ?>
+              <option value="<?php echo $row_usuarios['id_usuario']?>"><?php echo $row_usuarios['nombre']?> - <?php echo $row_usuarios['correo'] ?></option>
+              <?php
+                 }
+              ?>
+            </select>
     </div>
 
     <div class="mb-3">
       <label for="recipient-name" class="col-form-label">Descripcion:</label>
-      <input type="text" class="form-control" name="descripcion" required style="width: 300px;">
+      <textarea  type="text" class="form-control" name="descripcion" rows="5" required style="width: 400px;"></textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Fecha de Entrega:</label>
-      <input type="date" class="form-control" name="fecha_entrega" required style="width: 300px;">
+      <input type="date" class="form-control" name="fecha_entrega" required style="width: 150px;">
     </div>
 
          <div class="mb-3">
             <label class="form-label">Adjunar Archivos</label>
-            <input type="file" class="form-control" name="archivo1" style="width: 300px;"> 
+            <input type="file" class="form-control" name="archivo1" style="width: 400px;"> 
             <br>
-            <input type="file" class="form-control" name="archivo2" style="width: 300px;">         
+            <input type="file" class="form-control" name="archivo2" style="width: 400px;">         
          </div>
-
 
     <div class="mb-3">
       <label for="inputState">Asignar a Proyecto:</label>
-      <select id="select" class="form-control" name="proyecto" style="width: 300px;">
+      <select id="select" class="form-control" name="proyecto" style="width: 400px;">
         <option value="SIN PROYECTO">SIN PROYECTO</option>
         <?php
         while ($row = mysqli_fetch_array($resultado)) {
@@ -144,10 +73,8 @@ if ($_POST) { //si ya se ingresaron los datos
         ?>
       </select>
     </div>
-
     <input type="submit" class="btn btn-primary" value="Crear">
   </form>
 </div>
-
 
 <?php require_once '../footer.php'; ?>

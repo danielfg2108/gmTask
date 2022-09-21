@@ -20,6 +20,13 @@ $num_archivos = $resultado_archivos->num_rows; //si la consulta genero resultado
 
 $sql_proyectos = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //obteenr proyectos
 $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de archivos
+
+$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
+
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tarea'"; //generar consulta colaboradores
+$resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
+
 ?>
 
 <h1 class="mt-4">Tarea</h1>
@@ -76,9 +83,8 @@ $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de arc
             } else {
             ?>
                 <td>SIN PROYECTO
-                <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 10px;" 
-                   data-bs-toggle="modal" data-bs-target="#modalAsignarProyecto" data-bs-whatever="@mdo">
-                   Asignar a proyecto</a>
+                    <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#modalAsignarProyecto" data-bs-whatever="@mdo">
+                        Asignar a proyecto</a>
                 </td>
             <?php
             }
@@ -88,20 +94,41 @@ $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de arc
         <tr>
             <td>Estado de la tarea:</td>
             <?php
-                if (($row['status'] == "ACTIVA") || ($row['status'] == "activa")) {
-                ?>
-            <td style="color: green; font-weight: bold;"><?php echo $row['status'] ?>
-              <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 60px;" href="status_finalizada.php?id_tarea=<?php echo $row['id_tarea'] ?>">Marcar como finalizada</a>
-            </td>
-        <?php
-                } else {
-        ?>
-            <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?></td>
-        <?php
-                }
-        ?>
+            if (($row['status'] == "ACTIVA") || ($row['status'] == "activa")) {
+            ?>
+                <td style="color: green; font-weight: bold;"><?php echo $row['status'] ?>
+                    <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 60px;" href="status_finalizada.php?id_tarea=<?php echo $row['id_tarea'] ?>">Marcar como finalizada</a>
+                </td>
+            <?php
+            } else {
+            ?>
+                <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?></td>
+            <?php
+            }
+            ?>
 
         </tr>
+        <?php
+          while ($row_c = mysqli_fetch_array($resultado_colaboradores)) {  
+
+               $id_usu = $row_c['id_usuario']; //guardar id en variable
+               
+                $sql_usu = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario='$id_usu'"; //consulta para obtener los datos de la tarea
+                $resultado_usu = $mysqli->query($sql_usu); //guardar consulta
+                $row_usu = mysqli_fetch_array($resultado_usu); //ejecutar consulta (fetch devuelve un solo registro)
+                $num_usu = $resultado_usu->num_rows; //si la consulta genero resultados  
+
+                if ($num_usu > 0) { 
+                
+        ?>
+        <tr>      
+           <td>Responsable:</td>
+           <td> <?php echo $row_usu['nombre'] ?> - <?php echo $row_usu['correo'] ?></td>
+        </tr>
+        <?php
+                }
+          }    
+        ?>
 
         <tr>
             <td>
@@ -128,16 +155,18 @@ $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de arc
         ?>
             <tr>
                 <td><?php echo $row_archivos['descripcion'] ?>
-                <?php
-                if(str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
-                   str_contains($row_archivos['descripcion'], ".png")){
-                ?>
-                <br>
-                <img src="../archivos_tareas/<?php echo $id_tarea?>/<?php echo $row_archivos['descripcion']?>" width="200px"  height="150px">
-                <?php
-                } //si el archivo es una imagen
-                ?>
-               </td>
+                    <?php
+                    if (
+                        str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
+                        str_contains($row_archivos['descripcion'], ".png")
+                    ) {
+                    ?>
+                        <br>
+                        <img src="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
+                    <?php
+                    } //si el archivo es una imagen
+                    ?>
+                </td>
                 <td>
                     <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['descripcion'] ?>"><i class="fa-solid fa-eye"></i></a>
                     <a type="button" class="btn btn-danger" href="eliminar_archivo_tarea.php?id_archivo_tarea=<?php echo $row_archivos['id_archivo_tarea'] ?>&id_tarea=<?php echo $id_tarea ?>"><i class="fa-solid fa-trash-can"></i></a>
@@ -206,6 +235,20 @@ $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de arc
                     </div>
 
                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Agregar Responsable:</label>
+                        <select id="responsable" class="form-control" name="responsable">
+                            <option value="0">sin responsable</option>
+                            <?php
+                            while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
+                            ?>
+                                <option value="<?php echo $row_usuarios['id_usuario'] ?>"><?php echo $row_usuarios['nombre'] ?> - <?php echo $row_usuarios['correo'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Descripción:</label>
                         <input type="text" class="form-control" name="descripcion" required value="<?php echo ltrim($row['descripcion']) ?>">
                     </div>
@@ -261,12 +304,12 @@ $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de arc
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="../proyectos/asignar_proyecto.php?id_tarea=<?php echo $id_tarea?>" method="POST">
+                <form action="../proyectos/asignar_proyecto.php?id_tarea=<?php echo $id_tarea ?>" method="POST">
 
                     <div class="mb-3">
-                       <label for="recipient-name" class="col-form-label">Asignar a:</label>
+                        <label for="recipient-name" class="col-form-label">Asignar a:</label>
                         <select class="form-control" name="asignar_proyecto" style="width: 300px;">
-                           
+
                             <?php
                             while ($row_proyectos = mysqli_fetch_array($resultado_proyectos)) {
                             ?>

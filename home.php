@@ -13,7 +13,10 @@ require "bd/conexion.php"; //llamar a la conexion
 $sql = "SELECT * FROM tareas WHERE id_usuario='$id' LIMIT 3"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 
-$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 3"; //generar consulta
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 1"; //generar consulta colaboradores
+$resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
+
+$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta
 $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 ?>
 
@@ -126,17 +129,24 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
                             <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                             Inicio
                         </a>
+
+                        <a class="nav-link" href="proyectos/proyectos.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                            Mis Proyectos
+                        </a>
+
                         <a class="nav-link" href="tareas/tareas.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                             Mis tareas
                         </a>
 
 
+
                         <!-- seccion "reportes" del menu lateral-->
-                        <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
+                        <div class="sb-sidenav-menu-heading">Reporte</div>
                         <a class="nav-link" href="reportes/reportes.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Reporte
+                            Reparaciones y Servicios
                         </a>
 
                         <a class="nav-link" href="reportes/tipo_reporte.php">
@@ -150,14 +160,16 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
                         </a>
 
                         <!-- seccion "proyectos del menu lateral-->
-                        <div class="sb-sidenav-menu-heading">Proyectos</div>
-                        <a class="nav-link" href="proyectos/proyectos.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                            Mis Proyectos
-                        </a>
+                        <div class="sb-sidenav-menu-heading">Proyectos y Tareas</div>
+
                         <a class="nav-link" href="proyectos/create_proyecto.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                            Agregar proyecto
+                            Nuevo Proyecto
+                        </a>
+
+                        <a class="nav-link" href="tareas/create_tarea.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
+                            Nueva Tarea
                         </a>
 
 
@@ -196,7 +208,6 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-primary table-striped">
-
                                         <tbody>
                                             <?php
                                             while ($row = mysqli_fetch_array($resultado)) {
@@ -210,6 +221,32 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 
                                                 </tr>
                                             <?php
+                                            }
+                                            ?>
+
+
+                                            <?php
+                                            while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {
+
+                                                $id_t_colaborador = $row_colaboradores['id_tarea']; //guardar id en variable
+
+                                                $sql_t_colaborador = "SELECT * FROM tareas WHERE id_tarea='$id_t_colaborador'"; //consulta para obtener los datos de la tarea
+                                                $resultado_t_colaborador = $mysqli->query($sql_t_colaborador); //guardar consulta
+                                                $row_t_colaborador = mysqli_fetch_array($resultado_t_colaborador); //ejecutar consulta (fetch devuelve un solo registro)
+                                                $num_t_colaborador = $resultado_t_colaborador->num_rows; //si la consulta genero resultados  
+
+                                                if ($num_t_colaborador > 0) {
+                                            ?>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="tareas/detalles_tarea.php?id_tarea=<?php echo $row_t_colaborador['id_tarea'] ?>"><i class="fa-solid fa-eye" style="width: 23px; height: 23px;"></i></a>
+                                                            <?php echo $row_t_colaborador['nombre'] ?>
+                                                        </td>
+                                                        <td><?php echo $row_t_colaborador['fecha_entrega'] ?></td>
+
+                                                    </tr>
+                                            <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>

@@ -76,16 +76,21 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                                 Inicio
                             </a>
+                            <a class="nav-link" href="../proyectos/proyectos.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                                Mis Proyectos
+                            </a> 
                             <a class="nav-link" href="../tareas/tareas.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                                 Mis tareas
-                            </a>
+                            </a> 
+                            
 
                             <!-- seccion "reportes" del menu lateral-->
-                            <div class="sb-sidenav-menu-heading">Reporte de servicios</div>
+                            <div class="sb-sidenav-menu-heading">Reporte</div>
                             <a class="nav-link" href="../reportes/reportes.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Reporte
+                                Reparaciones y Servicios
                             </a>
                             <a class="nav-link" href="../reportes/tipo_reporte.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
@@ -98,14 +103,15 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                             </a>
                            
                             <!-- seccion "proyectos" del menu lateral-->
-                            <div class="sb-sidenav-menu-heading">Proyectos</div>     
-                            <a class="nav-link" href="../proyectos/proyectos.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                                Mis Proyectos
-                            </a>                  
+                            <div class="sb-sidenav-menu-heading">Proyectos y Tareas</div>    
+                            
                             <a class="nav-link" href="../proyectos/create_proyecto.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
-                                Agregar proyecto
+                                Nuevo proyecto
+                            </a>
+                            <a class="nav-link" href="../tareas/create_tarea.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
+                                Nueva Tarea
                             </a>
                          
 

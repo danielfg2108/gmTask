@@ -3,6 +3,9 @@
 require "../bd/conexion.php"; //llamar a la conexion
 $sql = "SELECT * FROM tareas WHERE id_usuario='$id'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
+
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id'"; //generar consulta colaboradores
+$resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 ?>
 
 <h1 id="saludo" class="mt-4">Mis Tareas</h1>
@@ -80,6 +83,57 @@ $resultado = $mysqli->query($sql); //guardar consulta
                 <?php
                 }
                 ?>
+
+
+               <?php
+                while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {
+
+                    $id_t_colaborador = $row_colaboradores['id_tarea']; //guardar id en variable
+               
+                    $sql_t_colaborador = "SELECT * FROM tareas WHERE id_tarea='$id_t_colaborador'"; //consulta para obtener los datos de la tarea
+                    $resultado_t_colaborador = $mysqli->query($sql_t_colaborador); //guardar consulta
+                    $row_t_colaborador = mysqli_fetch_array($resultado_t_colaborador); //ejecutar consulta (fetch devuelve un solo registro)
+                    $num_t_colaborador = $resultado_t_colaborador->num_rows; //si la consulta genero resultados  
+    
+                    if ($num_t_colaborador > 0) { 
+                ?>
+                    <tr>
+                        <td style="width: 1px;">
+                            <a type="button" href="detalles_tarea.php?id_tarea=<?php echo $row_t_colaborador['id_tarea']?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                        </td>
+                        <td><?php echo $row_t_colaborador['nombre'] ?></td>
+                        <td><?php echo $row_t_colaborador['descripcion'] ?></td>
+                        <td><?php echo $row_t_colaborador['fecha_entrega'] ?></td>
+                        <?php
+                        $id_t = $row_t_colaborador['id_tarea'];
+                        $sql_t = "SELECT id_proyecto FROM proyectos_tareas WHERE id_tarea='$id_t'"; //generar consulta
+                        $resultado_t = $mysqli->query($sql_t); //guardar consulta
+                        $row_t = mysqli_fetch_array($resultado_t); //ejecutar consulta (fetch devuelve un solo registro)
+                        $num = $resultado_t->num_rows; //si la consulta genero resultados
+
+                        if ($num > 0) {
+
+                            $id_p = $row_t['id_proyecto'];
+                            $sql_p = "SELECT nombre FROM proyectos WHERE id_proyecto='$id_p'"; //generar consulta
+                            $resultado_p = $mysqli->query($sql_p); //guardar consulta
+                            $row_p = mysqli_fetch_array($resultado_p); //ejecutar consulta (fetch devuelve un solo registro)
+                        ?>
+                            <td><?php echo $row_p['nombre'] ?></td>
+                        <?php
+                        } else {
+                        ?>
+                        <td>SIN PROYECTO</td>
+                        <?php
+                        }
+                        ?>
+                    </tr>
+                <?php
+                    } //if
+                } //while
+                ?>
+
+
+
             </tbody>
         </table>
     </div>
