@@ -76,6 +76,11 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                                 <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                                 Inicio
                             </a>
+                            <a class="nav-link" href="../tareas/bandeja.php">
+                              <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
+                              Bandeja de entrada
+                             </a>
+
                             <a class="nav-link" href="../proyectos/proyectos.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
                                 Mis Proyectos

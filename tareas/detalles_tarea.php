@@ -109,30 +109,32 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
         </tr>
         <?php
-          while ($row_c = mysqli_fetch_array($resultado_colaboradores)) {  
+        while ($row_c = mysqli_fetch_array($resultado_colaboradores)) {
 
-               $id_usu = $row_c['id_usuario']; //guardar id en variable
-               
-                $sql_usu = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario='$id_usu'"; //consulta para obtener los datos de la tarea
-                $resultado_usu = $mysqli->query($sql_usu); //guardar consulta
-                $row_usu = mysqli_fetch_array($resultado_usu); //ejecutar consulta (fetch devuelve un solo registro)
-                $num_usu = $resultado_usu->num_rows; //si la consulta genero resultados  
+            $id_usu = $row_c['id_usuario']; //guardar id en variable
 
-                if ($num_usu > 0) { 
-                
+            $sql_usu = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario='$id_usu'"; //consulta para obtener los datos de la tarea
+            $resultado_usu = $mysqli->query($sql_usu); //guardar consulta
+            $row_usu = mysqli_fetch_array($resultado_usu); //ejecutar consulta (fetch devuelve un solo registro)
+            $num_usu = $resultado_usu->num_rows; //si la consulta genero resultados  
+
+            if ($num_usu > 0) {
+
         ?>
-        <tr>      
-           <td>Responsable:</td>
-           <td> <?php echo $row_usu['nombre'] ?> - <?php echo $row_usu['correo'] ?></td>
-        </tr>
+                <tr>
+                    <td>Responsable:</td>
+                    <td> <?php echo $row_usu['nombre'] ?> - <?php echo $row_usu['correo'] ?></td>
+                </tr>
         <?php
-                }
-          }    
+            }
+        }
         ?>
 
         <tr>
             <td>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTarea" data-bs-whatever="@mdo">Modificar</button>
+                <br>
+                <br>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarTarea" data-bs-whatever="@mdo">Eliminar</button>
             </td>
             <td></td>
@@ -187,6 +189,49 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
 <h5 class="mt-4">Comentarios</h5>
 
+<!-- Comentario section-->
+<form method="POST" action="../comentarios/enviar_comentario.php?id_tarea=<?php echo $id_tarea?>">
+    <section id="contact">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="col-xs-12">      
+                       
+                        <?php
+                         $sql_comentarios = "SELECT * FROM comentarios_tareas WHERE id_tarea='$id_tarea'"; //generar consulta
+                         $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
+
+                        while ($row_comentario = mysqli_fetch_array($resultado_comentarios)) {
+
+                            $id_usu_comentario = $row_comentario['id_usuario']; //guardar id en variable
+               
+                            $sql_usu_comentario = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener los datos de la tarea
+                            $resultado_usu_comentario = $mysqli->query($sql_usu_comentario); //guardar consulta
+                            $row_usu_comentario = mysqli_fetch_array($resultado_usu_comentario); //ejecutar consulta (fetch devuelve un solo registro)
+                            $num_usu_comentario = $resultado_usu_comentario->num_rows; //si la consulta genero resultados
+                            
+                            if ($num_usu_comentario > 0) { 
+                            ?>
+                            <b><?php echo $row_usu_comentario['nombre']?> <?php echo $row_usu_comentario['apellidos']?>
+                            </b> (<?php echo $row_comentario['fecha']?>)
+                            <br>
+                            <?php echo $row_comentario['descripcion']?>
+                            <br>
+                            <hr/>
+                        <?php
+                            }
+                        }
+                        ?>
+
+                        <div class="form-group">
+                            <label for="comentario" class="form-label">Comentario:</label>
+                            <textarea class="form-control" name="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario......"></textarea>
+                        </div>
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Enviar Comentario">
+</form>
+</div>
+</section>
 
 <?php require_once '../footer.php'; ?>
 

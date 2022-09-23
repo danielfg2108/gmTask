@@ -132,8 +132,6 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 } //while
                 ?>
 
-
-
             </tbody>
         </table>
     </div>

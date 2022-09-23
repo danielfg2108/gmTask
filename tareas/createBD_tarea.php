@@ -100,7 +100,7 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
       }
    }
       echo "<script>swal('Tarea creada exitosamente', '', 'success')</script>";
-      Header("Location: create_tarea.php");
+      Header("Location: tareas.php");
     } else {
       echo "<script>swal('ERROR al registrar tarea', '', 'error')</script>";
     }
