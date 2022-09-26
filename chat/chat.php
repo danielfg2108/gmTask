@@ -1,16 +1,15 @@
-<?php require_once '../header.php'; ?>
+<?php require_once '../header.php';?>
 <link rel="stylesheet" href="estilos_chat.css">
 
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-  <title>Messenger</title>
+  <title>Mensajes</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+  <link rel="stylesheet" href="bootstrap4.3.1.css"/>
+  <link rel="stylesheet" href="bootstrap-icons.css"/>
 </head>
 <body>
   <div class="main-wrapper">
@@ -45,7 +44,7 @@
                 <div class="p-3 chat-header">
                   <div class="d-flex">
                     <div class="w-100 d-flex pl-0">
-                      <img class="user-detail-trigger rounded-circle shadow avatar-sm mr-3 chat-profile-picture" src="https://user-images.githubusercontent.com/35243461/168796876-2e363a49-b32c-4218-b5a3-ce12493af69e.jpg" />
+                      <img class="user-detail-trigger rounded-circle shadow avatar-sm mr-3 chat-profile-picture" src="../images/perfil.jpg" />
                     </div>
                   </div>
                 </div>
@@ -68,7 +67,7 @@
                     <div class="chat-item active d-flex pl-3 pr-0 pt-3 pb-3">
                       <div class="w-100">
                         <div class="d-flex pl-0">
-                          <img class="rounded-circle shadow avatar-sm mr-3" src="https://user-images.githubusercontent.com/35243461/168796877-f6c8819a-5d6e-4b2a-bd56-04963639239b.jpg">
+                          <img class="rounded-circle shadow avatar-sm mr-3" src="../images/perfil.jpg">
                           <div>
                             <p class="margin-auto fw-400 text-dark-75">Beate Lemoine</p>
                             <div class="d-flex flex-row mt-1">
@@ -92,19 +91,20 @@
 
             <div class="col-md-8 col-12 card-stacked">
               <div class="card shadow-line mb-3 chat chat-panel">
+
                 <div class="p-3 chat-header">
                   <div class="d-flex">
                     <div class="w-100 d-flex pl-0">
-                      <img class="rounded-circle shadow avatar-sm mr-3 chat-profile-picture" src="https://user-images.githubusercontent.com/35243461/168796877-f6c8819a-5d6e-4b2a-bd56-04963639239b.jpg">
+                      <img class="rounded-circle shadow avatar-sm mr-3 chat-profile-picture" src="../images/perfil.jpg">
                       <div class="mr-3">
                         <a href="!#">
                           <p class="fw-400 mb-0 text-dark-75">Beate Lemoine</p>
                         </a>
                       </div>
-                    </div>
-                  
+                    </div>  
                   </div>
                 </div>
+
                 <div class="d-flex flex-row mb-3 navigation-mobile scrollable-chat-panel chat-panel-scroll">
                   <div class="w-100 p-3">
                     <div class="left-chat-message fs-13 mb-2">
@@ -114,6 +114,7 @@
                         <div class="message-arrow"><i class="text-muted la la-angle-down fs-17"></i></div>
                       </div>
                     </div>
+
                     <div class="d-flex flex-row-reverse mb-2">
                       <div class="right-chat-message fs-13 mb-2">
                         <div class="mb-0 mr-3 pr-4">
@@ -122,15 +123,17 @@
                             <div class="pr-4"></div>
                           </div>
                         </div>
+
                         <div class="message-options dark">
                           <div class="message-time">
                             <div class="d-flex flex-row">
-                              <div class="mr-2">06:49</div>
+                              <div class="mr-2">06:50</div>
                               <div class="svg15 double-check"></div>
                             </div>
                           </div>
                           <div class="message-arrow"><i class="text-muted la la-angle-down fs-17"></i></div>
                         </div>
+
                       </div>
                     </div>
                   
@@ -140,11 +143,11 @@
 
                 <div class="chat-search pl-3 pr-3">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Write a message">
+                    <input type="text" class="form-control" placeholder="Escribe un mensaje">
                     <div class="input-group-append prepend-white">
                       <span class="input-group-text pl-2 pr-2">
-                        <i class="chat-upload-trigger fs-19 bi bi-file-earmark-plus ml-2 mr-2"></i>                      
-                        <i class="fs-19 bi bi-cursor ml-2 mr-2"></i>
+    
+                      <i class="fa-solid fa-paper-plane"></i>
                       </span>
                     </div>
                   </div>
@@ -157,8 +160,7 @@
       </div>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
+
 </body>
 </html>
 <script>
