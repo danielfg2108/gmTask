@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 $id_proyecto = $_GET['id_proyecto'];
 

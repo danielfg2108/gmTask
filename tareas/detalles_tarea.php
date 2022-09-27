@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 $id_tarea = $_GET['id_tarea'];
 
@@ -50,7 +49,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
         </tr>
 
         <tr>
-            <td>Descripcion:</td>
+            <td>Descripción:</td>
             <td><?php echo $row['descripcion'] ?></td>
         </tr>
 
@@ -132,10 +131,10 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
         <tr>
             <td>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTarea" data-bs-whatever="@mdo">Modificar</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTarea" data-bs-whatever="@mdo" style="width: 130px;">Modificar</button>
                 <br>
                 <br>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarTarea" data-bs-whatever="@mdo">Eliminar</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarTarea" data-bs-whatever="@mdo" style="width: 130px;">Eliminar</button>
             </td>
             <td></td>
         </tr>
@@ -148,6 +147,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
     <thead>
         <tr>
             <th>Archivo</th>
+            <th>Descripción</th>
             <th></th>
         </tr>
     </thead>
@@ -156,21 +156,22 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
         while ($row_archivos = mysqli_fetch_array($resultado_archivos)) {
         ?>
             <tr>
-                <td><?php echo $row_archivos['descripcion'] ?>
+                <td><?php echo $row_archivos['nombre'] ?>
                     <?php
                     if (
-                        str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
-                        str_contains($row_archivos['descripcion'], ".png")
+                        str_contains($row_archivos['nombre'], ".jpg") || //si el archivo es una imagen
+                        str_contains($row_archivos['nombre'], ".png")
                     ) {
                     ?>
                         <br>
-                        <img src="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
+                        <img src="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['nombre'] ?>" width="200px" height="150px">
                     <?php
                     } //si el archivo es una imagen
                     ?>
                 </td>
+                <td><?php  echo $row_archivos['descripcion']?></td>
                 <td>
-                    <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['descripcion'] ?>"><i class="fa-solid fa-eye"></i></a>
+                    <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['nombre'] ?>"><i class="fa-solid fa-eye"></i></a>
                     <a type="button" class="btn btn-danger" href="eliminar_archivo_tarea.php?id_archivo_tarea=<?php echo $row_archivos['id_archivo_tarea'] ?>&id_tarea=<?php echo $id_tarea ?>"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
                 <td>
@@ -249,6 +250,8 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Adjuntar nuevo archivo:</label>
                         <input name="archivo_tarea" type="file" class="form-control" required>
+                        <br>
+                        <input type="text" class="form-control" name="descripcion_archivo" placeholder="Descripción del archivo adjuntado" required> 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

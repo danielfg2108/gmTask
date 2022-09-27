@@ -7,6 +7,8 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
 }
 $id_tarea=$_GET['id_tarea'];
 
+$descripcion_archivo = addslashes($_POST['descripcion_archivo']);
+
         //agregar archivo
         if($_FILES["archivo_tarea"]){ //si se subio un archivo
             $nombre_base = basename($_FILES["archivo_tarea"]["name"]); //obtener el nombre del archivo
@@ -18,7 +20,8 @@ $id_tarea=$_GET['id_tarea'];
             }
             $subirarchivo = move_uploaded_file($_FILES["archivo_tarea"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
             if($subirarchivo){ //si se movio el archivo en la ruta que le indique
-               $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
+               $insertar = "INSERT INTO archivos_tareas(nombre, descripcion, id_tarea) 
+                            VALUES ('$nombre_final', '$descripcion_archivo', '$id_tarea')"; //query
                $resultado = mysqli_query($con, $insertar); //ejecutar query
                if($resultado){//si se inserto el archivo en la bd
                   echo "<script>alert('se ha enviado archivo')</script>";

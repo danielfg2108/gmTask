@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 $id = $_GET['id'];
 $sql = "SELECT * FROM reporte_servicios WHERE id_servicio='$id'"; //generar consulta
@@ -145,7 +144,20 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     while ($row_archivos = mysqli_fetch_array($resultado_archivos)) {
     ?>
       <tr>
-        <td><?php echo $row_archivos['descripcion'] ?></td>
+        <td><?php echo $row_archivos['descripcion'] ?>
+        <?php
+                    if (
+                        str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
+                        str_contains($row_archivos['descripcion'], ".png")
+                    ) {
+                    ?>
+                        <br>
+                        <img src="../archivos_servicios/<?php echo $id ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
+                    <?php
+                    } //si el archivo es una imagen
+                    ?>
+        </td>
+
         <td>
           <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio'] ?>/<?php echo $row_archivos['descripcion'] ?>"><i class="fa-solid fa-eye"></i></a>
           <a type="button" class="btn btn-danger" href="eliminar_archivo.php?id_archivo=<?php echo $row_archivos['id_archivo'] ?>&id_servicio=<?php echo $id ?>"><i class="fa-solid fa-trash-can"></i></a>

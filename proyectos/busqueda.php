@@ -4,7 +4,6 @@ session_cache_limiter('private_no_expire'); //works (para que NO genere error a 
 require_once '../header.php';
  ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 
 $id_proyecto = $_GET['id_proyecto'];

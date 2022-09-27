@@ -10,14 +10,18 @@ $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];
 
 require "bd/conexion.php"; //llamar a la conexion
-$sql = "SELECT * FROM tareas WHERE id_usuario='$id' LIMIT 3"; //generar consulta
+$sql = "SELECT * FROM tareas WHERE id_usuario='$id' LIMIT 2"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 
-$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 1"; //generar consulta colaboradores
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 2"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
 $sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta
 $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
+
+$sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
+$resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
+$row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +76,12 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
         -webkit-transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
     }
+
+    #image_perfil{
+        width: 25px;
+        height: 25px;
+        border-radius: 12.5px;
+    }
 </style>
 
 <body class="sb-nav-fixed">
@@ -104,7 +114,7 @@ $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?php echo $nombre; ?>
-                    <i class="fas fa-user fa-fw"></i>
+                    <img id="image_perfil" src="<?php echo $row_imagen['nombre']?>">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="usuarios/usuarios.php">Configuración</a></li>

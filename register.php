@@ -23,7 +23,15 @@ $confirm_password = $_POST['confirm_password'];
             $pass_cifrado = sha1($password); //cifrar password ingresada
             $sql = "INSERT INTO usuarios (nombre, apellidos, correo, password, tipo_usuario) VALUES ('$nombre', '$apellidos', '$correo', '$pass_cifrado', '1')"; //query para insertar
             $result=mysqli_query($con, $sql); //ejecutar query
+
+
             if ($result) {//si se ejecuto correctamente el query
+
+                //insertar imagen de perfil
+                $ultimo_id = mysqli_insert_id($con); //recibo el último id insertado
+                $sql_imagen_perfil = "INSERT INTO imagenes_perfil (nombre, id_usuario) VALUES ('images/perfil.jpg', '$ultimo_id')"; //query para insertar
+                $result_imagen_perfil =mysqli_query($con, $sql_imagen_perfil); //ejecutar query
+
                 echo "<script>alert('Usuario registrado exitosamente')</script>";
                 $nombre = "";
                 $apellidos = "";

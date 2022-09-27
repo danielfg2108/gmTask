@@ -11,9 +11,11 @@ $id = $_SESSION['id']; //obtener id del usuario
 $sql = "SELECT id_usuario, nombre, apellidos, correo, password  FROM usuarios WHERE id_usuario = '$id'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 $num = $resultado->num_rows; //si la consulta genero resultados
-
-//////////////////
 $row = mysqli_fetch_array($resultado);
+
+$sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
+$resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
+$row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,12 +33,27 @@ $row = mysqli_fetch_array($resultado);
   <script src="../librerias/sweetalert.js"></script>
 </head>
 
+<style>
+#imagen_perfil{
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
+</style>
+
 <body>
   <div class="container mt-5">
     <div class="row">
       <h1>Configuración de usuario</h1>
       <br>
+
       <div class="col-md-8">
+        <img id="imagen_perfil" src="../<?php echo $row_imagen['nombre'] ?>">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalImagen" data-bs-whatever="@mdo">Cambiar imagen</button>
+      </div>
+
+      <div class="col-md-8" style="margin-top: 20px;">
         <table class="table">
           <thead class="table-success table-striped">
             <tr>
@@ -75,7 +92,7 @@ $row = mysqli_fetch_array($resultado);
             </tr>
           </tbody>
         </table>
-        <a href="../home.php" class="btn btn-secondary" style="margin-top: 80px;">Regresar</a></th>
+        <a href="../home.php" class="btn btn-secondary" style="margin-top: 20px;">Regresar</a></th>
       </div>
     </div>
   </div>
@@ -188,6 +205,32 @@ $row = mysqli_fetch_array($resultado);
     </div>
   </div>
   <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar imagen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="update_imagen_perfil.php" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Adjuntar imagen:</label>
+            <input name="archivo_imagen" type="file" class="form-control" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <input type="submit" class="btn btn-primary" value="Agregar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
 
 
   <script src="../librerias/bootstrap.js"></script>

@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 ?>

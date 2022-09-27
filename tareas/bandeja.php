@@ -1,7 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
-
 $sql_bandeja = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id'"; //generar consulta colaboradores
 $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
 ?>
@@ -22,9 +20,9 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                         if ($num > 0) {
                 ?>
             <div class="card-1" onclick="location.href='detalles_tarea.php?id_tarea=<?php echo $id_t?>'">
-                <p>Ha sido agregado a la tarea:</p>
-                <h5><?php echo $row_t['fecha_entrega'] ?></h5>
-                <p><?php echo $row_t['nombre'] ?></p>
+                <p>Ha sido asignado a la tarea:</p>
+                <h5><?php echo $row_t['nombre'] ?></h5>
+                <p>vence el: <?php echo $row_t['fecha_entrega'] ?></p>
             </div>
                 <?php
                         } //if

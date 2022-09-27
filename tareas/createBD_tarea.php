@@ -14,11 +14,17 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 
   $nombre_tarea = addslashes($_POST['nombre_tarea']);
   $colaborador = addslashes($_POST['responsable']);
+  $colaborador2 = addslashes($_POST['responsable2']);
+  $colaborador3 = addslashes($_POST['responsable3']);
+
   $descripcion = addslashes($_POST['descripcion']);
 
   $fecha_entrega = addslashes($_POST['fecha_entrega']);
   $date_entrega = strtotime($fecha_entrega);
   $date = date('d/m/Y', $date_entrega);
+
+  $descripcion_archivo1 = addslashes($_POST['descripcion_archivo1']);
+  $descripcion_archivo2 = addslashes($_POST['descripcion_archivo2']);
 
   $proyecto = addslashes($_POST['proyecto']);
 
@@ -66,6 +72,19 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                             VALUES ('$id_tarea','$colaborador')"; //generar query
         $resultado_colaborador = mysqli_query($con, $sql_colaborador); //ejecutar query
       }
+      if( (!empty($colaborador2)) && ($colaborador2 != "0") && 
+          ($colaborador2 != $colaborador) && ($colaborador2 != $colaborador3)){
+
+        $sql_colaborador2 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
+                            VALUES ('$id_tarea','$colaborador2')"; //generar query
+        $resultado_colaborador2 = mysqli_query($con, $sql_colaborador2); //ejecutar query
+      }
+      if( (!empty($colaborador3)) && ($colaborador3 != "0") &&
+          ($colaborador3 != $colaborador) && ($colaborador3 != $colaborador2)){
+        $sql_colaborador3 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
+                            VALUES ('$id_tarea','$colaborador3')"; //generar query
+        $resultado_colaborador3 = mysqli_query($con, $sql_colaborador3); //ejecutar query
+      }
 
       //agregar archivo
       if($_FILES["archivo1"]){ //si se subio un archivo
@@ -78,7 +97,8 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
         }
         $subirarchivo = move_uploaded_file($_FILES["archivo1"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
         if($subirarchivo){ //si se movio el archivo en la ruta que le indique
-           $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
+           $insertar = "INSERT INTO archivos_tareas(nombre, descripcion, id_tarea) 
+                         VALUES ('$nombre_final', '$descripcion_archivo1', '$id_tarea')"; //query
            $resultado = mysqli_query($con, $insertar); //ejecutar query
           
         }
@@ -94,7 +114,8 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
       }
       $subirarchivo = move_uploaded_file($_FILES["archivo2"]["tmp_name"], $ruta); //mover el archivo del formulario a la ruta que le indique
       if($subirarchivo){ //si se movio el archivo en la ruta que le indique
-         $insertar = "INSERT INTO archivos_tareas(descripcion, id_tarea) VALUES ('$nombre_final', '$id_tarea')"; //query
+         $insertar = "INSERT INTO archivos_tareas(nombre, descripcion, id_tarea) 
+                      VALUES ('$nombre_final', '$descripcion_archivo2', '$id_tarea')"; //query
          $resultado = mysqli_query($con, $insertar); //ejecutar query
          
       }

@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $sql = "SELECT * FROM tareas WHERE id_usuario='$id'"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 
@@ -48,7 +47,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 </tr>
             </tfoot>
             <tbody>
-                <?php
+                <?php //tareas creadas por el usuario
                 while ($row = mysqli_fetch_array($resultado)) {
                 ?>
                     <tr>
@@ -84,8 +83,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 }
                 ?>
 
-
-               <?php
+               <?php //colaborador de tareas
                 while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {
 
                     $id_t_colaborador = $row_colaboradores['id_tarea']; //guardar id en variable
@@ -95,7 +93,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                     $row_t_colaborador = mysqli_fetch_array($resultado_t_colaborador); //ejecutar consulta (fetch devuelve un solo registro)
                     $num_t_colaborador = $resultado_t_colaborador->num_rows; //si la consulta genero resultados  
     
-                    if ($num_t_colaborador > 0) { 
+                    if ( ($num_t_colaborador > 0) && ($row_t_colaborador['id_usuario'] != $id) ) { 
                 ?>
                     <tr>
                         <td style="width: 1px;">

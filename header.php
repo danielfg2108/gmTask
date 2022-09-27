@@ -1,4 +1,6 @@
 <?php
+require "bd/conexion.php"; //llamar a la conexion
+
 session_start(); //iniciar session de usuario
 
 if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
@@ -8,6 +10,11 @@ $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
 $apellidos = $_SESSION['apellidos']; //obtener apellidos
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
+
+
+$sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
+$resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
+$row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +34,15 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
         <script src="../librerias/sweetalert.js"></script>
 
     </head>
+
+    <style>
+    #image_perfil{
+        width: 25px;
+        height: 25px;
+        border-radius: 12.5px;
+    }
+    </style>
+
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -53,7 +69,8 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        <?php echo $nombre; ?>
-                     <i class="fas fa-user fa-fw"></i>
+                       <img id="image_perfil" src="../<?php echo $row_imagen['nombre']?>">
+
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="../usuarios/usuarios.php">Configuración</a></li>

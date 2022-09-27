@@ -1,6 +1,5 @@
 <?php require_once '../header.php'; ?>
 <?php
-require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar(); //llamar al metodo para hacer conexion a la BD
 
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta proyectos
@@ -9,11 +8,22 @@ $resultado = $mysqli->query($sql); //guardar consulta proyectos
 $sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
 $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
 
+$sql_usuarios2 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$resultado_usuarios2 = $mysqli->query($sql_usuarios2); //guardar consulta proyectos
 
-if ($_POST) { //si ya se ingresaron los datos
- 
-} //POST
+$sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyectos
 ?>
+
+
+<style>
+  #responsable2{
+    display: none;
+  }
+  #responsable3{
+    display: none;
+  }
+</style>
 
 <h1 class="mt-4">Crear nueva Tarea</h1>
 <ol class="breadcrumb mb-4">
@@ -31,12 +41,35 @@ if ($_POST) { //si ya se ingresaron los datos
 
     <div class="mb-3">
       <label for="recipient-name" class="col-form-label">Agregar Responsable:</label>
-            <select id="responsable" class="form-control" name="responsable" style="width: 400px;">
+      <br>
+            <select id="responsable" class="form-control" name="responsable" style="width: 400px; display: inline-block;">
             <option value="0">sin responsable</option>
               <?php
                 while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
               ?>
               <option value="<?php echo $row_usuarios['id_usuario']?>"><?php echo $row_usuarios['nombre']?> - <?php echo $row_usuarios['correo'] ?></option>
+              <?php
+                 }
+              ?>
+            </select>
+            <button id="mas_responsable" onclick="masResponsables()" class="btn btn-primary" style="display: inline-block;"><i class="fa-solid fa-plus"></i></button>
+             
+            <select id="responsable2" name="responsable2" class="form-control" style="width: 400px; margin-bottom: 3px;">
+            <option value="0">sin responsable</option>
+              <?php
+                while ($row_usuarios2 = mysqli_fetch_array($resultado_usuarios2)) {
+              ?>
+              <option value="<?php echo $row_usuarios2['id_usuario']?>"><?php echo $row_usuarios2['nombre']?> - <?php echo $row_usuarios2['correo'] ?></option>
+              <?php
+                 }
+              ?>
+            </select>
+            <select id="responsable3" name="responsable3" class="form-control" style="width: 400px;">
+            <option value="0">sin responsable</option>
+              <?php
+                while ($row_usuarios3 = mysqli_fetch_array($resultado_usuarios3)) {
+              ?>
+              <option value="<?php echo $row_usuarios3['id_usuario']?>"><?php echo $row_usuarios3['nombre']?> - <?php echo $row_usuarios3['correo'] ?></option>
               <?php
                  }
               ?>
@@ -55,9 +88,12 @@ if ($_POST) { //si ya se ingresaron los datos
 
          <div class="mb-3">
             <label class="form-label">Adjunar Archivos</label>
-            <input type="file" class="form-control" name="archivo1" style="width: 400px;"> 
             <br>
-            <input type="file" class="form-control" name="archivo2" style="width: 400px;">         
+            <input type="file" class="form-control" name="archivo1" style="width: 400px; display: inline-block;">
+            <input type="text" class="form-control" name="descripcion_archivo1" placeholder="descripcion del archivo adjuntado" style="width: 350px; display: inline-block;"> 
+            <br><br>
+            <input type="file" class="form-control" name="archivo2" style="width: 400px; display: inline-block;">    
+            <input type="text" class="form-control" name="descripcion_archivo2" placeholder="descripcion del archivo adjuntado" style="width: 350px; display: inline-block;">      
          </div>
 
     <div class="mb-3">
@@ -78,3 +114,23 @@ if ($_POST) { //si ya se ingresaron los datos
 </div>
 
 <?php require_once '../footer.php'; ?>
+
+
+<script>
+   var  bandera=true;
+  function masResponsables(){
+
+    if(bandera == true){
+      document.getElementById('responsable2').style.display='block';
+      document.getElementById('responsable3').style.display='block';
+      bandera = false;
+    }else{
+      document.getElementById('responsable2').style.display='none';
+      document.getElementById('responsable3').style.display='none';
+      bandera = true;
+    }
+  
+  }
+
+ 
+</script>

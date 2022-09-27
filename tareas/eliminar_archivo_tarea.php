@@ -13,7 +13,7 @@ $sql = "SELECT * FROM archivos_tareas WHERE id_archivo_tarea='$id_archivo_tarea'
 $resultado = $mysqli->query($sql); //guardar consulta
 $row=mysqli_fetch_array($resultado);//ejecutar consulta (fetch devuelve un solo registro)
 
-$ruta = "../archivos_tareas/".$id_tarea."/".$row['descripcion'];
+$ruta = "../archivos_tareas/".$id_tarea."/".$row['nombre'];
 
 unlink($ruta); //eliminar archivo
 
