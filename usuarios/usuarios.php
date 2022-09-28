@@ -216,10 +216,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="update_imagen_perfil.php" method="POST" enctype="multipart/form-data">
+        <form  id="formImagen" action="update_imagen_perfil.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Adjuntar imagen:</label>
-            <input name="archivo_imagen" type="file" class="form-control" required>
+            <input name="archivo_imagen" id="archivo_imagen" type="file" class="form-control">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -231,7 +231,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
   </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
 
   <script src="../librerias/bootstrap.js"></script>
   <script src="../js/scripts.js"></script>
@@ -282,8 +281,48 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       } else {
         swal("ERROR", "campos vacios", "error");
       }
+    })
+  });
+</script>
 
 
+<script>
+  $(function() {
+    var url = $("#formImagen").attr("action"); //obtener url del action
+
+    $("#formImagen").submit(function(e) { //si se presiono el boton
+      e.preventDefault();
+
+      var input = document.getElementById("archivo_imagen").value; //obtener valor de input
+
+      if (input != "") {
+        if ( input.endsWith(".jpg") || input.endsWith(".png") || input.endsWith(".JPG") || input.endsWith(".PNG")) {
+
+          let data = new FormData($('#formImagen')[0]); //obtener datos de formulario tipo archivo (File)
+
+          $.ajax({
+              url: url,
+              method: "POST",
+              data: data,
+              contentType: false, //para archivos
+              processData: false //para archivos
+            })
+            .done(function(r, textStatus, xhr) { //si se logro ejecutar
+              if (xhr.status == 200) {
+                location.reload(true); //recargar la pagina
+              } else {
+                swal("error al enviar datos", "", "error");
+              }
+            }).fail(function(error) {
+              swal('', error.response, 'error');
+            });
+
+        } else {
+          swal("ERROR, Formato invalido", "el archivo debe tener extensión .jpg/.png", "error");
+        }
+      } else {
+        swal("ERROR", "campos vacios", "error");
+      }
     })
   });
 </script>

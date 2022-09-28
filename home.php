@@ -107,8 +107,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
             </li>
         </ul>
 
-
-
         <!-- Navbar config del usuario-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -152,6 +150,11 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         <a class="nav-link" href="tareas/tareas.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                             Mis tareas
+                        </a>
+
+                        <a class="nav-link" href="tareras/agenda.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
+                            Agenda
                         </a>
 
 

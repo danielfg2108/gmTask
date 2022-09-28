@@ -27,6 +27,13 @@ $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tar
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
 ?>
+<style>
+     #image_perfil{
+        width: 25px;
+        height: 25px;
+        border-radius: 12.5px;
+    }
+</style>
 
 <h1 class="mt-4">Tarea</h1>
 <ol class="breadcrumb mb-4">
@@ -212,7 +219,14 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                             $num_usu_comentario = $resultado_usu_comentario->num_rows; //si la consulta genero resultados
                             
                             if ($num_usu_comentario > 0) { 
+
+                                //imagen del perfil usuario
+                                $sql_imagen_perfil = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener imagen de perfil
+                                $resultado_imagen_perfil = $mysqli->query($sql_imagen_perfil); //guardar consulta
+                                $row_imagen_perfil = mysqli_fetch_array($resultado_imagen_perfil); //ejecutar consulta (fetch devuelve un solo registro)
+                            
                             ?>
+                            <b><img src="../<?php echo $row_imagen_perfil['nombre']?>" id="image_perfil"></b>
                             <b><?php echo $row_usu_comentario['nombre']?> <?php echo $row_usu_comentario['apellidos']?>
                             </b> (<?php echo $row_comentario['fecha']?>)
                             <br>
