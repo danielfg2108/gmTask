@@ -131,6 +131,4 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyec
     }
   
   }
-
- 
 </script>

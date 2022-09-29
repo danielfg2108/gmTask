@@ -30,7 +30,11 @@ $row_anterior = mysqli_fetch_array($resultado_anterior); //ejecutar consulta (fe
             $query=mysqli_query($con,$sql);
 
             $ruta = "../".$row_anterior['nombre'];
-            unlink($ruta); //eliminar archivo
+            
+            if($ruta != "../images/perfil.jpg"){ //sino es la imagen por defecto
+                unlink($ruta); //eliminar archivo
+            }
+            
         }
      }
 

@@ -5,7 +5,7 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
 ?>
 
 <h1 id="saludo" class="mt-4">Bandeja de Entrada</h1>
-<link rel="stylesheet" href="../css/estilos_lista.css">
+<link rel="stylesheet" href="../css/estilos_bandeja.css">
 
 <div class="container">
     <div class="row">

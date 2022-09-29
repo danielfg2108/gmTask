@@ -152,11 +152,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                             Mis tareas
                         </a>
 
-                        <a class="nav-link" href="tareras/agenda.php">
+                        <a class="nav-link" href="tareas/agenda.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                             Agenda
                         </a>
-
 
 
                         <!-- seccion "reportes" del menu lateral-->
