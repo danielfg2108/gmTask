@@ -242,6 +242,7 @@
 
 
 <script>
+  /*
   $(function() {
     var url = $("#formCorreo").attr("action"); //obtener url del action
 
@@ -256,7 +257,7 @@
             })
             .done(function(r, textStatus, xhr) { //si se logro ejecutar
               if (xhr.status == 200) {
-                swal("correo enviado exitosamente", "", "success");
+                //swal("correo enviado exitosamente", "", "success");
 
                 document.getElementById("correo_destino").value = ""; //limpiar campos
                 document.getElementById("asunto").value = "";
@@ -270,5 +271,5 @@
             });
     
     })
-  });
+  });*/
 </script>
