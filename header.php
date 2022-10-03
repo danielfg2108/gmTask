@@ -1,6 +1,5 @@
 <?php
-require "bd/conexion.php"; //llamar a la conexion
-
+require "bd/conexion.php"; //llamar a la conexion 
 session_start(); //iniciar session de usuario
 
 if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
@@ -42,6 +41,15 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         height: 25px;
         border-radius: 12.5px;
     }
+
+    .badge { /* contador de notificaciones*/
+        position: relative;
+        top: -15px;
+        left: -3px;
+        border: 1px solid white;
+        background-color: orangered;
+        border-radius: 50%;
+       }
 </style>
 
 <body class="sb-nav-fixed">
@@ -99,6 +107,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         <a class="nav-link" href="../tareas/bandeja.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                             Bandeja de entrada
+                        
                         </a>
 
                         <a class="nav-link" href="../proyectos/proyectos.php">
@@ -111,9 +120,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         </a>
                         <a class="nav-link" href="../tareas/agenda.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
-                            Agenda
+                            Agenda de Tareas
                         </a>
 
+                        <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "reportes" del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Reporte</div>
                         <a class="nav-link" href="../reportes/reportes.php">
@@ -129,7 +139,8 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Status
                         </a>
-
+                        
+                        <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "proyectos" del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Proyectos y Tareas</div>
 

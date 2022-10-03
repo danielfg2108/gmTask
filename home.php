@@ -58,7 +58,8 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         font-size: 130%;
     }
 
-    span {
+    
+    #mant{
         font: 900 4em/1 'Oswald', Tangerine;
         padding: .25em 0 .325em;
         text-shadow: 0 0 80px rgba(255, 255, 255, .5);
@@ -82,6 +83,15 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         height: 25px;
         border-radius: 12.5px;
     }
+
+    .badge { /* contador de notificaciones*/
+        position: relative;
+        top: -15px;
+        left: -3px;
+        border: 1px solid white;
+        background-color: orangered;
+        border-radius: 50%;
+       }
 </style>
 
 <body class="sb-nav-fixed">
@@ -140,6 +150,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         <a class="nav-link" href="tareas/bandeja.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                             Bandeja de entrada
+                            <span class="badge badge-light">5</span>
                         </a>
 
                         <a class="nav-link" href="proyectos/proyectos.php">
@@ -154,10 +165,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
 
                         <a class="nav-link" href="tareas/agenda.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
-                            Agenda
+                            Agenda de Tareas
                         </a>
 
-
+                        <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "reportes" del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Reporte</div>
                         <a class="nav-link" href="reportes/reportes.php">
@@ -175,6 +186,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                             Status
                         </a>
 
+                        <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "proyectos del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Proyectos y Tareas</div>
 
@@ -204,7 +216,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                 <div class="container-fluid px-4">
 
                     <p>
-                        <span>Mantenimiento</span>
+                        <span id="mant">Mantenimiento</span>
                     </p>
 
                     <h1 class="mt-4">Task</h1>

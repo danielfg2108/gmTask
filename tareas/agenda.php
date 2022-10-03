@@ -12,12 +12,12 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
 
         <div class="row">
             <div class="col-md-12">
-                <div class="table-wrap">
-                    <table class="table table-responsive-xl">
+                <div class="">
+                    <table class="table table-responsive-xl" id="datatablesSimple">
                         <thead>
                             <tr>
                                 <th>Tarea</th>
-                                <th>Responsables</th>
+                                <th>Colaboradores</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>

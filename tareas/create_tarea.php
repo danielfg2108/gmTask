@@ -5,16 +5,15 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta proyectos
 $resultado = $mysqli->query($sql); //guardar consulta proyectos
 
-$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
 $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
 
-$sql_usuarios2 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$sql_usuarios2 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
 $resultado_usuarios2 = $mysqli->query($sql_usuarios2); //guardar consulta proyectos
 
-$sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
+$sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
 $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyectos
 ?>
-
 
 <style>
   #responsable2{
@@ -40,10 +39,10 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyec
     </div>
 
     <div class="mb-3">
-      <label for="recipient-name" class="col-form-label">Agregar Responsable:</label>
+      <label for="recipient-name" class="col-form-label">Agregar Colaboador:</label>
       <br>
             <select id="responsable" class="form-control" name="responsable" style="width: 400px; display: inline-block;">
-            <option value="0">sin responsable</option>
+            <option value="0">sin colaborador</option>
               <?php
                 while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
               ?>
@@ -55,7 +54,7 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyec
             <button id="mas_responsable" onclick="masResponsables()" class="btn btn-primary" style="display: inline-block;"><i class="fa-solid fa-plus"></i></button>
              
             <select id="responsable2" name="responsable2" class="form-control" style="width: 400px; margin-bottom: 3px;">
-            <option value="0">sin responsable</option>
+            <option value="0">sin colaborador</option>
               <?php
                 while ($row_usuarios2 = mysqli_fetch_array($resultado_usuarios2)) {
               ?>
@@ -65,7 +64,7 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyec
               ?>
             </select>
             <select id="responsable3" name="responsable3" class="form-control" style="width: 400px;">
-            <option value="0">sin responsable</option>
+            <option value="0">sin colaborador</option>
               <?php
                 while ($row_usuarios3 = mysqli_fetch_array($resultado_usuarios3)) {
               ?>

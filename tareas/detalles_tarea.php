@@ -128,7 +128,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
         ?>
                 <tr>
-                    <td>Responsable:</td>
+                    <td>Colaborador:</td>
                     <td> <?php echo $row_usu['nombre'] ?> - <?php echo $row_usu['correo'] ?></td>
                 </tr>
         <?php
@@ -297,7 +297,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                     </div>
 
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Agregar Responsable:</label>
+                        <label for="recipient-name" class="col-form-label">Agregar Colaborador:</label>
                         <select id="responsable" class="form-control" name="responsable">
                             <option value="0">sin responsable</option>
                             <?php

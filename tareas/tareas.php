@@ -27,12 +27,12 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
         Tareas
     </div>
     <div class="card-body">
-        <table id="datatablesSimple" class="table table-dark table-striped">
+        <table id="datatablesSimple" >
             <thead>
                 <tr>
                     <th>Ver</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
+                    <th>Colaboradores</th>
                     <th>Fecha de Entrega</th>
                     <th>Proyecto Asignado</th>
                 </tr>
@@ -41,21 +41,41 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 <tr>
                     <th>Ver</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
+                    <th>Colaboradores</th>
                     <th>Fecha de Entrega</th>
                     <th>Proyecto Asignado</th>
                 </tr>
             </tfoot>
-            <tbody>
+            <tbody class="table-dark">
                 <?php //tareas creadas por el usuario
                 while ($row = mysqli_fetch_array($resultado)) {
+                                $id_tarea = $row['id_tarea'];
+                                $sql_colaboradores = "SELECT colaboradores_tareas.id_usuario, usuarios.nombre, usuarios.apellidos 
+                                                      FROM colaboradores_tareas
+                                                      NATURAL JOIN usuarios
+                                                      WHERE colaboradores_tareas.id_tarea='$id_tarea' "; //generar consulta
+
+                                $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta
+                                $num_colaboradores = $resultado_colaboradores->num_rows; //si la consulta genero resultados
                 ?>
                     <tr>
                         <td style="width: 1px;">
                             <a type="button" href="detalles_tarea.php?id_tarea=<?php echo $row['id_tarea']?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                         </td>
                         <td><?php echo $row['nombre'] ?></td>
-                        <td><?php echo $row['descripcion'] ?></td>
+
+                        <td>
+                            <?php
+                            while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {                               
+                            ?>
+                            <span><?php echo $row_colaboradores['nombre'] ?> <?php echo $row_colaboradores['apellidos'] ?></span>
+                            <br>
+                            <?php                                                      
+                            }
+                            ?>
+                           
+                        </td>
+
                         <td><?php echo $row['fecha_entrega'] ?></td>
                         <?php
                         $id_t = $row['id_tarea'];

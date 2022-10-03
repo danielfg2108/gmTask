@@ -5,6 +5,10 @@ session_start(); //iniciar session de usuario
 if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
+$id = $_SESSION['id'];  //obtener el id de la sesion del usuario
+
+date_default_timezone_set('America/Mexico_City');  
+$fecha_sistema = date('d/m/Y h:i:s a', time());
 
 $id_tarea = $_GET['id_tarea'];
 
@@ -24,6 +28,10 @@ if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { /
         $sql_colaborador = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador')"; //generar query
         $resultado_colaborador = mysqli_query($con, $sql_colaborador); //ejecutar query
+
+        $sql_notificacion = "INSERT INTO notificaciones (tipo, leido, fecha, id_tarea, id_usuario)
+                             VALUES ('asignado', '0', '$fecha_sistema', '$id_tarea','$id')"; //generar query
+        $resultado_notificacion = mysqli_query($con, $sql_notificacion); //ejecutar query
       }
 
 

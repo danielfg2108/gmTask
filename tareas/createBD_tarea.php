@@ -35,9 +35,15 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 
     $result = mysqli_query($con, $sql); //ejecutar query insercion en tareas
 
-    if ($result) { //si se ejecuto correctamente el query 
 
-      $id_tarea =  mysqli_insert_id($con);
+    $id_tarea =  mysqli_insert_id($con); //recibo el último id insertado
+
+
+    $sql_user = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario) 
+                 VALUES ('$id_tarea', '$id')"; //generar query para insertar como colaborador al creador de la tareas
+    $result_user = mysqli_query($con, $sql_user); //ejecutar query insercion en colaboradores_tareas
+
+    if ($result && $result_user) { //si se ejecuto correctamente el query 
 
       if (!empty($proyecto)) { //validar que los campos no esten vacios
         if (($proyecto == "SIN PROYECTO") || ($proyecto == "sin proyeto")) { //si NO se asigno un proyecto

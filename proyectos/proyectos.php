@@ -23,7 +23,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
         Proyectos
     </div>
     <div class="card-body">
-        <table id="datatablesSimple" class="table table-dark table-striped">
+        <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>Ver</th>
@@ -40,7 +40,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
                     <th>Privacidad</th>
                 </tr>
             </tfoot>
-            <tbody>
+            <tbody class="table-dark">
                 <?php
                 while ($row = mysqli_fetch_array($resultado)) {
                 ?>
