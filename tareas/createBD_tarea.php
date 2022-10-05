@@ -1,5 +1,6 @@
 <?php
 include("../bd/conexion.php");
+include("../funciones_notificaciones/notificaciones.php");
 $con = conectar();
 session_start(); //iniciar session de usuario
 
@@ -11,6 +12,8 @@ $apellidos = $_SESSION['apellidos']; //obtener apellidos
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 
+date_default_timezone_set('America/Mexico_City');  
+$fecha_sistema = date('d/m/Y h:i:s a', time());
 
   $nombre_tarea = addslashes($_POST['nombre_tarea']);
   $colaborador = addslashes($_POST['responsable']);
@@ -77,6 +80,9 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
         $sql_colaborador = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador')"; //generar query
         $resultado_colaborador = mysqli_query($con, $sql_colaborador); //ejecutar query
+
+        notificacion_colaborador($colaborador, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
+
       }
       if( (!empty($colaborador2)) && ($colaborador2 != "0") && 
           ($colaborador2 != $colaborador) && ($colaborador2 != $colaborador3)){
@@ -84,12 +90,17 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
         $sql_colaborador2 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador2')"; //generar query
         $resultado_colaborador2 = mysqli_query($con, $sql_colaborador2); //ejecutar query
+
+        notificacion_colaborador($colaborador2, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
+
       }
       if( (!empty($colaborador3)) && ($colaborador3 != "0") &&
           ($colaborador3 != $colaborador) && ($colaborador3 != $colaborador2)){
         $sql_colaborador3 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador3')"; //generar query
         $resultado_colaborador3 = mysqli_query($con, $sql_colaborador3); //ejecutar query
+
+        notificacion_colaborador($colaborador3, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
       }
 
       //agregar archivo
@@ -132,3 +143,5 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
       echo "<script>swal('ERROR al registrar tarea', '', 'error')</script>";
     }
   }
+
+?>

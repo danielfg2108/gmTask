@@ -2,6 +2,17 @@
 <?php
 $sql_bandeja = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id'"; //generar consulta colaboradores
 $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
+
+
+/*
+SELECT colaboradores_tareas.id_usuario,
+notificaciones.fecha, notificaciones.tipo, notificaciones.leido, 
+usuarios.nombre, usuarios.apellidos,
+colaboradores_tareas.id_tarea
+FROM colaboradores_tareas
+NATURAL JOIN notificaciones, usuarios
+WHERE usuarios.id_usuario='1'
+*/
 ?>
 <h1 id="saludo" class="mt-4">Bandeja de Entrada</h1>
 <link rel="stylesheet" href="../css/estilos_bandeja.css">
@@ -11,23 +22,22 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                <?php
                 while ($row_bandeja = mysqli_fetch_array($resultado_bandeja)) {
 
-                        $id_t = $row_bandeja['id_tarea'];
+                        $id_t = $row_bandeja['id_tarea']; //id de tarea en la que colabora
 
                         $sql_notificaciones = "SELECT notificaciones.id_notificacion, notificaciones.tipo, notificaciones.leido, 
                                                       notificaciones.fecha, notificaciones.id_tarea, notificaciones.id_usuario,
                                                       usuarios.nombre, usuarios.apellidos
                                                FROM notificaciones
                                                NATURAL JOIN usuarios
-                                               WHERE id_tarea='$id_t'"; //generar consulta
+                                               WHERE id_tarea='$id_t'
+                                               ORDER BY notificaciones.id_notificacion DESC"; //generar consulta notificacion de la tarea
                         $resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta 
-                        $row_notify = mysqli_fetch_array($resultado_notificaciones); //ejecutar consulta (fetch devuelve un solo registro)
-                        $num = $resultado_notificaciones->num_rows; //si la consulta genero resultados
+                
+                        while($row_notify = mysqli_fetch_array($resultado_notificaciones)){
 
-                        $sql_t = "SELECT * FROM tareas WHERE id_tarea='$id_t'"; //generar consulta
-                        $resultado_t = $mysqli->query($sql_t); //guardar consulta
-                        $row_t = mysqli_fetch_array($resultado_t); //ejecutar consulta (fetch devuelve un solo registro)
-                        
-                        if($num > 0){
+                          $sql_t = "SELECT * FROM tareas WHERE id_tarea='$id_t'"; //generar consulta datos de la tarea
+                          $resultado_t = $mysqli->query($sql_t); //guardar consulta
+                          $row_t = mysqli_fetch_array($resultado_t); //ejecutar consulta (fetch devuelve un solo registro)
                 ?>
             <div class="card-1">
                 <?php 
@@ -39,10 +49,11 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                 ?>      
                 <h5><?php echo $row_notify['fecha'] ?></h5>
                 <p>
-                  <?php echo $row_notify['nombre'] ?> <?php echo $row_notify['apellidos'] ?>
-                  Ha <?php echo $row_notify['tipo'] ?> en la tarea:
+                  <?php 
+                  echo $row_notify['nombre']." ".$row_notify['apellidos']." ".$row_notify['tipo'];    
+                  ?>
                 </p>
-                <p><?php echo $row_t['nombre'] ?></p>
+                <p>en la tarea: <?php echo $row_t['nombre'] ?></p>
 
                 <input type="button" onclick="location.href='detalles_tarea.php?id_tarea=<?php echo $id_t?>'" value="Ir a tarea" class="btn btn-info">
             </div>

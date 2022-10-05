@@ -299,7 +299,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Agregar Colaborador:</label>
                         <select id="responsable" class="form-control" name="responsable">
-                            <option value="0">sin responsable</option>
+                            <option value="0">sin colaborador</option>
                             <?php
                             while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
                             ?>

@@ -1,5 +1,7 @@
 <?php
 include("../bd/conexion.php");
+include("../funciones_notificaciones/notificaciones.php");
+
 $con = conectar();
 session_start(); //iniciar session de usuario
 if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
@@ -22,16 +24,16 @@ if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { /
     $sql = "UPDATE tareas SET nombre='$nombre_tarea', descripcion ='$descripcion', fecha_entrega ='$fecha_entrega' WHERE id_tarea='$id_tarea'";
 
     $query = mysqli_query($con, $sql); //ejecutar consulta
-    
+
+    notificacion_update_datos($fecha_sistema, $id_tarea, $id, $con);
+
 
     if( (!empty($colaborador)) && ($colaborador != "0") ){
         $sql_colaborador = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador')"; //generar query
         $resultado_colaborador = mysqli_query($con, $sql_colaborador); //ejecutar query
 
-        $sql_notificacion = "INSERT INTO notificaciones (tipo, leido, fecha, id_tarea, id_usuario)
-                             VALUES ('asignado', '0', '$fecha_sistema', '$id_tarea','$id')"; //generar query
-        $resultado_notificacion = mysqli_query($con, $sql_notificacion); //ejecutar query
+       notificacion_colaborador($colaborador, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
       }
 
 
@@ -42,3 +44,5 @@ if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { /
     }
 }
 
+
+?>
