@@ -312,7 +312,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Descripción:</label>
-                        <input type="text" class="form-control" name="descripcion" required value="<?php echo ltrim($row['descripcion']) ?>">
+                        <textarea type="text" class="form-control" name="descripcion" required><?php echo ltrim($row['descripcion'])?></textarea>
                     </div>
 
                     <div class="mb-3">

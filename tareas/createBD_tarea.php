@@ -1,6 +1,6 @@
 <?php
 include("../bd/conexion.php");
-include("../funciones_notificaciones/notificaciones.php");
+include("../notificaciones/funciones_notificaciones.php");
 $con = conectar();
 session_start(); //iniciar session de usuario
 
@@ -38,13 +38,13 @@ $fecha_sistema = date('d/m/Y h:i:s a', time());
 
     $result = mysqli_query($con, $sql); //ejecutar query insercion en tareas
 
-
     $id_tarea =  mysqli_insert_id($con); //recibo el último id insertado
-
 
     $sql_user = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario) 
                  VALUES ('$id_tarea', '$id')"; //generar query para insertar como colaborador al creador de la tareas
     $result_user = mysqli_query($con, $sql_user); //ejecutar query insercion en colaboradores_tareas
+
+    notificacion_creador_tarea($fecha_sistema, $id_tarea, $id, $con);
 
     if ($result && $result_user) { //si se ejecuto correctamente el query 
 
@@ -80,9 +80,8 @@ $fecha_sistema = date('d/m/Y h:i:s a', time());
         $sql_colaborador = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador')"; //generar query
         $resultado_colaborador = mysqli_query($con, $sql_colaborador); //ejecutar query
-
+    
         notificacion_colaborador($colaborador, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
-
       }
       if( (!empty($colaborador2)) && ($colaborador2 != "0") && 
           ($colaborador2 != $colaborador) && ($colaborador2 != $colaborador3)){
@@ -90,9 +89,8 @@ $fecha_sistema = date('d/m/Y h:i:s a', time());
         $sql_colaborador2 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador2')"; //generar query
         $resultado_colaborador2 = mysqli_query($con, $sql_colaborador2); //ejecutar query
-
+         
         notificacion_colaborador($colaborador2, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
-
       }
       if( (!empty($colaborador3)) && ($colaborador3 != "0") &&
           ($colaborador3 != $colaborador) && ($colaborador3 != $colaborador2)){

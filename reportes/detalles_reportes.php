@@ -267,7 +267,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Observaciones:</label>
-            <textarea name="observaciones" type="text" class="form-control"><?php echo ltrim($row['observaciones']) ?>"</textarea>
+            <textarea name="observaciones" type="text" class="form-control"><?php echo ltrim($row['observaciones'])?></textarea>
           </div>
 
           <div class="modal-footer">
