@@ -13,9 +13,14 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
 ?>
 <style>
   #borrar_notificacion{
-    display: block; 
+    display: block;
     text-align: right; 
     color: red;
+    margin-left: 80%;
+}
+#visto{
+  text-align: right; 
+  font-weight: bold;
 }
 </style>
 
@@ -39,16 +44,20 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                           $row_usuario = mysqli_fetch_array($resultado_usuario); //ejecutar consulta (fetch devuelve un solo registro)
                 ?>
             <div class="card-1">
-                 <a href="../notificaciones/delete_notificacion.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>" id="borrar_notificacion"><i class="fa-solid fa-xmark" style="  width: 30px; height: 30px;"></i></a>
-                <?php 
-                   if($row_bandeja['leido'] == "1"){
-                ?>
-                <p style="text-align: right; font-weight: bold;">
+                 <a type="button" href="../notificaciones/delete_notificacion.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>" id="borrar_notificacion"><i class="fa-solid fa-xmark" style="width: 30px; height: 30px;"></i></a> 
+                 <p id="visto">            
+                    <?php 
+                      if($row_bandeja['leido'] == "1"){ 
+                    ?>
                   visto <i class="fa-solid fa-check-double"></i>
-                </p>
-                <?php
-                   }           
-                ?>      
+                    <?php
+                      }else{      
+                    ?> 
+                  <a type="button" href="../notificaciones/marcar_leido.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>">Marcar como leído</a>  
+                    <?php
+                     }        
+                    ?>   
+                </p>   
                 <h5><?php echo $row_bandeja['fecha'] ?></h5>
                 <p>
                   <?php 
@@ -58,7 +67,7 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                 <p>Tarea: <?php echo $row_tarea['nombre'] ?></p>
                 <p>vence el: <?php echo $row_tarea['fecha_entrega']?> status: <?php echo $row_tarea['status']?></p>
 
-                <input type="button" onclick="location.href='detalles_tarea.php?id_tarea=<?php echo $id_t?>'" value="Ir a tarea" class="btn btn-info">
+                <input type="button" onclick="location.href='../notificaciones/notificacion_vista.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>&id_tarea=<?php echo $id_t?>'" value="Ir a tarea" class="btn btn-info">
             </div>
                 <?php                    
                   } //while
@@ -67,8 +76,3 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
 </div>
 
 <?php require_once '../footer.php'; ?>
-
-
-<script>
-
-</script>

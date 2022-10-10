@@ -10,10 +10,16 @@ $apellidos = $_SESSION['apellidos']; //obtener apellidos
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 
-
+//para mostrar imagen de perfil
 $sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
 $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
 $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
+
+//para numero de notificaciones
+$sql_notificaciones = "SELECT id_notificacion FROM notificaciones 
+                       WHERE id_usuario_receptor='$id' AND leido='0'"; //generar consulta
+$resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta
+$num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta genero resultados
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +96,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                 </ul>
             </li>
         </ul>
-
     </nav>
 
     <!-- primera seccion del menu lateral-->
@@ -107,7 +112,13 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         <a class="nav-link" href="../tareas/bandeja.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                             Bandeja de entrada
-                        
+                            <?php
+                               if($num_notificaciones > 0){
+                            ?>
+                            <span class="badge badge-light"><?php echo $num_notificaciones?></span>
+                            <?php
+                               }
+                            ?>
                         </a>
 
                         <a class="nav-link" href="../proyectos/proyectos.php">

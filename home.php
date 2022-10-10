@@ -19,14 +19,19 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 $sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta
 $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 
+//para mostrar imagen de perfil
 $sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
 $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
 $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
-?>
 
+//para numero de notificaciones
+$sql_notificaciones = "SELECT id_notificacion FROM notificaciones 
+                       WHERE id_usuario_receptor='$id' AND leido='0'"; //generar consulta
+$resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta
+$num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta genero resultados
+?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -57,7 +62,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         text-align: center;
         font-size: 130%;
     }
-
     
     #mant{
         font: 900 4em/1 'Oswald', Tangerine;
@@ -91,6 +95,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
         border: 1px solid white;
         background-color: orangered;
         border-radius: 50%;
+       }
+       #autos{
+        opacity: 0.5;
+        border-radius: 100px;
        }
 </style>
 
@@ -150,7 +158,13 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
                         <a class="nav-link" href="tareas/bandeja.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                             Bandeja de entrada
-                            <span class="badge badge-light">5</span>
+                            <?php
+                               if($num_notificaciones > 0){
+                            ?>
+                            <span class="badge badge-light"><?php echo $num_notificaciones?></span>
+                            <?php
+                               }
+                            ?>
                         </a>
 
                         <a class="nav-link" href="proyectos/proyectos.php">
@@ -315,6 +329,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
 
                 </div>
             </main>
+
+            <div class="container-fluid px-4">
+                <img src="images/autos.jpg" id="autos" width="100%">
+            </div>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
