@@ -8,7 +8,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
 
 $id_usuario_creador = $row['id_usuario'];
-$sql_usuario = "SELECT * FROM usuarios WHERE id_usuario='$id_usuario_creador'"; //generar consulta tareas
+$sql_usuario = "SELECT * FROM usuarios WHERE id_usuario='$id_usuario_creador'"; //generar consulta
 $resultado_usuario = $mysqli->query($sql_usuario); //guardar consulta
 $row_usuario = mysqli_fetch_array($resultado_usuario); //ejecutar consulta (fetch devuelve un solo registro)
 
@@ -232,7 +232,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                             <br>
                             <?php echo $row_comentario['descripcion']?>
                             <br>
-                            <hr/>
+                            <hr>
                         <?php
                             }
                         }
@@ -240,7 +240,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
                         <div class="form-group">
                             <label for="comentario" class="form-label">Comentario:</label>
-                            <textarea class="form-control" name="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario......"></textarea>
+                            <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......"></textarea>
                         </div>
                         <br>
                         <input class="btn btn-primary" type="submit" value="Enviar Comentario">

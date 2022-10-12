@@ -65,8 +65,20 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                   ?>
                 </p>
                 <p>Tarea: <?php echo $row_tarea['nombre'] ?></p>
-                <p>vence el: <?php echo $row_tarea['fecha_entrega']?> status: <?php echo $row_tarea['status']?></p>
-
+                <p>vence el: <?php echo $row_tarea['fecha_entrega']?> 
+                  <?php
+                  if($row_tarea['status'] == "ACTIVA"){
+                  ?>
+                  <span class="active">ACTIVA</span>
+                  <?php
+                   }else
+                   if($row_tarea['status'] == "FINALIZADA"){            
+                  ?>
+                  <span class="waiting">FINALIZADA</span>
+                  <?php
+                   }
+                  ?>
+                </p>
                 <input type="button" onclick="location.href='../notificaciones/notificacion_vista.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>&id_tarea=<?php echo $id_t?>'" value="Ir a tarea" class="btn btn-info">
             </div>
                 <?php                    
