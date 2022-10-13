@@ -10,18 +10,18 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-primary">
-					<div class="panel panel-heading">Gráficas de Servicios</div>
+					<div class="panel panel-heading">Gráficas de Tareas</div>
 					<div class="panel panel-body">
-						<div class="row">
-							<div class="col-sm-6">
+						<div class="row">		
+						    <div class="col-sm-10">	
+							    <div id="cargaPastel"></div>
+							</div>					
+						    <div class="col-sm-10">
 								<div id="cargaLineal"></div>
-							</div>
-							<div class="col-sm-6">
-								<div id="cargaBarras"></div>
-							</div>
-                            <div class="col-sm-6">
-								<div id="cargaPastel"></div>
-							</div>
+							</div>	
+							<div class="col-sm-10">					
+								<div id="cargaBarras"></div>	
+							</div>										
 						</div>
 					</div>
 				</div>

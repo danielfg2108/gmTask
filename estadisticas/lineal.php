@@ -1,19 +1,67 @@
+<?php
+include("../bd/conexion.php");
+$con = conectar();
+session_start(); //iniciar session de usuario
+if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
+    header("Location: ../index.php"); //sino esta loggeado redirigir al home
+}
+
+$sql = "SELECT nombre, fecha_entrega FROM tareas ORDER BY STR_TO_DATE(fecha_entrega, '%d/%m/%Y') ASC"; //generar consulta
+$resultado = $mysqli->query($sql); //guardar consulta
+
+$valoresY = array(); //tarea
+$valroesX = array(); //fecha
+
+while($ver = mysqli_fetch_row($resultado)){
+  $valoresY[]=$ver[0];
+  $valoresX[]=$ver[1];
+}
+
+$datosX=json_encode($valoresX);
+$datosY=json_encode($valoresY);
+?>
+
 <div id="graficaLineal"></div>
 
 <script>
+	function crearCadenaLineal(json){
+		var parsed = JSON.parse(json);
+		var arr = [];
+		for(var x in parsed){
+			arr.push(parsed[x]);
+		}
+		return arr;
+	}
+</script>
+
+<script>
+  datosX=crearCadenaLineal('<?php echo $datosX ?>');
+	datosY=crearCadenaLineal('<?php echo $datosY ?>');
+
     var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  type: 'scatter'
+  x: datosX,
+  y: datosY,
+  type: 'scatter',
+  line:{
+    color: 'red',
+    width: 2
+  },
+  marker:{
+    color: 'rgb(164,194,244)',
+    size: 12
+  }
+}
+  var layout = {
+    title: 'Tareas',
+    xaxis:{
+      title: ''
+    },
+    yaxis:{
+      title: ''
+    }
 };
 
-var trace2 = {
-  x: [1, 2, 3, 4],
-  y: [16, 5, 11, 9],
-  type: 'scatter'
-};
+var data = [trace1];
 
-var data = [trace1, trace2];
-
-Plotly.newPlot('graficaLineal', data);
+Plotly.newPlot('graficaLineal', data, layout);
 </script>
