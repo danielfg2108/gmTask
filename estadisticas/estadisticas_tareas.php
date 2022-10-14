@@ -15,7 +15,10 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 						<div class="row">		
 						    <div class="col-sm-10">	
 							    <div id="cargaPastel"></div>
-							</div>					
+							</div>			
+							<div class="col-sm-10">					
+								<div id="cargaBarrasUsuarios"></div>	
+							</div>		
 						    <div class="col-sm-10">
 								<div id="cargaLineal"></div>
 							</div>	
@@ -36,5 +39,6 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
         $('#cargaLineal').load('lineal.php');
         $('#cargaBarras').load('barras.php');
         $('#cargaPastel').load('pastel.php');
+		$('#cargaBarrasUsuarios').load('barras_usuarios.php');
     });
 </script>

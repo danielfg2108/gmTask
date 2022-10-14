@@ -133,7 +133,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                             Agenda de Tareas
                         </a>
-                        <a class="nav-link" href="../estadisticas/estadisticas_servicios.php">
+                        <a class="nav-link" href="../estadisticas/estadisticas_tareas.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Estadísticas
                         </a>
