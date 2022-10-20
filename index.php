@@ -30,13 +30,12 @@ if($_POST){//si ya se ingresaron los datos
 		}else{
 			$mensaje = "la contraseña es incorrecta";
 		}
-
 	}else{
 		$mensaje = "el correo es incorrecto";
 	}
-
 }
 ?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -82,3 +81,4 @@ if($_POST){//si ya se ingresaron los datos
 	</footer>
 </body>
 </html>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

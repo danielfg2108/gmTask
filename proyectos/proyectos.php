@@ -4,7 +4,7 @@ $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"
 $resultado = $mysqli->query($sql); //guardar consulta
 ?>
 <h1 id="saludo" class="mt-4">Mis Proyectos</h1>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
@@ -59,7 +59,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
         </table>
     </div>
 </div>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>
 
 

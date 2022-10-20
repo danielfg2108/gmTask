@@ -26,7 +26,7 @@ while($ver = mysqli_fetch_row($resultado)){
 $datosX=json_encode($valoresX);
 $datosY=json_encode($valoresY);
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <div id="graficaBarras"></div>
 
 <script>
@@ -72,3 +72,4 @@ bargap :0.05
 
 Plotly.newPlot('graficaBarras', data, layout);
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

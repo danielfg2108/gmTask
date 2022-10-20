@@ -17,15 +17,16 @@ $sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //gen
 $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
 $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
 ?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <title>Configuración de usuario</title>
+  <meta name="author" content="jafet daniel fonseca garcia" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../librerias/bootstrap5.css" rel="stylesheet">
-
   <link href="../librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
   <link href="../css/styles.css" rel="stylesheet" />
   <script src="../librerias/fontawesome.js"></script>
@@ -326,3 +327,4 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
     })
   });
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

@@ -3,7 +3,7 @@
 $sql_tareas = "SELECT * FROM tareas ORDER BY STR_TO_DATE(fecha_entrega, '%d/%m/%Y') DESC"; //generar consulta colaboradores
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 id="saludo" class="mt-4">Agenda</h1>
 <link rel="stylesheet" href="../css/estilos_agenda.css">
 
@@ -78,6 +78,5 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
         </div>
     </div>
 </section>
-
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

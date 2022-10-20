@@ -16,7 +16,7 @@ $resultado_finalizadas = $mysqli->query($sql_finalizadas); //guardar consulta
 $row_finalizadas = mysqli_fetch_array($resultado_finalizadas); //ejecutar consulta (fetch devuelve un solo registro)
 $finalizadas = $row_finalizadas['cantidad'];
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <div id="graficaPastel"></div>
 
 <script>
@@ -39,3 +39,4 @@ var layout = {
 
 Plotly.newPlot('graficaPastel', data, layout);
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

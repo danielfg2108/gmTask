@@ -1,4 +1,5 @@
 <?php require_once '../header.php';?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php   
     $sql = "SELECT * FROM reporte_servicios"; //generar consulta
     $resultado = $mysqli->query($sql); //guardar consulta
@@ -273,3 +274,4 @@
     })
   });*/
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

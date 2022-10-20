@@ -6,7 +6,7 @@ $resultado = $mysqli->query($sql); //guardar consulta
 $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id'"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 id="saludo" class="mt-4">Mis Tareas</h1>
 
 <div class="row">
@@ -154,5 +154,5 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
         </table>
     </div>
 </div>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

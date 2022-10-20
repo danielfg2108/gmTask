@@ -20,7 +20,7 @@ $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto' O
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4"></h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -450,3 +450,4 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         $('#modalCambiarSeccion').modal('show'); //mostrar modal
     }
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

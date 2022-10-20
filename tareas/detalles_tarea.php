@@ -27,6 +27,7 @@ $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tar
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
 ?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <style>
      #image_perfil{
         width: 25px;
@@ -391,3 +392,4 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
     </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

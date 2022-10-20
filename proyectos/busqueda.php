@@ -16,7 +16,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 $sql_secciones = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
 $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4"></h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -154,3 +154,4 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
         $('#modalCambiarSeccion').modal('show'); //mostrar modal
     }
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

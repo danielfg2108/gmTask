@@ -61,6 +61,7 @@ $confirm_password = $_POST['confirm_password'];
   }//validar que los campos no esten vacios
 }
 ?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -152,3 +153,4 @@ $confirm_password = $_POST['confirm_password'];
         <script src="js/scripts.js"></script>
     </body>
 </html>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

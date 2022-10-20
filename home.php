@@ -29,7 +29,11 @@ $sql_notificaciones = "SELECT id_notificacion FROM notificaciones
                        WHERE id_usuario_receptor='$id' AND leido='0'"; //generar consulta
 $resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta
 $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta genero resultados
+
+date_default_timezone_set('America/Mexico_City');  
+$fecha_sistema = date('l, d F', time());
 ?>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -101,6 +105,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
         border-radius: 100px;
        }
 </style>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -243,6 +248,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">general motors</li>
                     </ol>
+                    <h5 id="fecha"><?php echo $fecha_sistema?></h5>
                     <h1 id="saludo" class="mt-4" style="font-family: 'Tangerine', serif; text-shadow: 4px 4px 4px #aaa;">Welcome <?php echo $nombre . ' ' . $apellidos; ?></h1>
                     <br>
 
@@ -342,7 +348,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2022.</div>
+                        <div class="text-muted">Copyright &copy; Your Website 2022. By Jafet Daniel Fonseca Garcia</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -361,5 +367,5 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
     <script src="librerias/jsdelivr_simple_datatables.js"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
-
 </html>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

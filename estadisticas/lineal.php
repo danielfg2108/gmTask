@@ -20,7 +20,7 @@ while($ver = mysqli_fetch_row($resultado)){
 $datosX=json_encode($valoresX);
 $datosY=json_encode($valoresY);
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <div id="graficaLineal"></div>
 
 <script>
@@ -65,3 +65,4 @@ var data = [trace1];
 
 Plotly.newPlot('graficaLineal', data, layout);
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

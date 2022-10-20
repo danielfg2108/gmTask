@@ -226,7 +226,7 @@ if ($_POST) { //si ya se ingresaron los datos
     })
 })
 </script>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Registrar nueva Reparación</h1>
 <br>
 
@@ -359,5 +359,5 @@ if ($_POST) { //si ya se ingresaron los datos
     })
 })
 </script>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

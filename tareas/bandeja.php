@@ -23,7 +23,7 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
   font-weight: bold;
 }
 </style>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 id="saludo" class="mt-4">Bandeja de Entrada</h1>
 <link rel="stylesheet" href="../css/estilos_bandeja.css">
 
@@ -86,5 +86,5 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                 ?>
     </div>
 </div>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

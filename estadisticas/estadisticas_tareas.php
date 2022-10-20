@@ -5,7 +5,7 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 
 <script src="../librerias/plotly-2.15.1.min.js"></script>
 <h1 class="mt-4">Estadísticas</h1>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -42,3 +42,4 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 		$('#cargaBarrasUsuarios').load('barras_usuarios.php');
     });
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

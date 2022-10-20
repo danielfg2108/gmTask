@@ -62,6 +62,7 @@ body{
     background-color: black;
 }
 </style>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <body>
     <div class="loader">
         <span></span>
@@ -80,3 +81,4 @@ body{
     }
     setTimeout("redireccionar()", 1500);
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

@@ -14,7 +14,7 @@ $resultado_usuarios2 = $mysqli->query($sql_usuarios2); //guardar consulta proyec
 $sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
 $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyectos
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <style>
   #responsable2{
     display: none;
@@ -131,3 +131,4 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyec
   
   }
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

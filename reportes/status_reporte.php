@@ -6,7 +6,7 @@
     $sql_cerrado = "SELECT * FROM reporte_servicios WHERE status LIKE '%cerrad%' OR status LIKE '%CERRAD%'"; //generar consulta
     $resultado_cerrado = $mysqli->query($sql_cerrado); //guardar consulta
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
                         <h1 class="mt-4">Status de servicios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -121,13 +121,7 @@
                                 </table>
                             </div>
                         </div>
-
-                        
-                                
-
-                         
-                                           
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php';?>
 
 

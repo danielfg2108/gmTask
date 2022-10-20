@@ -21,7 +21,7 @@ $sql_notificaciones = "SELECT id_notificacion FROM notificaciones
 $resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta
 $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta genero resultados
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -184,3 +184,4 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+<!-- Autor: Jafet Daniel Fonseca Garcia -->

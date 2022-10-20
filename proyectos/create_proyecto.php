@@ -36,7 +36,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
 } //POST
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Crear nuevo Proyecto</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item"><a href="proyectos.php">Mis proyectos</a></li>
@@ -62,5 +62,5 @@ if ($_POST) { //si ya se ingresaron los datos
   </form>
 </div>
 
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

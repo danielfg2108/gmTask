@@ -1,5 +1,5 @@
 <?php require_once '../header.php'; ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Registrar nuevo reporte</h1>
 <br>
 
@@ -17,5 +17,5 @@
       <input type="submit" class="btn btn-primary" value="Continuar">
    </form>
 </div>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

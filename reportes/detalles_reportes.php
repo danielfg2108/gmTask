@@ -11,7 +11,7 @@ $num_archivos = $resultado_archivos->num_rows; //si la consulta genero resultado
 //////////////////
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
 ?>
-
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Detalles</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item"><a href="../home.php">Inicio</a></li>
@@ -395,3 +395,4 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     })
   });
 </script>
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
