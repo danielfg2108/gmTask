@@ -16,7 +16,7 @@ $resultado_secciones2 = $mysqli->query($sql_secciones2); //guardar consulta
 $sql_secciones3 = "SELECT * FROM secciones_proyecto WHERE id_proyecto='$id_proyecto'"; //generar consulta secciones
 $resultado_secciones3 = $mysqli->query($sql_secciones3); //guardar consulta
 
-$sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto' ORDER BY id_tarea"; //generar tareas del proyecto
+$sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto' ORDER BY id_tarea DESC"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
 ?>
@@ -58,7 +58,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
             $id_tarea_sin = $row_tareas['id_tarea']; //guardar id en variable
 
-            $sql_tareas_seccion_sin = "SELECT * FROM tareas_seccion WHERE id_tarea='$id_tarea_sin' ORDER BY id_tarea"; //consultar para ver si las tareas tiene una seccion
+            $sql_tareas_seccion_sin = "SELECT * FROM tareas_seccion WHERE id_tarea='$id_tarea_sin'"; //consultar para ver si las tareas tiene una seccion
             $resultado_tareas_seccion_sin = $mysqli->query($sql_tareas_seccion_sin); //guardar consulta
             $num_sin = $resultado_tareas_seccion_sin->num_rows; //si la consulta genero resultados
 
@@ -133,7 +133,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         <div class="product-container">
             <?php
             $id_seccion = $row_secciones['id_seccion'];
-            $sql_tareas_seccion = "SELECT * FROM tareas_seccion WHERE id_seccion='$id_seccion'"; //generar tareas del proyecto
+            $sql_tareas_seccion = "SELECT * FROM tareas_seccion WHERE id_seccion='$id_seccion' ORDER BY id_tarea DESC"; //generar tareas del proyecto
             $resultado_tareas_seccion = $mysqli->query($sql_tareas_seccion); //guardar consulta
 
             while ($row_tareas = mysqli_fetch_array($resultado_tareas_seccion)) {
@@ -150,12 +150,12 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                     <div class="product-card">
                         <div class="product-image">
                         <?php
-                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_t' AND descripcion LIKE '%.%g' LIMIT 1"; //generar el primer archivo jpg/png
+                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_t' AND nombre LIKE '%.%g' LIMIT 1"; //generar el primer archivo jpg/png
                             $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
                             $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_imagen = $resultado_imagen->num_rows; //si la consulta genero resultados          
                             if($num_imagen > 0){
-                                $ruta_imagen2 =  "archivos_tareas/".$id_t."/".$row_imagen['descripcion'];
+                                $ruta_imagen2 =  "archivos_tareas/".$id_t."/".$row_imagen['nombre'];
                             }else{
                                 $ruta_imagen2 = "images/tarea.jpg";
                             }
@@ -191,7 +191,6 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 }
 ?>
 <!-- SECCIÓNES y sus tareas-->
-
 
 <?php require_once '../footer.php'; ?>
 

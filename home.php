@@ -32,6 +32,13 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
 
 date_default_timezone_set('America/Mexico_City');  
 $fecha_sistema = date('l, d F', time());
+
+$sql_usuarios = "SELECT usuarios.nombre, usuarios.apellidos, 
+                        imagenes_perfil.nombre AS 'nombre_foto' 
+                 FROM usuarios
+                 JOIN imagenes_perfil
+                 USING (id_usuario)"; //generar consulta colaboradores
+$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
@@ -47,6 +54,7 @@ $fecha_sistema = date('l, d F', time());
     <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="librerias/fontawesome.js"></script>
+    <link href="css/carrusel_personas.css" rel="stylesheet"/>
 
 </head>
 <style>
@@ -342,9 +350,34 @@ $fecha_sistema = date('l, d F', time());
                 </div>
             </main>
 
+            <h4 style="text-align: center;">Personas</h4>
+            <section class="product"><!-- CARRUSEL -->
+                <button class="pre-btn"><img src="images/arrow.png" alt=""></button>
+                <button class="nxt-btn"><img src="images/arrow.png" alt=""></button>
+                <div class="product-container">
+                    <?php
+                        while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
+                    ?>
+                     <div class="product-card">
+                        <div class="product-image">               
+                            <img src="<?php echo $row_usuarios['nombre_foto']?>" class="product-thumb">       
+                        </div>
+                        <div class="product-info">    
+                            <p class="price"><?php echo $row_usuarios['nombre'].' '.$row_usuarios['apellidos']?></p>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </section><!-- CARRUSEL -->
+
+
             <div class="container-fluid px-4">
                 <img src="images/autos.jpg" id="autos" width="100%">
             </div>
+
+
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">

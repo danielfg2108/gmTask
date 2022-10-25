@@ -30,7 +30,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
                                 $sql_colaboradores = "SELECT colaboradores_tareas.id_usuario, usuarios.nombre, usuarios.apellidos 
                                                       FROM colaboradores_tareas
                                                       NATURAL JOIN usuarios
-                                                      WHERE colaboradores_tareas.id_tarea='$id_tarea' "; //generar consulta
+                                                      WHERE colaboradores_tareas.id_tarea='$id_tarea'"; //generar consulta
 
                                 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta
                                 $num = $resultado_colaboradores->num_rows; //si la consulta genero resultados
