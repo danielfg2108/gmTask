@@ -37,7 +37,8 @@ $sql_usuarios = "SELECT usuarios.nombre, usuarios.apellidos,
                         imagenes_perfil.nombre AS 'nombre_foto' 
                  FROM usuarios
                  JOIN imagenes_perfil
-                 USING (id_usuario)"; //generar consulta colaboradores
+                 USING (id_usuario)
+                 ORDER BY usuarios.nombre ASC"; //generar consulta colaboradores
 $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -55,7 +56,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
     <link href="css/styles.css" rel="stylesheet" />
     <script src="librerias/fontawesome.js"></script>
     <link href="css/carrusel_personas.css" rel="stylesheet"/>
-
 </head>
 <style>
     @-webkit-keyframes aitf {
@@ -68,14 +68,14 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         }
     }
 
-    p {
+    #mant{
         text-transform: uppercase;
         border: 4px double rgba(255, 255, 255, .25);
         text-align: center;
         font-size: 130%;
     }
     
-    #mant{
+    #mantenimiento{
         font: 900 4em/1 'Oswald', Tangerine;
         padding: .25em 0 .325em;
         text-shadow: 0 0 80px rgba(255, 255, 255, .5);
@@ -109,8 +109,12 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         border-radius: 50%;
        }
        #autos{
-        opacity: 0.5;
-        border-radius: 100px;
+        margin-top: 20px;
+        opacity: 0.7;
+        border-radius: 40px;
+       }
+       #nombres{
+        text-align: center;
        }
 </style>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -248,8 +252,8 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             <main>
                 <div class="container-fluid px-4">
 
-                    <p>
-                        <span id="mant">Mantenimiento</span>
+                    <p id="mant">
+                        <span id="mantenimiento">Mantenimiento</span>
                     </p>
 
                     <h1 class="mt-4">Task</h1>
@@ -351,6 +355,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             </main>
 
             <h4 style="text-align: center;">Personas</h4>
+            
             <section class="product"><!-- CARRUSEL -->
                 <button class="pre-btn"><img src="images/arrow.png" alt=""></button>
                 <button class="nxt-btn"><img src="images/arrow.png" alt=""></button>
@@ -363,7 +368,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             <img src="<?php echo $row_usuarios['nombre_foto']?>" class="product-thumb">       
                         </div>
                         <div class="product-info">    
-                            <p class="price"><?php echo $row_usuarios['nombre'].' '.$row_usuarios['apellidos']?></p>
+                            <p id="nombres"><?php echo $row_usuarios['nombre'].' '.$row_usuarios['apellidos']?></p>
                         </div>
                     </div>
                     <?php
@@ -373,8 +378,9 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             </section><!-- CARRUSEL -->
 
 
+
             <div class="container-fluid px-4">
-                <img src="images/autos.jpg" id="autos" width="100%">
+                <img src="images/footer.jpg" id="autos" width="100%">
             </div>
 
 

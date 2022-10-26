@@ -8,8 +8,8 @@
   	padding: 0 1vw;
   	/**/
   	display: flex;
-  	overflow-x: auto;
-  	scroll-behavior: smooth;
+  	overflow-x: auto; 	/**/
+  	scroll-behavior: smooth; 	/**/
   }
 
   .product-container::-webkit-scrollbar {
@@ -51,8 +51,6 @@
   	padding-top: 2px;
   	font-size: 13px;
   }
-
-  
 
   .product-thumb {
   	width: 100%;
