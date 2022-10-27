@@ -110,9 +110,10 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
        }
        #autos{
         margin-top: 20px;
-        opacity: 0.7;
-        border-radius: 40px;
+        opacity: 0.9;
+        border-radius: 20px;
        }
+      
        #nombres{
         text-align: center;
        }
@@ -137,7 +138,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="tareas/create_tarea.php">Tarea</a></li>
                     <li><a class="dropdown-item" href="proyectos/create_proyecto.php">Proyecto</a></li>
-
                 </ul>
             </li>
         </ul>
@@ -206,7 +206,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
 
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "reportes" del menu lateral-->
-                        <div class="sb-sidenav-menu-heading">Reporte</div>
+                        <div class="sb-sidenav-menu-heading">Reporte de Servicios</div>
                         <a class="nav-link" href="reportes/reportes.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Reparaciones y Servicios
@@ -219,7 +219,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
 
                         <a class="nav-link" href="reportes/status_reporte.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Status
+                            Status de servicios
                         </a>
                        
 
@@ -355,10 +355,8 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             </main>
 
             <h4 style="text-align: center;">Personas</h4>
-            
-            <section class="product"><!-- CARRUSEL -->
-                <button class="pre-btn"><img src="images/arrow.png" alt=""></button>
-                <button class="nxt-btn"><img src="images/arrow.png" alt=""></button>
+
+            <section class="product"><!-- CARRUSEL -->             
                 <div class="product-container">
                     <?php
                         while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
@@ -376,7 +374,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                     ?>
                 </div>
             </section><!-- CARRUSEL -->
-
 
 
             <div class="container-fluid px-4">

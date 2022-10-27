@@ -6,20 +6,29 @@ session_start(); //iniciar session de usuario
 if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
-
-$sql= "SELECT usuarios.nombre,
+/*
+SELECT usuarios.nombre,
                  COUNT(colaboradores_tareas.id_tarea) AS 'cantidad_tareas' 
                  FROM `colaboradores_tareas`
                  NATURAL JOIN usuarios
-                 GROUP BY id_usuario"; //generar consulta
+                 GROUP BY id_usuario
+*/
+$sql= "SELECT colaboradores_tareas.id_usuario,
+              usuarios.nombre,
+              COUNT(colaboradores_tareas.id_tarea) AS 'cantidad_tareas_activas'
+        FROM colaboradores_tareas
+        NATURAL JOIN usuarios
+        JOIN tareas USING (id_tarea)
+        WHERE tareas.status ='ACTIVA'
+        GROUP BY id_usuario"; //generar consulta
 $resultado= $mysqli->query($sql); //guardar consulta
 
 $valoresX = array();
 $valoresY = array();
 
 while($ver = mysqli_fetch_row($resultado)){
-  $valoresX[]=$ver[0];
-  $valoresY[]=$ver[1];
+  $valoresX[]=$ver[1];
+  $valoresY[]=$ver[2];
   
 }
 
@@ -56,7 +65,7 @@ $datosY=json_encode($valoresY);
 ];
 
 var layout = {
-title: 'Tareas asignadas a usuarios',
+title: 'Tareas ACTIVAS asignadas a usuarios',
 font:{
   family: 'Raleway, sans-serif'
 },
@@ -65,7 +74,7 @@ xaxis: {
   title: ''
 },
 yaxis: {
-  title: 'cantidad de tareas'
+  title: 'cantidad de tareas ACTIVAS'
 },
 bargap :0.05
 };

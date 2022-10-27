@@ -153,7 +153,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
 
                         <a class="nav-link" href="../reportes/status_reporte.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Status
+                            Status de servicios
                         </a>
                        
                         

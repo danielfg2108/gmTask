@@ -7,7 +7,11 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
 
-$sql = "SELECT nombre, fecha_entrega FROM tareas ORDER BY STR_TO_DATE(fecha_entrega, '%d/%m/%Y') ASC"; //generar consulta
+$sql = "SELECT proyectos.nombre,
+               COUNT(proyectos_tareas.id_tarea) AS 'cantidad_tareas' 
+        FROM proyectos_tareas
+        NATURAL JOIN proyectos
+        GROUP BY id_proyecto"; //generar consulta
 $resultado = $mysqli->query($sql); //guardar consulta
 
 $valoresY = array(); //tarea
@@ -48,7 +52,7 @@ $datosY=json_encode($valoresY);
 ];
 
 var layout = {
-title: 'Tareas por Fecha',
+title: 'Cantidad de tareas por Proyectos',
 font:{
   family: 'Raleway, sans-serif'
 },
@@ -57,7 +61,7 @@ xaxis: {
   title: ''
 },
 yaxis: {
-  title: ''
+  title: 'cantidad de tareas'
 },
 bargap :0.05
 };

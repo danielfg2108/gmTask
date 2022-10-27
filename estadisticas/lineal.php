@@ -52,7 +52,7 @@ $datosY=json_encode($valoresY);
   }
 }
   var layout = {
-    title: 'Tareas',
+    title: 'Tareas por fecha',
     xaxis:{
       title: ''
     },
