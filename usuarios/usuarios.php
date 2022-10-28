@@ -46,12 +46,11 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
 <body>
   <div class="container mt-5">
     <div class="row">
-      <h1>Configuración de usuario</h1>
+      <h1>Configuración de Usuario</h1>
       <br>
-
       <div class="col-md-8">
         <img id="imagen_perfil" src="../<?php echo $row_imagen['nombre'] ?>">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalImagen" data-bs-whatever="@mdo">Cambiar imagen</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalImagen" data-bs-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i></button>
       </div>
 
       <div class="col-md-8" style="margin-top: 20px;">
@@ -240,7 +239,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
   <script src="../demo/chart-bar-demo.js"></script>
   <script src="../librerias/jsdelivr_simple_datatables.js"></script>
   <script src="../js/datatables-simple-demo.js"></script>
-
 </body>
 </html>
 

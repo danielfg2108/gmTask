@@ -107,6 +107,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         border: 1px solid white;
         background-color: orangered;
         border-radius: 50%;
+
        }
        #autos{
         margin-top: 20px;

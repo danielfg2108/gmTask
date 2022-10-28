@@ -29,7 +29,6 @@ $valoresY = array();
 while($ver = mysqli_fetch_row($resultado)){
   $valoresX[]=$ver[1];
   $valoresY[]=$ver[2];
-  
 }
 
 $datosX=json_encode($valoresX);

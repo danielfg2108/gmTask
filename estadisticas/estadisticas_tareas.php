@@ -2,7 +2,6 @@
 <?php
 $con = conectar(); //llamar al metodo para hacer conexion a la BD
 ?>
-
 <script src="../librerias/plotly-2.15.1.min.js"></script>
 <h1 class="mt-4">Estadísticas</h1>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -23,7 +22,7 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 								<div id="cargaLineal"></div>
 							</div>	
 							<div class="col-sm-10">					
-								<div id="cargaBarras"></div>	
+								<div id="cargaBarras"></div>
 							</div>										
 						</div>
 					</div>
@@ -31,15 +30,14 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 			</div>
 		</div>
 	</div>
-
-<?php require_once '../footer.php'; ?>
+<?php require_once '../footer.php';?>
 
 <script>
     $(document).ready(function(){
-        $('#cargaLineal').load('lineal.php');
-        $('#cargaBarras').load('barras.php');
-        $('#cargaPastel').load('pastel.php');
-		$('#cargaBarrasUsuarios').load('barras_usuarios.php');
+        $('#cargaLineal').load('lineal.php'); //llamado a archivo php
+        $('#cargaBarras').load('barras.php'); //llamado a archivo php
+        $('#cargaPastel').load('pastel.php'); //llamado a archivo php
+		$('#cargaBarrasUsuarios').load('barras_usuarios.php'); //llamado a archivo php
     });
 </script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
