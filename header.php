@@ -123,7 +123,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
 
                         <a class="nav-link" href="../proyectos/proyectos.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                            Mis Proyectos
+                            Proyectos
                         </a>
                         <a class="nav-link" href="../tareas/tareas.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
@@ -155,7 +155,6 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Status de servicios
                         </a>
-                       
                         
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "proyectos" del menu lateral-->

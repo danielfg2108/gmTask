@@ -186,7 +186,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
 
                         <a class="nav-link" href="proyectos/proyectos.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                            Mis Proyectos
+                            Proyectos
                         </a>
 
                         <a class="nav-link" href="tareas/tareas.php">
