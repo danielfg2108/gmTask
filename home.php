@@ -10,10 +10,8 @@ $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];
 
 require "bd/conexion.php"; //llamar a la conexion
-$sql = "SELECT * FROM tareas WHERE id_usuario='$id' LIMIT 2"; //generar consulta
-$resultado = $mysqli->query($sql); //guardar consulta
 
-$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 2"; //generar consulta colaboradores
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 4"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
 $sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta
@@ -62,19 +60,17 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         0% {
             background-position: 0% 50%;
         }
-
         100% {
             background-position: 100% 50%;
         }
     }
-
     #mant{
         text-transform: uppercase;
         border: 4px double rgba(255, 255, 255, .25);
         text-align: center;
         font-size: 130%;
     }
-    
+   
     #mantenimiento{
         font: 900 4em/1 'Oswald', Tangerine;
         padding: .25em 0 .325em;
@@ -93,13 +89,11 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         -webkit-transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
     }
-
     #image_perfil{
         width: 25px;
         height: 25px;
         border-radius: 12.5px;
     }
-
     .badge { /* contador de notificaciones*/
         position: relative;
         top: -15px;
@@ -107,16 +101,22 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         border: 1px solid white;
         background-color: orangered;
         border-radius: 50%;
-
        }
-       #autos{
-        margin-top: 20px;
-        opacity: 0.9;
-        border-radius: 20px;
-       }
-      
        #nombres{
         text-align: center;
+       }
+       #div_img{
+        text-align: center;
+        background: radial-gradient(white, #3acfd5, #2c6dc3, #0c5980);
+        border-radius: 10px;
+       }
+       #imagen_footer{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        opacity: 0.6;
+        border-radius: 50%;
+        height: 60%;
+        width: 40%;
        }
 </style>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -159,7 +159,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                 </ul>
             </li>
         </ul>
-
     </nav>
 
     <!-- primera seccion del menu lateral-->
@@ -237,8 +236,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-add"></i></div>
                             Nueva Tarea
                         </a>
-
-
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -247,7 +244,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                 </div>
             </nav>
         </div>
-
 
         <div id="layoutSidenav_content">
             <main>
@@ -266,7 +262,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                     <br>
 
                     <div class="row">
-
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -276,22 +271,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                                 <div class="card-body">
                                     <table class="table table-primary table-striped">
                                         <tbody>
-                                            <?php
-                                            while ($row = mysqli_fetch_array($resultado)) {
-                                            ?>
-                                                <tr>
-                                                    <td>
-                                                        <a href="tareas/detalles_tarea.php?id_tarea=<?php echo $row['id_tarea'] ?>"><i class="fa-solid fa-eye" style="width: 23px; height: 23px;"></i></a>
-                                                        <?php echo $row['nombre'] ?>
-                                                    </td>
-                                                    <td><?php echo $row['fecha_entrega'] ?></td>
-
-                                                </tr>
-                                            <?php
-                                            }
-                                            ?>
-
-
+                                          
                                             <?php
                                             while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {
 
@@ -310,7 +290,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                                                             <?php echo $row_t_colaborador['nombre'] ?>
                                                         </td>
                                                         <td><?php echo $row_t_colaborador['fecha_entrega'] ?></td>
-
                                                     </tr>
                                             <?php
                                                 }
@@ -345,18 +324,14 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                                             ?>
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </main>
 
             <h4 style="text-align: center;">Personas</h4>
-
             <section class="product"><!-- CARRUSEL -->             
                 <div class="product-container">
                     <?php
@@ -376,11 +351,9 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                 </div>
             </section><!-- CARRUSEL -->
 
-
-            <div class="container-fluid px-4">
-                <img src="images/footer.jpg" id="autos" width="100%">
+            <div  id="div_img" class="container-fluid px-4">
+                <img src="images/gm_marcas_.jpg" id="imagen_footer">
             </div>
-
 
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

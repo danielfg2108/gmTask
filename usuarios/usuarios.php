@@ -63,10 +63,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
           </thead>
           <tbody>
             <tr>
-              <th>Id: <?php echo $row['id_usuario'] ?></th>
-              <th></th>
-            </tr>
-            <tr>
               <th>Nombre: <?php echo $row['nombre'] ?></th>
               <th>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNombre" data-bs-whatever="@mdo">Editar</button>
@@ -96,7 +92,6 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       </div>
     </div>
   </div>
-
 
   <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
   <div class="modal fade" id="modalNombre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -145,10 +145,12 @@ try {
     $mail->send();
     echo '<script>alert("Correo enviado exitosamente"); window.history.go(-1); </script>';
 } catch (Exception $e) {
-    echo "error al enviar mensaje: {$mail->ErrorInfo}";
+    echo "error al enviar mensaje: {$mail->ErrorInfo}<br>";
+    echo "POSIBLE ERROR DE CONEXIÓN A INTERNET";
 }
 ////////////////////////enviar correo
 
 
 //////////////eliminar archivo una vez enviado
 unlink('../ReporteServicios.xlsx'); //eliminar archivo
+?>

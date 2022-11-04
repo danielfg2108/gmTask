@@ -141,7 +141,7 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
 
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
                         <!-- seccion "reportes" del menu lateral-->
-                        <div class="sb-sidenav-menu-heading">Reporte</div>
+                        <div class="sb-sidenav-menu-heading">Reporte de Servicios</div>
                         <a class="nav-link" href="../reportes/reportes.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Reparaciones y Servicios
@@ -170,7 +170,6 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                             Nueva Tarea
                         </a>
 
-
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -179,7 +178,6 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                 </div>
             </nav>
         </div>
-
 
         <div id="layoutSidenav_content">
             <main>

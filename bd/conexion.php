@@ -2,7 +2,7 @@
 //Autor: Jafet Daniel Fonseca Garcia
  $mysqli = new mysqli("localhost","root","","task"); //conexion con bd
 
- function conectar(){
+ function conectar(){ //funcion con los valores de la base de datos
     $host="localhost";
     $user="root";
     $pass="";

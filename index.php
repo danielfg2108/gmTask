@@ -45,8 +45,7 @@ if($_POST){//si ya se ingresaron los datos
 	<meta name="description" content="sistema para el control y gestion de tareas"/>
     <meta name="author" content="jafet daniel fonseca garcia"/>
     <title>Task - login</title>
-
-    <link rel="stylesheet" href="css/estilos_login.css">
+    <link rel="stylesheet" href="css/estilos_login2.css">
 </head>
 <body>
     <section class="login">
@@ -59,12 +58,10 @@ if($_POST){//si ya se ingresaron los datos
 						<input type="password" placeholder="PASSWORD" name="password" required>		
 						<h4 style="color: red;"><?php echo $mensaje ?></h4>							
  					    <button class="submit">Ingresar</button>
-						
 						<br>
 						<a class="small" href="register.php">Crear una nueva cuenta</a>						
  				</form>		
 				</div>
-				
 			</div>
 			<div class="right">
 				<div class="right-text">

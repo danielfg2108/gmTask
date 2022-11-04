@@ -197,7 +197,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enviar correo</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Enviar reporte por correo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -217,7 +217,7 @@
           <hr style="text-align:left; margin-left:0">
           <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Datos de destinatario: </label><br>
-            <label for="recipient-name" class="col-form-label">Correo electronico de destino:</label>
+            <label for="recipient-name" class="col-form-label">Correo electrónico de destino:</label>
             <input id="correo_destino" name="correo_destino" type="email" class="form-control">
           </div>
           <div class="mb-3">
@@ -225,9 +225,10 @@
             <input id="asunto" name="asunto" type="text" class="form-control">
           </div> 
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Descripcion:</label>
+            <label for="recipient-name" class="col-form-label">Descripción:</label>
             <textarea id="descripcion" name="descripcion" type="text" class="form-control" rows="10"></textarea>
-            <label for="recipient-name" class="col-form-label">Nota: como comprobación, se te enviara una copia a tu correo</label>
+            <label for="recipient-name" class="col-form-label">** el reporte se adjuntará automaticamente en formato Excel</label>
+            <label for="recipient-name" class="col-form-label">Nota: como comprobación, se te enviará una copia a tu correo</label>
           </div>
 
           <div class="modal-footer">
