@@ -399,7 +399,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 </script>
 
 <script>
-    function GetDetails(updateid) {
+    function GetDetails(updateid) { //funcion para obtener datos de una seccion elegida y mostrarlos en modal
         $('#hiddendata').val(updateid); //ponerle de texto el id al input oculto del modal
 
         $.post("../secciones/consulta_update.php", {

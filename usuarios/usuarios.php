@@ -93,7 +93,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
     </div>
   </div>
 
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR NOMBRE-->
   <div class="modal fade" id="modalNombre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -116,9 +116,9 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       </div>
     </div>
   </div>
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR NOMBRE-->
 
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR APELLIDOS -->
   <div class="modal fade" id="modalApellidos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -141,9 +141,9 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       </div>
     </div>
   </div>
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDIAR APELLIDOS -->
 
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR CORREO -->
   <div class="modal fade" id="modalCorreo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -167,10 +167,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       </div>
     </div>
   </div>
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR CORREO-->
 
 
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR CONTRASEÑA -->
   <div class="modal fade" id="modalContraseña" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -199,10 +199,10 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
       </div>
     </div>
   </div>
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR CONTRASEÑA -->
 
 
-  <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+  <!-- MODAL PARA EDITAR IMAGEN DE PERFIL -->
 <div class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -225,7 +225,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL PARA EDITAR IMAGEN DE PERFIL -->
 
   <script src="../librerias/bootstrap.js"></script>
   <script src="../js/scripts.js"></script>
@@ -238,6 +238,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
 </html>
 
 <script>
+  //para validar cuando se modifica la contraseña
   $(function() {
     var url = $("#formContraseña").attr("action"); //obtener url del action
 
@@ -281,6 +282,7 @@ $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch 
 
 
 <script>
+  //para validar cuando se modifica la imagen de perfil
   $(function() {
     var url = $("#formImagen").attr("action"); //obtener url del action
 

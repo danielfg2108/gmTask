@@ -1,4 +1,5 @@
 <?php
+//pagina para cuando el usuario quiere modifcar el status de la tarea a FINALIZADA
 include("../bd/conexion.php");
 $con = conectar();
 session_start(); //iniciar session de usuario

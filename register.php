@@ -1,4 +1,5 @@
 <?php
+//PAGINA DE REGISTRO DE UNA NUEVA CUENTA
 require "bd/conexion.php"; //llamar a la conexion
 $con = conectar();
 $mensaje = "";
@@ -33,7 +34,7 @@ $confirm_password = $_POST['confirm_password'];
                 $result_imagen_perfil =mysqli_query($con, $sql_imagen_perfil); //ejecutar query
 
                 echo "<script>alert('Usuario registrado exitosamente')</script>";
-                $nombre = "";
+                $nombre = ""; //limpiar campos
                 $apellidos = "";
                 $correo = "";
                 $password = "";

@@ -1,3 +1,5 @@
+<!-- Autor: Jafet Daniel Fonseca Garcia -->
+<!-- Pagina que muestra la animacion de carga del sistema -->
 <?php
 session_start(); //iniciar session de usuario
 
@@ -76,9 +78,9 @@ body{
 </body>
 
 <script>
-        function redireccionar(){
+        function redireccionar(){ //funcion donde se realiza accion de redireccionar a otra pagina
       window.location.href = "home.php";
     }
-    setTimeout("redireccionar()", 1500);
+    setTimeout("redireccionar()", 1500); //tiempo de espera antes de redireccionar a la pagina de home
 </script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->

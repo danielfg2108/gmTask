@@ -1,6 +1,7 @@
 <?php require_once '../header.php'; ?>
 <?php
 $sql_tareas = "SELECT * FROM tareas ORDER BY STR_TO_DATE(fecha_entrega, '%d/%m/%Y') DESC"; //generar consulta colaboradores
+                                                                                           //se convierte el campo de fecha a tipo DATE
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->

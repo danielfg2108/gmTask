@@ -5,14 +5,14 @@ $con = conectar(); //llamar al metodo para hacer conexion a la BD
 $sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta proyectos
 $resultado = $mysqli->query($sql); //guardar consulta proyectos
 
-$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
-$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
+$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta
 
-$sql_usuarios2 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
-$resultado_usuarios2 = $mysqli->query($sql_usuarios2); //guardar consulta proyectos
+$sql_usuarios2 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_usuarios2 = $mysqli->query($sql_usuarios2); //guardar consulta
 
-$sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios
-$resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta proyectos
+$sql_usuarios3 = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <style>

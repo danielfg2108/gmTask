@@ -4,17 +4,17 @@ session_start(); //iniciar session de usuario
 if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
     header("Location: index.php"); //sino esta loggeado redirigir al home
 }
-$nombre = $_SESSION['nombre']; //obtener el nombre del usuario
-$apellidos = $_SESSION['apellidos']; //obtener apellidos del usuario
+$nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
+$apellidos = $_SESSION['apellidos']; //obtener apellidos de la sesion usuario
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];
 
 require "bd/conexion.php"; //llamar a la conexion
 
 $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 4"; //generar consulta colaboradores
-$resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
+$resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta
 
-$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta
+$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta proyectos
 $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 
 //para mostrar imagen de perfil
@@ -22,21 +22,21 @@ $sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //gen
 $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
 $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
 
-//para numero de notificaciones
+//para obtener el numero de notificaciones
 $sql_notificaciones = "SELECT id_notificacion FROM notificaciones 
-                       WHERE id_usuario_receptor='$id' AND leido='0'"; //generar consulta
+                       WHERE id_usuario_receptor='$id' AND leido='0'"; //generar consulta notificaciones
 $resultado_notificaciones = $mysqli->query($sql_notificaciones); //guardar consulta
 $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta genero resultados
 
-date_default_timezone_set('America/Mexico_City');  
-$fecha_sistema = date('l, d F', time());
+date_default_timezone_set('America/Mexico_City');  //establecer zona horaria y de fecha
+$fecha_sistema = date('l, d F', time()); //establecer formato que tendra la fecha
 
 $sql_usuarios = "SELECT usuarios.nombre, usuarios.apellidos, 
                         imagenes_perfil.nombre AS 'nombre_foto' 
                  FROM usuarios
                  JOIN imagenes_perfil
                  USING (id_usuario)
-                 ORDER BY usuarios.nombre ASC"; //generar consulta colaboradores
+                 ORDER BY usuarios.nombre ASC"; //generar consulta para obtener datos del usuario
 $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -203,8 +203,8 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             Estadísticas
                         </a>
                         
-
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
+                        
                         <!-- seccion "reportes" del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Reporte de Servicios</div>
                         <a class="nav-link" href="reportes/reportes.php">
@@ -220,10 +220,10 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                         <a class="nav-link" href="reportes/status_reporte.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Status de servicios
-                        </a>
-                       
+                        </a>                   
 
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
+
                         <!-- seccion "proyectos del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Proyectos y Tareas</div>
 
@@ -262,7 +262,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                     <br>
 
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-6"> <!-- tabla de tareas recientes --> 
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -301,7 +301,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             </div>
                         </div>
 
-                        <div class="col-xl-6">
+                        <div class="col-xl-6"><!-- tabla de proyectos recientes --> 
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
@@ -332,10 +332,10 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             </main>
 
             <h4 style="text-align: center;">Personas</h4>
-            <section class="product"><!-- CARRUSEL -->             
+            <section class="product"><!-- CARRUSEL de personas -->             
                 <div class="product-container">
                     <?php
-                        while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
+                        while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) { //mientras devuelva resultados la consulta
                     ?>
                      <div class="product-card">
                         <div class="product-image">               
@@ -346,11 +346,12 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                         </div>
                     </div>
                     <?php
-                        }
+                        }//while
                     ?>
                 </div>
-            </section><!-- CARRUSEL -->
+            </section><!-- CARRUSEL de personas-->
 
+            <!-- imagen de pie de pagina -->
             <div  id="div_img" class="container-fluid px-4">
                 <img src="images/gm_marcas_.jpg" id="imagen_footer">
             </div>

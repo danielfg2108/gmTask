@@ -1,4 +1,5 @@
 <?php
+//PAGINA QUE SERVIRA COMO ENCABEZADO DE TODAS LAS PAGINAS DEL SISTEMA, MENOS EL HOME
 require "bd/conexion.php"; //llamar a la conexion 
 session_start(); //iniciar session de usuario
 

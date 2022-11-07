@@ -15,7 +15,7 @@ if (!empty($id_tarea_cambio_sec) && !empty($cambio_seccion)) { //validar que los
 
   if( ($cambio_seccion == "SIN SECCION") || ($cambio_seccion == "sin seccion") ){ //sin seccion
     
-    $sql = "DELETE FROM tareas_seccion WHERE id_tarea='$id_tarea_cambio_sec'"; //qutar tarea de secciones
+    $sql = "DELETE FROM tareas_seccion WHERE id_tarea='$id_tarea_cambio_sec'"; //qutar tarea de una seccion
 
   }else{
 

@@ -1,3 +1,4 @@
+<!-- Pagina que servira como footer de todas las paginas, principalmente ayuda a la importacion de librerias-->
 </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

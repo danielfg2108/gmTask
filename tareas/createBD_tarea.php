@@ -8,13 +8,18 @@ if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
 $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
-$apellidos = $_SESSION['apellidos']; //obtener apellidos
+$apellidos = $_SESSION['apellidos']; //obtener apellidos de sesion
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 
-date_default_timezone_set('America/Mexico_City');  
-$fecha_sistema = date('d/m/Y h:i:s a', time());
+date_default_timezone_set('America/Mexico_City');  //defiir zona horaria del sistema
+$fecha_sistema = date('d/m/Y h:i:s a', time()); //establecer formato de la fecha
 
+   /*
+   addslashes(string $str):  Devuelve un string con barras invertidas delante de los caracteres 
+   que necesitan ser escapados. Estos caracteres son la comilla simple ('), comilla doble ("),
+    barra invertida (\) y NUL (el byte null). 
+   */
   $nombre_tarea = addslashes($_POST['nombre_tarea']);
   $colaborador = addslashes($_POST['responsable']);
   $colaborador2 = addslashes($_POST['responsable2']);
@@ -24,7 +29,7 @@ $fecha_sistema = date('d/m/Y h:i:s a', time());
 
   $fecha_entrega = addslashes($_POST['fecha_entrega']);
   $date_entrega = strtotime($fecha_entrega);
-  $date = date('d/m/Y', $date_entrega);
+  $date = date('d/m/Y', $date_entrega); //definir formato de la fecha obtenida del input
 
   $descripcion_archivo1 = addslashes($_POST['descripcion_archivo1']);
   $descripcion_archivo2 = addslashes($_POST['descripcion_archivo2']);

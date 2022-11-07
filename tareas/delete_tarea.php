@@ -11,7 +11,7 @@ $id_tarea=$_GET['id_tarea'];
 $ruta = "../archivos_tareas/".$id_tarea;
 rrmdir($ruta); //eliminar carpeta fisicamente (con todo y sus archivos)
 
-function rrmdir($dir) {
+function rrmdir($dir) {//metodo que elimina carpeta con contenido
     if (is_dir($dir)) {
       $objects = scandir($dir);
       foreach ($objects as $object) {
@@ -23,9 +23,8 @@ function rrmdir($dir) {
       rmdir($dir);
     }
  } 
-
         $sql="DELETE FROM tareas WHERE id_tarea='$id_tarea'";
-        $query=mysqli_query($con,$sql); //ejecutar consulta para eliminar proyecto
+        $query=mysqli_query($con,$sql); //ejecutar consulta para eliminar proyecto de la BD
 
         if($query){
                 header("Location: tareas.php");

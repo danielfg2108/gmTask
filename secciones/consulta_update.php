@@ -1,4 +1,5 @@
 <?php
+//para obtener los datos de una seccion elegida y poder mostrar esos datos en un MODAL
 require "../bd/conexion.php"; //llamar a la conexion
 $con = conectar(); //llamar al metodo para hacer conexion a la BD
 

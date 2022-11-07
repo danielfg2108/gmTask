@@ -10,8 +10,7 @@ $id_tarea = $_GET['id_tarea'];
 
 $asignar_proyecto = addslashes($_POST['asignar_proyecto']);
 
-if (
-    !empty($id_tarea) && !empty($asignar_proyecto)) { //validar que los campos no esten vacios
+if ( !empty($id_tarea) && !empty($asignar_proyecto)) { //validar que los campos no esten vacios
 
     $sql = "INSERT INTO proyectos_tareas (id_proyecto, id_tarea) VALUES ('$asignar_proyecto','$id_tarea')";
     $query = mysqli_query($con, $sql); //ejecutar consulta

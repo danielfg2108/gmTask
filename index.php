@@ -1,13 +1,13 @@
 <?php
 require "bd/conexion.php"; //llamar a la conexion
 session_start(); //iniciar session
-$mensaje = "";
+$mensaje = ""; //mensaje de error cuando se ingresan credenciales incorrectas
 
 if($_POST){//si ya se ingresaron los datos
 	$correo = $_POST['correo']; //obtener correo ingresado
 	$password = $_POST['password']; //obtener password ingresada
 
-	$sql = "SELECT id_usuario, nombre, apellidos, correo, password FROM usuarios WHERE correo ='$correo'"; //generar consulta
+	$sql = "SELECT id_usuario, nombre, apellidos, correo, password FROM usuarios WHERE correo ='$correo'"; //generar consulta para obtener datos del usuario
 
 	$resultado = $mysqli->query($sql); //guardar consulta
 	$num = $resultado->num_rows; //si la consulta genero resultados
@@ -19,8 +19,8 @@ if($_POST){//si ya se ingresaron los datos
 		$pass_cifrado = sha1($password); //cifrar password ingresada
 		$mensaje = "";
 
-		if ($password_bd == $pass_cifrado) {
-			$_SESSION['nombre'] = $row['nombre'];
+		if ($password_bd == $pass_cifrado) { //si coinciden la contraseña ingresada con la de la bd
+			$_SESSION['nombre'] = $row['nombre']; //obtener valores de la sesion
 			$_SESSION['apellidos'] = $row['apellidos'];
 			$_SESSION['correo'] = $row['correo'];
 			$_SESSION['id'] = $row['id_usuario'];

@@ -7,7 +7,8 @@ $sql_bandeja = "SELECT notificaciones.id_notificacion, notificaciones.tipo, noti
                 INNER JOIN colaboradores_tareas
                 ON notificaciones.id_tarea = colaboradores_tareas.id_tarea
                 WHERE colaboradores_tareas.id_usuario = '$id' AND notificaciones.id_usuario_receptor  = '$id'
-                ORDER BY notificaciones.id_notificacion DESC"; //generar consulta colaboradores
+                ORDER BY notificaciones.id_notificacion DESC"; //generar consulta para obtener las notificaciones del usuario
+                                                              //y que sea colaborador de la tarea
 
 $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
 ?>
