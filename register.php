@@ -16,6 +16,9 @@ $confirm_password = $_POST['confirm_password'];
       !empty($password) && !empty($confirm_password)) {//validar que los campos no esten vacios
 
         if( $password  == $confirm_password){ //si ambas contraseñas son iguales
+
+            if(str_contains($password, "@gm.com") && str_ends_with($password, "@gm.com")){ //verifica si es correo gm
+
            $sql_verificar = "SELECT * FROM usuarios WHERE correo='$correo'"; //consulta para ver si ya existe usuario con ese correo
            $resultado = $mysqli->query($sql_verificar); // guardar(obtener) consulta realizada
       
@@ -55,6 +58,10 @@ $confirm_password = $_POST['confirm_password'];
            }else{ //verificar si no existe el usuario en la base de datos
             $mensaje = "el usuario ya existe";
            }
+
+        }else{   //verfica si es correo gm
+            $mensaje = "error de correo, ingrese una dirección de correo electrónico gm válida";
+        }
         
         }else{//si ambas contraseñas son iguales
             $mensaje = "las contraseñas no coinciden";
@@ -102,7 +109,7 @@ $confirm_password = $_POST['confirm_password'];
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="correo" name="correo" required/>
-                                                <label for="inputEmail">Dirección de correo electrónico</label>
+                                                <label for="inputEmail">Dirección de correo electrónico empresarial (@gm)</label>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
