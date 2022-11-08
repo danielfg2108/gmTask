@@ -17,7 +17,7 @@ $confirm_password = $_POST['confirm_password'];
 
         if( $password  == $confirm_password){ //si ambas contraseñas son iguales
 
-            if(str_contains($password, "@gm.com") && str_ends_with($password, "@gm.com")){ //verifica si es correo gm
+            if(str_contains($correo, "@gm.com") && str_ends_with($correo, "@gm.com")){ //verifica si es correo gm
 
            $sql_verificar = "SELECT * FROM usuarios WHERE correo='$correo'"; //consulta para ver si ya existe usuario con ese correo
            $resultado = $mysqli->query($sql_verificar); // guardar(obtener) consulta realizada
