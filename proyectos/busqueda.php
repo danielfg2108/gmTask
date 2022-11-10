@@ -59,12 +59,12 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
                     <div class="product-card">
                         <div class="product-image">
                             <?php
-                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_tarea' AND descripcion LIKE '%.%g' LIMIT 1"; //generar archivos
+                            $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_tarea' AND nombre LIKE '%.%g' LIMIT 1"; //generar archivos
                             $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
                             $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_imagen = $resultado_imagen->num_rows; //si la consulta genero resultados          
                             if($num_imagen > 0){
-                                $ruta_imagen =  "archivos_tareas/".$id_tarea."/".$row_imagen['descripcion'];
+                                $ruta_imagen =  "archivos_tareas/".$id_tarea."/".$row_imagen['nombre'];
                             }else{
                                 $ruta_imagen = "images/tarea.jpg";
                             }

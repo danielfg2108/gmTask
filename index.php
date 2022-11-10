@@ -45,7 +45,7 @@ if($_POST){//si ya se ingresaron los datos
 	<meta name="description" content="sistema para el control y gestion de tareas"/>
     <meta name="author" content="jafet daniel fonseca garcia"/>
     <title>Task - login</title>
-    <link rel="stylesheet" href="css/estilos_login2.css">
+    <link rel="stylesheet" href="css/estilos_login.css">
 </head>
 <body>
     <section class="login">
@@ -71,10 +71,9 @@ if($_POST){//si ya se ingresaron los datos
 			</div>
 		</div>
 	</section>
+
 	<footer>
-		<div >
-				<div class="text-muted">Copyright &copy; Your Website 2022. By Jafet Daniel Fonseca Garcia</div>
-		</div>
+			<div class="text-muted">Copyright &copy; Your Website 2022. By Jafet Daniel Fonseca Garcia</div>
 	</footer>
 </body>
 </html>
