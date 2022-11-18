@@ -61,6 +61,5 @@ if ($_POST) { //si ya se ingresaron los datos
     <input type="submit" class="btn btn-primary" value="Crear">
   </form>
 </div>
-
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <?php require_once '../footer.php'; ?>

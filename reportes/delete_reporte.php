@@ -12,7 +12,7 @@ $id=$_GET['id'];
 $ruta = "../archivos_servicios/".$id;
 rrmdir($ruta); //eliminar carpeta fisicamente (con todo y sus archivos)
 
-function rrmdir($dir) {
+function rrmdir($dir) { //funcion para borrar carpeta y sus archivos dentro
     if (is_dir($dir)) {
       $objects = scandir($dir);
       foreach ($objects as $object) {
@@ -24,11 +24,11 @@ function rrmdir($dir) {
       rmdir($dir);
     }
  } 
-
-        $sql="DELETE FROM reporte_servicios WHERE id_servicio='$id'";
+ 
+        $sql="DELETE FROM reporte_servicios WHERE id_servicio='$id'"; //consuta para borrar registro
              $query=mysqli_query($con,$sql); //ejecutar consulta para eliminar servicio
 
-        if($query){
+        if($query){ //si se ejecuto el query correctamente
                 header("Location: reportes.php");
                 echo "<script>alert('Elemento eliminado')</script>";               
             }else{

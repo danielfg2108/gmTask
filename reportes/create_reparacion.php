@@ -14,7 +14,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
    $sc_creation_date = addslashes($_POST['sc_creation_date']);
    $date_sc = strtotime($sc_creation_date);
-   $date = date('d/m/Y', $date_sc);
+   $date = date('d/m/Y', $date_sc); //modificar formato de fecha
 
    $shopping_cart_no = addslashes($_POST['shopping_cart_no']);
    $shipper_no = addslashes($_POST['shipper_no']);
@@ -40,9 +40,7 @@ if ($_POST) { //si ya se ingresaron los datos
       && !empty($cost_center) && !empty($tarea) && !empty($status) && !empty($observaciones)
    ) { //validar que los campos no esten vacios
 
-      if ($status == ('CERRADO' || 'cerrado')) {
-
-        // if (!empty($_FILES['archivo1'])) { //si se envio algo 
+      if ($status == ('CERRADO' || 'cerrado')) { //si el status se se establece como CERRADO
 
       $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
       product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
@@ -141,11 +139,6 @@ if ($_POST) { //si ya se ingresaron los datos
                echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
 
-         /*} else {
-            echo '<h3 style="color: red;">NO FUE POSIBLE REALIZAR EL REGISTRO, FAVOR DE ADJUNTAR LOS ARCHIVOS NECESARIOS PARA EL STATUS "CERRADO"</h3>';
-         }*/
-
-
       } else 
         if($status == 'ABIERTO' || 'abierto' ){
          //si el status es abierto
@@ -202,7 +195,6 @@ if ($_POST) { //si ya se ingresaron los datos
             } else {
                echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
-         
       }//si el status es abierto
    } //validar que los campos no esten vacios
 
@@ -213,16 +205,16 @@ if ($_POST) { //si ya se ingresaron los datos
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#ABIERTO"){
-            document.querySelector('#archivo1').required = false;
+        if(selectValor == "#ABIERTO"){  //si se asigno el status como ABIERTO
+            document.querySelector('#archivo1').required = false; //quitar el REQUIRED de los input
             document.querySelector('#archivo2').required = false;
            }else{
-            document.querySelector('#archivo1').required = true;
+            document.querySelector('#archivo1').required = true; //agregar REQUIRED a los input
             document.querySelector('#archivo2').required = true;
            }
 
-        $('#pai').children('div').hide();
-        $('#pai').children(selectValor).show();
+        $('#pai').children('div').hide(); //ocultar etiqueta html
+        $('#pai').children(selectValor).show(); //mostrar etiqueta html
     })
 })
 </script>
@@ -346,16 +338,16 @@ if ($_POST) { //si ya se ingresaron los datos
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#ABIERTO"){
-            document.querySelector('#archivo1').required = false;
+        if(selectValor == "#ABIERTO"){ //si se asigno el status como ABIERTO
+            document.querySelector('#archivo1').required = false; //quitar el REQUIRED del input
             document.querySelector('#archivo2').required = false;
            }else{
-            document.querySelector('#archivo1').required = true;
+            document.querySelector('#archivo1').required = true; //agregar REQUIRED al input
             document.querySelector('#archivo2').required = true;
            }
 
-        $('#pai').children('div').hide();
-        $('#pai').children(selectValor).show();
+        $('#pai').children('div').hide(); //ocultar etiqueta html
+        $('#pai').children(selectValor).show(); //mostrar etiqueta html
     })
 })
 </script>

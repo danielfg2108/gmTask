@@ -140,7 +140,7 @@
 <?php require_once '../footer.php';?>
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL exportar excel MODAL-->
 <div class="modal fade" id="modalExcel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -162,10 +162,10 @@
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL exportar excel MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL exportar PDF MODAL-->
 <div class="modal fade" id="modalPDF" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -187,12 +187,10 @@
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL exportar PDF MODAL-->
 
 
-
-
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eviar correo MODAL-->
 <div class="modal fade" id="modalCorreo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -240,11 +238,10 @@
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
+<!-- MODAL eviar correo MODAL-->
 
 <script>
-  /*
+  /* //PARA CORREO ELECTRONICO
   $(function() {
     var url = $("#formCorreo").attr("action"); //obtener url del action
 

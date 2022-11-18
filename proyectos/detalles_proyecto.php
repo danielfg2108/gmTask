@@ -45,7 +45,6 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
     <a type="button" class="btn btn-secondary" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalSeccion">Agregar sección</a>
 </div>
 <br>
-
 <link rel="stylesheet" href="../css/estilos_cards.css">
 
 <!-- TAREAS SIN SECCIÓN-->
@@ -195,7 +194,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 <?php require_once '../footer.php'; ?>
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL modificar datos MODAL-->
 <!--  ltrim — Retira espacios en blanco (u otros caracteres) del inicio de un string -->
 <div class="modal fade" id="modalProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -229,10 +228,9 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL modificar datos MODAL-->
 
-
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar proyecto MODAL-->
 <div class="modal fade" id="modalEliminar_p" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -254,10 +252,10 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar proyecto MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL agregar seccion MODAL-->
 <!--  ltrim — Retira espacios en blanco (u otros caracteres) del inicio de un string -->
 <div class="modal fade" id="modalSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -283,10 +281,10 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL agregar seccion MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL editar seccion MODAL-->
 <div class="modal fade" id="modalSeccionUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -312,10 +310,10 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL editar seccion MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar seccion MODAL-->
 <div class="modal fade" id="modalSeccionDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -338,10 +336,10 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar seccion MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL mover de seccion MODAL-->
 <div class="modal fade" id="modalCambiarSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -376,8 +374,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
+<!-- MODAL mover de seccion MODAL-->
 
 <script>
     const productContainers = [...document.querySelectorAll('.product-container')]; //aminacion carrusel

@@ -18,15 +18,14 @@ $ruta = "../archivos_servicios/".$row['id_servicio']."/".$row['descripcion'];
 unlink($ruta); //eliminar archivo
 
 //elimianr registro de la bd
-$delete="DELETE FROM archivos_reporte_servicios WHERE id_archivo='$id_archivo'"; //generar consulta
+$delete="DELETE FROM archivos_reporte_servicios WHERE id_archivo='$id_archivo'"; //generar consulta delete
 $query_delete=mysqli_query($con,$delete); //ejecutar consulta
 
-if($query_delete){
+if($query_delete){ //si se ejecuto correctamente la consulta
     Header("Location: detalles_reportes.php?id=$id_servicio");
 
     echo "<script>alert('Elemento eliminado')</script>";               
 }else{
     echo "<script>alert('Error al eliminar elemento')</script>";
 }
-       
 ?>

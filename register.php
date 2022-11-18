@@ -60,7 +60,7 @@ if ($_POST) { //si ya se ingresaron los datos
                     $mensaje = "el usuario ya existe";
                 }
             } else {   //verfica si es correo gm
-                $mensaje = "error de correo, ingrese una dirección de correo electrónico gm válida";
+                $mensaje = "Error de correo, ingrese una dirección de correo electrónico @gm válida";
             }
         } else { //si ambas contraseñas son iguales
             $mensaje = "las contraseñas no coinciden";

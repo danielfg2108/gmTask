@@ -179,10 +179,8 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 <?php require_once '../footer.php'; ?>
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
+<!-- MODAL modificar datos MODAL-->
 <!--  ltrim — Retira espacios en blanco (u otros caracteres) del inicio de un string -->
-
 <div class="modal fade" id="modalReporte" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -279,11 +277,10 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL modificar datos MODAL-->
 
 
-
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar servicio MODAL-->
 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -305,10 +302,10 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL eliminar servicio MODAL-->
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL agregar archivo MODAL-->
 <div class="modal fade" id="modalArchivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -331,7 +328,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     </div>
   </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL agregar archivo MODAL-->
 
 <script>
   $(function() {

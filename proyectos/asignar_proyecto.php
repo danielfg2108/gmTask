@@ -7,7 +7,6 @@ if (!isset($_SESSION['id'])) { //validando si el usuario esta loggeado
 }
 
 $id_tarea = $_GET['id_tarea'];
-
 $asignar_proyecto = addslashes($_POST['asignar_proyecto']);
 
 if ( !empty($id_tarea) && !empty($asignar_proyecto)) { //validar que los campos no esten vacios
@@ -15,7 +14,7 @@ if ( !empty($id_tarea) && !empty($asignar_proyecto)) { //validar que los campos 
     $sql = "INSERT INTO proyectos_tareas (id_proyecto, id_tarea) VALUES ('$asignar_proyecto','$id_tarea')";
     $query = mysqli_query($con, $sql); //ejecutar consulta
 
-    if ($query) {
+    if ($query) {//si se ejecuto la consulta
         Header("Location: ../tareas/detalles_tarea.php?id_tarea=$id_tarea");
     }
 }

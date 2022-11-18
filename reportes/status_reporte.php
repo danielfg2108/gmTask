@@ -1,9 +1,9 @@
 <?php require_once '../header.php';?>
 <?php 
-    $sql = "SELECT * FROM reporte_servicios WHERE status LIKE '%abiert%' OR status LIKE '%ABIERT%'"; //generar consulta
+    $sql = "SELECT * FROM reporte_servicios WHERE status LIKE '%abiert%' OR status LIKE '%ABIERT%'"; //si el status es ABIERTO
     $resultado = $mysqli->query($sql); //guardar consulta
 
-    $sql_cerrado = "SELECT * FROM reporte_servicios WHERE status LIKE '%cerrad%' OR status LIKE '%CERRAD%'"; //generar consulta
+    $sql_cerrado = "SELECT * FROM reporte_servicios WHERE status LIKE '%cerrad%' OR status LIKE '%CERRAD%'"; //si el status es CERRADO
     $resultado_cerrado = $mysqli->query($sql_cerrado); //guardar consulta
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
@@ -30,9 +30,7 @@
                                             <th>Shopping Cart No.</th>
                                             <th>SC Description</th>
                                             <th>Product Description</th>
-                                           
-                                            <th>Status</th>
-                                                               
+                                            <th>Status</th>                
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -42,10 +40,8 @@
                                             <th>SC Creation Date</th>
                                             <th>Shopping Cart No.</th>
                                             <th>SC Description</th>
-                                            <th>Product Description</th>
-                                            
-                                            <th>Status</th>
-                                            
+                                            <th>Product Description</th>                                          
+                                            <th>Status</th>                                 
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -62,8 +58,7 @@
                                             <td><?php echo $row['sc_description']?></td>
                                             <td><?php echo $row['product_description']?></td>
                                             
-                                            <td class="bg-success"><?php echo $row['status']?></td>
-                                          
+                                            <td class="bg-success"><?php echo $row['status']?></td>                                          
                                         </tr>
                                         <?php 
                                             }
@@ -73,9 +68,7 @@
                             </div>
                         </div>
 
-
                         <h1 class="mt-4">Servicios Cerrados</h1>
-
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -91,9 +84,7 @@
                                             <th>Shopping Cart No.</th>
                                             <th>SC Description</th>
                                             <th>Product Description</th>
-                                           
-                                            <th>Status</th>
-                                                               
+                                            <th>Status</th>                  
                                         </tr>
                                     </thead>
                                    
@@ -112,7 +103,6 @@
                                             <td><?php echo $row_cerrado['product_description']?></td>
                                             
                                             <td class="bg-danger"><?php echo $row_cerrado['status']?></td>
-                                          
                                         </tr>
                                         <?php 
                                             }

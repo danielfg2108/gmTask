@@ -41,8 +41,6 @@ if ($_POST) { //si ya se ingresaron los datos
 
       if ($status == ('CERRADO' || 'cerrado')) {
 
-        // if (!empty($_FILES['archivo1'])) { //si se envio algo 
-
       $sql = "INSERT INTO reporte_servicios (planta, sc_creation_date, shopping_cart_no, shipper_no, sc_description,
       product_description, created_by_name, po_number, ir, vendor_name, product_type_text, 
       item_net_value, document_currency, cost_center, tarea, status, observaciones, tipo)
@@ -77,7 +75,6 @@ if ($_POST) { //si ya se ingresaron los datos
                   }
                }
           
-
                $planta = ""; //limpiar campos
                $sc_creation_date = "";
                $date_sc = "";
@@ -120,11 +117,6 @@ if ($_POST) { //si ya se ingresaron los datos
             } else {
                echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
-
-         /*} else {
-            echo '<h3 style="color: red;">NO FUE POSIBLE REALIZAR EL REGISTRO, FAVOR DE ADJUNTAR LOS ARCHIVOS NECESARIOS PARA EL STATUS "CERRADO"</h3>';
-         }*/
-
 
       } else 
         if($status == ('ABIERTO' || 'abierto') ){
@@ -182,7 +174,6 @@ if ($_POST) { //si ya se ingresaron los datos
             } else {
                echo "<script>swal('ERROR al registrar servicio', '', 'error')</script>";
             }
-         
       }//si el status es abierto
    } //validar que los campos no esten vacios
 
@@ -193,21 +184,20 @@ if ($_POST) { //si ya se ingresaron los datos
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#ABIERTO"){
-            document.querySelector('#archivo1').required = false;
+        if(selectValor == "#ABIERTO"){ //si el status es ABIERTO
+            document.querySelector('#archivo1').required = false; //quitar el REQUIRED de la etiqueta html 
            }else{
-            document.querySelector('#archivo1').required = true;
+            document.querySelector('#archivo1').required = true; // agregar REQUIRED a la etiqueta
            }
 
-        $('#pai').children('div').hide();
-        $('#pai').children(selectValor).show();
+        $('#pai').children('div').hide(); //ocultar etiqueta html
+        $('#pai').children(selectValor).show(); //mostrar etiqueta html
     })
 })
 </script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Registrar nuevo Servicio</h1>
 <br>
-
 <div class="container mt-3">
    <form action="" method="POST" enctype="multipart/form-data">
 
@@ -228,7 +218,6 @@ if ($_POST) { //si ya se ingresaron los datos
          <label class="form-label">Shopping Cart num.:</label>
          <input type="text" class="form-control" name="shopping_cart_no" required>
       </div>
-
 
       <div class="mb-3">
          <label class="form-label">SC Description:</label>
@@ -311,20 +300,19 @@ if ($_POST) { //si ya se ingresaron los datos
       <input type="submit" class="btn btn-primary" value="Agregar" onclick="">
    </form>
 </div>
-
 <script>
    $(document).ready(function(){
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#ABIERTO"){
-            document.querySelector('#archivo1').required = false;
-           }else{
-            document.querySelector('#archivo1').required = true;
+        if(selectValor == "#ABIERTO"){ //si el status es ABIERTO
+            document.querySelector('#archivo1').required = false; //quitar REQUIRED de input
+           }else{ //si el status es CERRADO
+            document.querySelector('#archivo1').required = true; //agregar REQUIRED al input
            }
 
-        $('#pai').children('div').hide();
-        $('#pai').children(selectValor).show();
+        $('#pai').children('div').hide(); //ocultar etiqueta html
+        $('#pai').children(selectValor).show(); //mostrar etiqueta html
     })
 })
 </script>

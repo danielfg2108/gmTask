@@ -11,7 +11,6 @@ $id_proyecto = $_GET['id_proyecto'];
 $nombre = addslashes($_POST['nombre']);
 $privacidad = addslashes($_POST['privacidad']);
 
-
 if (
     !empty($nombre) && !empty($privacidad)) { //validar que los campos no esten vacios
 
@@ -19,7 +18,7 @@ if (
 
     $query = mysqli_query($con, $sql); //ejecutar consulta
 
-    if ($query) {
+    if ($query) {//si se ejecuto la consulta
         Header("Location: detalles_proyecto.php?id_proyecto=$id_proyecto");
     }
 }

@@ -4,7 +4,6 @@ if(!isset ($_SESSION['id']) ){ //validando si el usuario esta loggeado
     header("Location: ../index.php"); //sino esta loggeado redirigir al home
 }
 
-
 require "../librerias/Spreadsheet/vendor/autoload.php";
 require "../bd/conexion.php";
 
@@ -17,7 +16,6 @@ $resultado = $mysqli->query($sql);  //guardar consulta
 $excel = new Spreadsheet();
 $hojaActiva = $excel->getActiveSheet();
 $hojaActiva->setTitle("SP SERVICIOS FINAL_CSV");
-
 
 $hojaActiva->getColumnDimension('A')->setWidth(15);
 $hojaActiva->setCellValue('A1','Planta');
@@ -96,7 +94,6 @@ while($rows = $resultado->fetch_assoc()){
     $hojaActiva->setCellValue('R'.$fila, $rows['tipo']);
     $fila++;
 }
-
 // redirect output to client browser
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ReporteServicios.xlsx"');

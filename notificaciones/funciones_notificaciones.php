@@ -1,5 +1,4 @@
 <?php
-
   function notificacion_colaborador($id_colaborador, $fecha_sistema, $id_tarea, $id_user, $con){
 
     $sql_notificacion = "INSERT INTO notificaciones (tipo, leido, fecha, id_tarea, id_usuario, id_usuario_receptor)
@@ -8,7 +7,6 @@
 
     return $resultado_notificacion;
   }
-
 
   function notificacion_nuevo_colaborador($id_colaborador, $fecha_sistema, $id_tarea, $id_user, $id_usuario_receptor, $con, $mysqli){
 
@@ -68,5 +66,4 @@
     
     return $resultado_notificacion;
   }
-
   ?>

@@ -1,6 +1,6 @@
 <?php require_once '../header.php'; ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
-<h1 class="mt-4">Registrar nuevo reporte</h1>
+<h1 class="mt-4">Agregar nuevo registro</h1>
 <br>
 
 <h3 class="mt-4">Seleccione el tipo de registro que desea realizar</h3>

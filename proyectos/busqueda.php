@@ -8,7 +8,7 @@ $con = conectar();
 
 $id_proyecto = $_GET['id_proyecto'];
 
-$busqueda = addslashes($_POST['busqueda']);
+$busqueda = addslashes($_POST['busqueda']); //protege la busqueda de caracteres especiales
 
 $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
@@ -110,7 +110,7 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
 
 
 
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<!-- MODAL mover tarea de seccion MODAL-->
 <div class="modal fade" id="modalCambiarSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -145,8 +145,7 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
         </div>
     </div>
 </div>
-<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
-
+<!-- MODAL mover tarea de seccion MODAL-->
 
 <script>
      function CambiarSeccion(updateid) {

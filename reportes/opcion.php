@@ -19,7 +19,5 @@ if ($_POST) { //si ya se ingresaron los datos
    }else{
     echo "error de seleccion";
    }
-
-   
 }
 ?>
