@@ -261,7 +261,11 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label class="form-label">Document Currency:</label>
-         <input type="text" class="form-control" name="document_currency" required>
+         <input type="text" class="form-control" list="currency" name="document_currency" required>
+         <datalist id="currency">
+              <option value="MXN">
+               <option value="USD">
+            </datalist>
       </div>
 
       <div class="mb-3">
