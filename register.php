@@ -30,7 +30,6 @@ if ($_POST) { //si ya se ingresaron los datos
                     $sql = "INSERT INTO usuarios (nombre, apellidos, correo, password, tipo_usuario) VALUES ('$nombre', '$apellidos', '$correo', '$pass_cifrado', '1')"; //query para insertar
                     $result = mysqli_query($con, $sql); //ejecutar query
 
-
                     if ($result) { //si se ejecuto correctamente el query
 
                         //insertar imagen de perfil
@@ -38,7 +37,22 @@ if ($_POST) { //si ya se ingresaron los datos
                         $sql_imagen_perfil = "INSERT INTO imagenes_perfil (nombre, id_usuario) VALUES ('images/perfil.jpg', '$ultimo_id')"; //query para insertar
                         $result_imagen_perfil = mysqli_query($con, $sql_imagen_perfil); //ejecutar query
 
-                        echo "<script>alert('Usuario registrado exitosamente')</script>";
+                        //echo "<script>alert('Usuario registrado exitosamente')</script>";
+
+                        //para enviar al home una vez registrado el usuario
+                        $sql = "SELECT id_usuario, nombre, apellidos, correo, password FROM usuarios WHERE correo ='$correo'"; //generar consulta para obtener datos del usuario
+                        $resultado = $mysqli->query($sql); //guardar consulta
+                        $num = $resultado->num_rows; //si la consulta genero resultados
+                        if ($num > 0) { //si devolvio filas la consulta
+                                $row = $resultado->fetch_assoc();   
+                                session_start(); //iniciar session                  
+                                $_SESSION['nombre'] = $row['nombre']; //obtener valores de la sesion
+                                $_SESSION['apellidos'] = $row['apellidos'];
+                                $_SESSION['correo'] = $row['correo'];
+                                $_SESSION['id'] = $row['id_usuario'];
+                                header("Location: loader.php"); //mandar llamar a la siguiente pagina
+                        }//para enviar al home una vez registrado el usuario
+                       
                         $nombre = ""; //limpiar campos
                         $apellidos = "";
                         $correo = "";
@@ -49,7 +63,6 @@ if ($_POST) { //si ya se ingresaron los datos
                         $_POST['correo'] = "";
                         $_POST['password'] = "";
                         $_POST['confirm_password'] = "";
-
                         $mensaje = "";
                         //sleep(5);
                         //header("Location: index.php"); //mandar llamar a la siguiente pagina
@@ -89,10 +102,12 @@ if ($_POST) { //si ya se ingresaron los datos
         background-attachment: fixed;
         background-size: cover;
     }
+
     footer {
         margin-bottom: 10px;
     }
-    #nueva_cuenta{
+
+    #nueva_cuenta {
         color: rgba(5, 126, 196, 0.847);
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 35px;
@@ -163,14 +178,14 @@ if ($_POST) { //si ya se ingresaron los datos
         </div>
 
         <footer>
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div style="color: white;">Copyright &copy; Your Website 2022 By Jafet Daniel Fonseca Garcia</div>
-                    <div>
-                        <a href="#" style="color: white;">Privacy Policy</a>
-                        &middot;
-                        <a href="#" style="color: white;">Terms &amp; Conditions</a>
-                    </div>
+            <div class="d-flex align-items-center justify-content-between small">
+                <div style="color: white;">Copyright &copy; Your Website 2022 By Jafet Daniel Fonseca Garcia</div>
+                <div>
+                    <a href="#" style="color: white;">Privacy Policy</a>
+                    &middot;
+                    <a href="#" style="color: white;">Terms &amp; Conditions</a>
                 </div>
+            </div>
         </footer>
 
     </div>
@@ -178,5 +193,6 @@ if ($_POST) { //si ya se ingresaron los datos
 
 <script src="librerias/bootstrap.js"></script>
 <script src="js/scripts.js"></script>
+
 </html>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->

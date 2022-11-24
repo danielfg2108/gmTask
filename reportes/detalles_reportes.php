@@ -144,20 +144,44 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
     while ($row_archivos = mysqli_fetch_array($resultado_archivos)) {
     ?>
       <tr>
-        <td><?php echo $row_archivos['descripcion'] ?>
-        <?php
-                    if (
-                        str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
-                        str_contains($row_archivos['descripcion'], ".png") ||
-                        str_contains($row_archivos['descripcion'], ".JPG") ||
-                        str_contains($row_archivos['descripcion'], ".PNG")
-                    ) {
-                    ?>
-                        <br>
-                        <img src="../archivos_servicios/<?php echo $id ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
-                    <?php
-                    } //si el archivo es una imagen
-                    ?>
+        <td>
+          <?php
+          if (//si es documento pdf
+            str_contains($row_archivos['descripcion'], ".pdf") ||
+            str_contains($row_archivos['descripcion'], ".PDF")
+          ) { ?>
+            <img src="../images/pdf_logo.png" width="20px" height="20px">
+          <?php
+          } else
+            if (//si es documento word
+            str_contains($row_archivos['descripcion'], ".docx") ||
+            str_contains($row_archivos['descripcion'], ".DOCX")
+          ) { ?>
+            <img src="../images/word_logo.png" width="20px" height="20px">
+          <?php
+          } else
+              if (//si es documento excel
+            str_contains($row_archivos['descripcion'], ".xlsx") ||
+            str_contains($row_archivos['descripcion'], ".XLSX")
+          ) { ?>
+            <img src="../images/excel_logo.png" width="20px" height="20px">
+          <?php
+          }
+          
+          echo $row_archivos['descripcion'];
+
+          if (
+            str_contains($row_archivos['descripcion'], ".jpg") || //si el archivo es una imagen
+            str_contains($row_archivos['descripcion'], ".png") ||
+            str_contains($row_archivos['descripcion'], ".JPG") ||
+            str_contains($row_archivos['descripcion'], ".PNG")
+          ) {
+          ?>
+            <br>
+            <img src="../archivos_servicios/<?php echo $id ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
+          <?php
+          } //si el archivo es una imagen
+          ?>
         </td>
 
         <td>
@@ -181,49 +205,49 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
 <h5 class="mt-4">Comentarios</h5>
 <!-- Comentario section-->
-<form method="POST" action="../comentarios/enviar_comentario_servicios.php?id_servicio=<?php echo $id?>">
-    <section id="contact">
-        <div class="container px-4">
-            <div class="row gx-4 justify-content-center">
-                <div class="col-lg-8">
-                    <div class="col-xs-12">                           
-                        <?php
-                         $sql_comentarios = "SELECT * FROM comentarios_servicios WHERE id_servicio='$id'"; //generar consulta
-                         $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
+<form method="POST" action="../comentarios/enviar_comentario_servicios.php?id_servicio=<?php echo $id ?>">
+  <section id="contact">
+    <div class="container px-4">
+      <div class="row gx-4 justify-content-center">
+        <div class="col-lg-8">
+          <div class="col-xs-12">
+            <?php
+            $sql_comentarios = "SELECT * FROM comentarios_servicios WHERE id_servicio='$id'"; //generar consulta
+            $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
 
-                        while ($row_comentario = mysqli_fetch_array($resultado_comentarios)) {
+            while ($row_comentario = mysqli_fetch_array($resultado_comentarios)) {
 
-                            $id_usu_comentario = $row_comentario['id_usuario']; //guardar id en variable
-               
-                            $sql_usu_comentario = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener los datos de la tarea
-                            $resultado_usu_comentario = $mysqli->query($sql_usu_comentario); //guardar consulta
-                            $row_usu_comentario = mysqli_fetch_array($resultado_usu_comentario); //ejecutar consulta (fetch devuelve un solo registro)
-                            $num_usu_comentario = $resultado_usu_comentario->num_rows; //si la consulta genero resultados
-                            
-                            if ($num_usu_comentario > 0) { 
+              $id_usu_comentario = $row_comentario['id_usuario']; //guardar id en variable
 
-                                //imagen del perfil usuario
-                                $sql_imagen_perfil = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener imagen de perfil
-                                $resultado_imagen_perfil = $mysqli->query($sql_imagen_perfil); //guardar consulta
-                                $row_imagen_perfil = mysqli_fetch_array($resultado_imagen_perfil); //ejecutar consulta (fetch devuelve un solo registro)                         
-                            ?>
-                            <b><img src="../<?php echo $row_imagen_perfil['nombre']?>" id="image_perfil"></b>
-                            <b><?php echo $row_usu_comentario['nombre']?> <?php echo $row_usu_comentario['apellidos']?>
-                            </b> (<?php echo $row_comentario['fecha']?>)
-                            <br>
-                            <?php echo $row_comentario['descripcion']?>
-                            <br>
-                            <hr>
-                        <?php
-                            }
-                        }
-                        ?>
-                        <div class="form-group">
-                            <label for="comentario" class="form-label">Comentario:</label>
-                            <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......"></textarea>
-                        </div>
-                        <br>
-                        <input class="btn btn-primary" type="submit" value="Enviar Comentario">
+              $sql_usu_comentario = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener los datos de la tarea
+              $resultado_usu_comentario = $mysqli->query($sql_usu_comentario); //guardar consulta
+              $row_usu_comentario = mysqli_fetch_array($resultado_usu_comentario); //ejecutar consulta (fetch devuelve un solo registro)
+              $num_usu_comentario = $resultado_usu_comentario->num_rows; //si la consulta genero resultados
+
+              if ($num_usu_comentario > 0) {
+
+                //imagen del perfil usuario
+                $sql_imagen_perfil = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener imagen de perfil
+                $resultado_imagen_perfil = $mysqli->query($sql_imagen_perfil); //guardar consulta
+                $row_imagen_perfil = mysqli_fetch_array($resultado_imagen_perfil); //ejecutar consulta (fetch devuelve un solo registro)                         
+            ?>
+                <b><img src="../<?php echo $row_imagen_perfil['nombre'] ?>" id="image_perfil"></b>
+                <b><?php echo $row_usu_comentario['nombre'] ?> <?php echo $row_usu_comentario['apellidos'] ?>
+                </b> (<?php echo $row_comentario['fecha'] ?>)
+                <br>
+                <?php echo $row_comentario['descripcion'] ?>
+                <br>
+                <hr>
+            <?php
+              }
+            }
+            ?>
+            <div class="form-group">
+              <label for="comentario" class="form-label">Comentario:</label>
+              <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......"></textarea>
+            </div>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Enviar Comentario">
 </form>
 </div>
 </section>
@@ -308,7 +332,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Status:</label>
-            <input name="status" id="select" type="text" class="form-control" list="status" value="<?php echo ltrim($row['status'])?>" required>
+            <input name="status" id="select" type="text" class="form-control" list="status" value="<?php echo ltrim($row['status']) ?>" required>
             <datalist id="status">
               <option value="ABIERTO">
               <option value="CERRADO">
@@ -317,7 +341,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Observaciones:</label>
-            <textarea name="observaciones" type="text" class="form-control"><?php echo ltrim($row['observaciones'])?></textarea>
+            <textarea name="observaciones" type="text" class="form-control"><?php echo ltrim($row['observaciones']) ?></textarea>
           </div>
 
           <div class="modal-footer">
@@ -422,13 +446,13 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
                 data: formData
               })
               .done(function(r, textStatus, xhr) { //si se logro ejecutar
-                if (xhr.status == 200) {                 
-                 location.reload(true); //recargar la pagina
+                if (xhr.status == 200) {
+                  location.reload(true); //recargar la pagina
                 } else {
                   swal("error al enviar datos", "", "error");
                 }
               }).fail(function(error) {
-                swal('',error.response, 'error');
+                swal('', error.response, 'error');
               });
 
           } else { //sino se han adjuntado archivos
@@ -438,7 +462,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
 
         } //si el status es CERRADO
       } else { //si el status es CERRADO o ABIERTO
-        swal("ERROR","ingrese un status valido (ABIERTO/CERRADO)", "error");
+        swal("ERROR", "ingrese un status valido (ABIERTO/CERRADO)", "error");
       } //si el status es CERRADO O ABIERTO
 
     })
