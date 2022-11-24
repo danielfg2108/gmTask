@@ -29,7 +29,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <style>
-     #image_perfil{
+    #image_perfil {
         width: 25px;
         height: 25px;
         border-radius: 12.5px;
@@ -164,8 +164,32 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
         while ($row_archivos = mysqli_fetch_array($resultado_archivos)) {
         ?>
             <tr>
-                <td><?php echo $row_archivos['nombre'] ?>
+                <td>
                     <?php
+                    if ( //si es documento pdf
+                        str_contains($row_archivos['descripcion'], ".pdf") ||
+                        str_contains($row_archivos['descripcion'], ".PDF")
+                    ) { ?>
+                        <img src="../images/pdf_logo.png" width="20px" height="20px">
+                    <?php
+                    } else
+            if ( //si es documento word
+                        str_contains($row_archivos['descripcion'], ".docx") ||
+                        str_contains($row_archivos['descripcion'], ".DOCX")
+                    ) { ?>
+                        <img src="../images/word_logo.png" width="20px" height="20px">
+                    <?php
+                    } else
+              if ( //si es documento excel
+                        str_contains($row_archivos['descripcion'], ".xlsx") ||
+                        str_contains($row_archivos['descripcion'], ".XLSX")
+                    ) { ?>
+                        <img src="../images/excel_logo.png" width="20px" height="20px">
+                    <?php
+                    }
+
+                    echo $row_archivos['nombre'];
+
                     if (
                         str_contains($row_archivos['nombre'], ".jpg") || //si el archivo es una imagen
                         str_contains($row_archivos['nombre'], ".png")
@@ -177,7 +201,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                     } //si el archivo es una imagen
                     ?>
                 </td>
-                <td><?php  echo $row_archivos['descripcion']?></td>
+                <td><?php echo $row_archivos['descripcion'] ?></td>
                 <td>
                     <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['nombre'] ?>"><i class="fa-solid fa-eye"></i></a>
                     <a type="button" class="btn btn-danger" href="eliminar_archivo_tarea.php?id_archivo_tarea=<?php echo $row_archivos['id_archivo_tarea'] ?>&id_tarea=<?php echo $id_tarea ?>"><i class="fa-solid fa-trash-can"></i></a>
@@ -199,41 +223,41 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 <h5 class="mt-4">Comentarios</h5>
 
 <!-- Comentario section-->
-<form method="POST" action="../comentarios/enviar_comentario.php?id_tarea=<?php echo $id_tarea?>">
+<form method="POST" action="../comentarios/enviar_comentario.php?id_tarea=<?php echo $id_tarea ?>">
     <section id="contact">
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-8">
-                    <div class="col-xs-12">      
-                       
+                    <div class="col-xs-12">
+
                         <?php
-                         $sql_comentarios = "SELECT * FROM comentarios_tareas WHERE id_tarea='$id_tarea'"; //generar consulta
-                         $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
+                        $sql_comentarios = "SELECT * FROM comentarios_tareas WHERE id_tarea='$id_tarea'"; //generar consulta
+                        $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
 
                         while ($row_comentario = mysqli_fetch_array($resultado_comentarios)) {
 
                             $id_usu_comentario = $row_comentario['id_usuario']; //guardar id en variable
-               
+
                             $sql_usu_comentario = "SELECT nombre, apellidos FROM usuarios WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener los datos de la tarea
                             $resultado_usu_comentario = $mysqli->query($sql_usu_comentario); //guardar consulta
                             $row_usu_comentario = mysqli_fetch_array($resultado_usu_comentario); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_usu_comentario = $resultado_usu_comentario->num_rows; //si la consulta genero resultados
-                            
-                            if ($num_usu_comentario > 0) { 
+
+                            if ($num_usu_comentario > 0) {
 
                                 //imagen del perfil usuario
                                 $sql_imagen_perfil = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id_usu_comentario'"; //consulta para obtener imagen de perfil
                                 $resultado_imagen_perfil = $mysqli->query($sql_imagen_perfil); //guardar consulta
                                 $row_imagen_perfil = mysqli_fetch_array($resultado_imagen_perfil); //ejecutar consulta (fetch devuelve un solo registro)
-                            
-                            ?>
-                            <b><img src="../<?php echo $row_imagen_perfil['nombre']?>" id="image_perfil"></b>
-                            <b><?php echo $row_usu_comentario['nombre']?> <?php echo $row_usu_comentario['apellidos']?>
-                            </b> (<?php echo $row_comentario['fecha']?>)
-                            <br>
-                            <?php echo $row_comentario['descripcion']?>
-                            <br>
-                            <hr>
+
+                        ?>
+                                <b><img src="../<?php echo $row_imagen_perfil['nombre'] ?>" id="image_perfil"></b>
+                                <b><?php echo $row_usu_comentario['nombre'] ?> <?php echo $row_usu_comentario['apellidos'] ?>
+                                </b> (<?php echo $row_comentario['fecha'] ?>)
+                                <br>
+                                <?php echo $row_comentario['descripcion'] ?>
+                                <br>
+                                <hr>
                         <?php
                             }
                         }
@@ -266,7 +290,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                         <label for="recipient-name" class="col-form-label">Adjuntar nuevo archivo:</label>
                         <input name="archivo_tarea" type="file" class="form-control" required>
                         <br>
-                        <input type="text" class="form-control" name="descripcion_archivo" placeholder="Descripción del archivo adjuntado" required> 
+                        <input type="text" class="form-control" name="descripcion_archivo" placeholder="Descripción del archivo adjuntado" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -313,7 +337,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Descripción:</label>
-                        <textarea type="text" class="form-control" name="descripcion" required><?php echo ltrim($row['descripcion'])?></textarea>
+                        <textarea type="text" class="form-control" name="descripcion" required><?php echo ltrim($row['descripcion']) ?></textarea>
                     </div>
 
                     <div class="mb-3">
