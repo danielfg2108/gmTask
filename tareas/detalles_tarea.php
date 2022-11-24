@@ -167,22 +167,22 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 <td>
                     <?php
                     if ( //si es documento pdf
-                        str_contains($row_archivos['descripcion'], ".pdf") ||
-                        str_contains($row_archivos['descripcion'], ".PDF")
+                        str_contains($row_archivos['nombre'], ".pdf") ||
+                        str_contains($row_archivos['nombre'], ".PDF")
                     ) { ?>
                         <img src="../images/pdf_logo.png" width="20px" height="20px">
                     <?php
                     } else
             if ( //si es documento word
-                        str_contains($row_archivos['descripcion'], ".docx") ||
-                        str_contains($row_archivos['descripcion'], ".DOCX")
+                        str_contains($row_archivos['nombre'], ".docx") ||
+                        str_contains($row_archivos['nombre'], ".DOCX")
                     ) { ?>
                         <img src="../images/word_logo.png" width="20px" height="20px">
                     <?php
                     } else
               if ( //si es documento excel
-                        str_contains($row_archivos['descripcion'], ".xlsx") ||
-                        str_contains($row_archivos['descripcion'], ".XLSX")
+                        str_contains($row_archivos['nombre'], ".xlsx") ||
+                        str_contains($row_archivos['nombre'], ".XLSX")
                     ) { ?>
                         <img src="../images/excel_logo.png" width="20px" height="20px">
                     <?php
