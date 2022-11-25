@@ -203,7 +203,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                 </td>
                 <td><?php echo $row_archivos['descripcion'] ?></td>
                 <td>
-                    <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['nombre'] ?>"><i class="fa-solid fa-eye"></i></a>
+                    <a type="button" class="btn btn-success" href="../archivos_tareas/<?php echo $id_tarea ?>/<?php echo $row_archivos['nombre'] ?>" target="_blank" rel="noreferrer noopener"><i class="fa-solid fa-eye"></i></a>
                     <a type="button" class="btn btn-danger" href="eliminar_archivo_tarea.php?id_archivo_tarea=<?php echo $row_archivos['id_archivo_tarea'] ?>&id_tarea=<?php echo $id_tarea ?>"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
                 <td>

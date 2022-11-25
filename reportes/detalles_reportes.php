@@ -185,7 +185,7 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
         </td>
 
         <td>
-          <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio'] ?>/<?php echo $row_archivos['descripcion'] ?>"><i class="fa-solid fa-eye"></i></a>
+          <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio'] ?>/<?php echo $row_archivos['descripcion'] ?>" target="_blank" rel="noreferrer noopener"><i class="fa-solid fa-eye"></i></a>
           <a type="button" class="btn btn-danger" href="eliminar_archivo.php?id_archivo=<?php echo $row_archivos['id_archivo'] ?>&id_servicio=<?php echo $id ?>"><i class="fa-solid fa-trash-can"></i></a>
         </td>
         <td>
