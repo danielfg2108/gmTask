@@ -270,7 +270,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label class="form-label">IR:</label>
-         <input type="text" class="form-control" name="ir" required>
+         <input type="text" class="form-control" name="ir">
       </div>
 
       <div class="mb-3">
