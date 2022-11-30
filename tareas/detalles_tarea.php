@@ -26,6 +26,10 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
 $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tarea'"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
+//para etiquetar a persona en un comentario
+$sql_etiqueta_usuario = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar consulta
+
 ?>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <style>
@@ -264,8 +268,23 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
                         ?>
 
                         <div class="form-group">
-                            <label for="comentario" class="form-label">Comentario:</label>
-                            <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......"></textarea>
+                            <label for="comentario" class="form-label">Comentario</label>
+
+                            <div>
+                                <label for="inputState" class="form-label" style="display:inline;">Etiquetar persona: </label>
+                                <select id="etiqueta_persona" class="form-control" name="etiqueta_persona" style="width: 400px; display:inline;">
+                                    <option value="0">ninguna</option>
+                                    <?php
+                                    while ($row_u = mysqli_fetch_array($resultado_etiqueta_usuario)) {
+                                    ?>
+                                        <option value="<?php echo $row_u['id_usuario'] ?>"><?php echo $row_u['nombre'] ?> - <?php echo $row_u['correo'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......" style="margin-top: 10px;"></textarea>
                         </div>
                         <br>
                         <input class="btn btn-primary" type="submit" value="Enviar Comentario">

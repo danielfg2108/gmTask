@@ -66,4 +66,13 @@
     
     return $resultado_notificacion;
   }
+
+  function notificacion_etiqueta_persona($id_persona_etiquetada, $fecha_sistema, $id_tarea, $id_user, $con){
+
+    $sql_notificacion = "INSERT INTO notificaciones (tipo, leido, fecha, id_tarea, id_usuario, id_usuario_receptor)
+                         VALUES ('Lo ha etiquetado en un comentario', '0', '$fecha_sistema', '$id_tarea','$id_user', '$id_persona_etiquetada')"; //generar query
+    $resultado_notificacion = mysqli_query($con, $sql_notificacion); //ejecutar query
+    
+    return $resultado_notificacion;
+  }
   ?>

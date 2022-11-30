@@ -8,9 +8,13 @@ $sql_archivos = "SELECT * FROM archivos_reporte_servicios WHERE id_servicio='$id
 $resultado = $mysqli->query($sql); //guardar consulta
 $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
 $num_archivos = $resultado_archivos->num_rows; //si la consulta genero resultados
-//////////////////
 $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un solo registro)
+
+//para etiquetar a persona en un comentario
+$sql_etiqueta_usuario = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar consulta
 ?>
+
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Detalles</h1>
 <ol class="breadcrumb mb-4">
@@ -146,28 +150,28 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
       <tr>
         <td>
           <?php
-          if (//si es documento pdf
+          if ( //si es documento pdf
             str_contains($row_archivos['descripcion'], ".pdf") ||
             str_contains($row_archivos['descripcion'], ".PDF")
           ) { ?>
             <img src="../images/pdf_logo.png" width="20px" height="20px">
           <?php
           } else
-            if (//si es documento word
+            if ( //si es documento word
             str_contains($row_archivos['descripcion'], ".docx") ||
             str_contains($row_archivos['descripcion'], ".DOCX")
           ) { ?>
             <img src="../images/word_logo.png" width="20px" height="20px">
           <?php
           } else
-              if (//si es documento excel
+              if ( //si es documento excel
             str_contains($row_archivos['descripcion'], ".xlsx") ||
             str_contains($row_archivos['descripcion'], ".XLSX")
           ) { ?>
             <img src="../images/excel_logo.png" width="20px" height="20px">
           <?php
           }
-          
+
           echo $row_archivos['descripcion'];
 
           if (
@@ -244,7 +248,22 @@ $row = mysqli_fetch_array($resultado); //ejecutar consulta (fetch devuelve un so
             ?>
             <div class="form-group">
               <label for="comentario" class="form-label">Comentario:</label>
-              <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......"></textarea>
+
+              <div>
+                <label for="inputState" class="form-label" style="display:inline;">Etiquetar persona: </label>
+                <select id="etiqueta_persona" class="form-control" name="etiqueta_persona" style="width: 400px; display:inline;">
+                  <option value="0">ninguna</option>
+                  <?php
+                  while ($row_u = mysqli_fetch_array($resultado_etiqueta_usuario)) {
+                  ?>
+                    <option value="<?php echo $row_u['id_usuario'] ?>"><?php echo $row_u['nombre'] ?> - <?php echo $row_u['correo'] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              
+              <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="5" type="text" id="comentario" placeholder="Escribe tu comentario ......" style="margin-top: 10px;"></textarea>
             </div>
             <br>
             <input class="btn btn-primary" type="submit" value="Enviar Comentario">
