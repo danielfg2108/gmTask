@@ -321,7 +321,7 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">IR:</label>
-            <input name="ir" type="text" class="form-control" value="<?php echo ltrim($row['ir']) ?>" required>
+            <input name="ir" type="text" class="form-control" value="<?php echo ltrim($row['ir']) ?>">
           </div>
 
           <div class="mb-3">

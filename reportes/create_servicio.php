@@ -34,9 +34,9 @@ if ($_POST) { //si ya se ingresaron los datos
    if (
       !empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no) 
       && !empty($sc_description) && !empty($product_description) && !empty($created_by_name)
-      && !empty($po_number) && !empty($ir) && !empty($vendor_name)
+      && !empty($po_number) && !empty($vendor_name)
       && !empty($product_type_text) && !empty($item_net_value) && !empty($document_currency)
-      && !empty($cost_center) && !empty($tarea) && !empty($status) && !empty($observaciones)
+      && !empty($cost_center) && !empty($status)
    ) { //validar que los campos no esten vacios
 
       if ($status == ('CERRADO' || 'cerrado')) {
@@ -275,7 +275,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label class="form-label">Tarea:</label>
-         <input type="text" class="form-control" name="tarea" required>
+         <input type="text" class="form-control" name="tarea">
       </div>
 
       <div class="mb-3">
@@ -298,7 +298,7 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label class="form-label">Observaciones:</label>
-         <textarea name="observaciones" type="text" class="form-control" required></textarea>
+         <textarea name="observaciones" type="text" class="form-control"></textarea>
       </div>
 
       <input type="submit" class="btn btn-primary" value="Agregar" onclick="">

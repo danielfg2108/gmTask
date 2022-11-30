@@ -28,9 +28,9 @@ $observaciones = addslashes($_POST['observaciones']);
 if (
     !empty($planta) && !empty($sc_creation_date) && !empty($shopping_cart_no)
     && !empty($sc_description) && !empty($product_description) && !empty($created_by_name)
-    && !empty($po_number) && !empty($ir) && !empty($vendor_name)
+    && !empty($po_number) && !empty($vendor_name)
     && !empty($product_type_text) && !empty($item_net_value) && !empty($document_currency)
-    && !empty($cost_center) && !empty($tarea) && !empty($status) && !empty($observaciones)
+    && !empty($cost_center) && !empty($status)
 ) { //validar que los campos no esten vacios
 
     $sql = "UPDATE reporte_servicios SET planta='$planta', 
