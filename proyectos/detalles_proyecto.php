@@ -89,20 +89,20 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                         </div>
 
                         <div class="product-info">
-                            <p class="product-short-description"><?php echo $row_todas['fecha_entrega'] ?></p>
-                            <p class="price"><?php echo $row_todas['nombre'] ?></p>
+                            <p class="product-short-description" style="display: inline; text-align: left;"><?php echo $row_todas['fecha_entrega'] ?></p>
 
                             <?php
                             if (($row_todas['status'] == "ACTIVA") || ($row_todas['status'] == "activa")) { //si el status es ACTIVA            
                             ?>
-                                <p class="price" style="font-size: 13px; color: green; font-weight: bold;"><?php echo $row_todas['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 40%;"><?php echo $row_todas['status'] ?></p>
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold;"><?php echo $row_todas['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 80px;"><?php echo $row_todas['status'] ?></p>
                             <?php
                             }
                             ?>
+                            <p class="price"><?php echo $row_todas['nombre'] ?></p>
                             <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>
                         </div>
                     </div>
