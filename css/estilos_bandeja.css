@@ -17,10 +17,6 @@
     box-shadow: 0 10px 20px rgb(68, 126, 185), 0 4px 8px rgb(68, 126, 185);
 }
 
-.card-1 h3{
-    font-weight: 600;
-}
-
 span{
     position: relative;
     border-radius: 30px;

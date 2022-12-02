@@ -18,6 +18,14 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
   text-align: right; 
   font-weight: bold;
 }
+.card-1 p{
+    font-size: 15px;
+    margin-top: 1px;
+    margin-bottom: 2px;
+}
+input{
+  height: 35px;
+}
 </style>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 id="saludo" class="mt-4">Bandeja de Entrada</h1>
@@ -41,7 +49,7 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                           $row_usuario = mysqli_fetch_array($resultado_usuario); //ejecutar consulta (fetch devuelve un solo registro)
                 ?>
             <div class="card-1">
-                 <a type="button" href="../notificaciones/delete_notificacion.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>" id="borrar_notificacion"><i class="fa-solid fa-xmark" style="width: 30px; height: 30px;"></i></a> 
+                 <a type="button" href="../notificaciones/delete_notificacion.php?id_notificacion=<?php echo $row_bandeja['id_notificacion']?>" id="borrar_notificacion"><i class="fa-solid fa-xmark" style="width: 20px; height: 20px;"></i></a> 
                  <p id="visto">            
                     <?php 
                       if($row_bandeja['leido'] == "1"){ 
@@ -55,7 +63,7 @@ $resultado_bandeja = $mysqli->query($sql_bandeja); //guardar consulta proyectos
                      }        
                     ?>   
                 </p>   
-                <h5><?php echo $row_bandeja['fecha'] ?></h5>
+                <h6><?php echo $row_bandeja['fecha'] ?></h6>
                 <p>
                   <?php 
                   echo $row_usuario['nombre']." ".$row_usuario['apellidos']." ".$row_bandeja['tipo'];    
