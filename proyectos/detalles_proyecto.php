@@ -98,7 +98,7 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 80px;"><?php echo $row_todas['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 30%;"><?php echo $row_todas['status'] ?></p>
                             <?php
                             }
                             ?>
@@ -164,21 +164,22 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                             <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $row_t['id_tarea'] ?>')">MOVER DE SECCIÓN</a>
                         </div>
                         <div class="product-info">
-                            <p class="product-short-description"><?php echo $row_t['fecha_entrega'] ?></p>
-                            <p class="price"><?php echo $row_t['nombre'] ?></p>
+                            <p class="product-short-description" style="display: inline; text-align: left;"><?php echo $row_t['fecha_entrega'] ?></p>
+                            
 
                             <?php
                             if (($row_t['status'] == "ACTIVA") || ($row_t['status'] == "activa")) { //si el status es ACTIVA            
                             ?>
-                                <p class="price" style="font-size: 13px; color: green; font-weight: bold;"><?php echo $row_t['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: green; font-weight: bold;  display: inline; margin-left: 40%;"><?php echo $row_t['status'] ?></p>
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold;"><?php echo $row_t['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 30%;"><?php echo $row_t['status'] ?></p>
                             <?php
                             }
                             ?>
                             <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_t['id_tarea'] ?>&id_proyecto=<?php echo $id_proyecto ?>">Ver</a>
+                            <p class="price"><?php echo $row_t['nombre'] ?></p>
                         </div>
                     </div>
             <?php
