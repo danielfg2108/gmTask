@@ -74,7 +74,7 @@
   	margin: 5px 0;
 
   	line-height: 1.8;
-  	color: rgb(12, 30, 117);
+  	color: black;
   	font-size: 14px;
   	margin-bottom: 10px;
   }
@@ -114,21 +114,8 @@
   	opacity: 1;
   }
 
-
   .product .product-container .product-card .product-info a {
-  	padding: 10px;
-  	margin-top: 10px;
-  	text-decoration: none;
-  	color: #2fb4cc;
-  	border: 1px solid #2fb4cc;
-  	border-radius: 4px;
-  	transition: all 400ms ease;
-  	margin-bottom: 5px;
-  }
-
-  .product .product-container .product-card .product-info a:hover {
-  	background: #2fb4cc;
-  	color: #fff;
+	margin-left: 100px;
   }
 
   .product-info .price {

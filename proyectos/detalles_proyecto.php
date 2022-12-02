@@ -102,8 +102,9 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                             <?php
                             }
                             ?>
+                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>                           
                             <p class="price"><?php echo $row_todas['nombre'] ?></p>
-                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>
+                    
                         </div>
                     </div>
         <?php
