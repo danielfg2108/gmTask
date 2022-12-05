@@ -179,22 +179,11 @@ if ($_POST) { //si ya se ingresaron los datos
 
 } //POST
 ?>
-<script>
-   $(document).ready(function(){
-    $('#select').on('change', function(){
-        var selectValor = '#'+$(this).val();
-
-        if(selectValor == "#ABIERTO"){ //si el status es ABIERTO
-            document.querySelector('#archivo1').required = false; //quitar el REQUIRED de la etiqueta html 
-           }else{
-            document.querySelector('#archivo1').required = true; // agregar REQUIRED a la etiqueta
-           }
-
-        $('#pai').children('div').hide(); //ocultar etiqueta html
-        $('#pai').children(selectValor).show(); //mostrar etiqueta html
-    })
-})
-</script>
+<style>
+  #pai{
+    display: none;
+  }
+</style>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Registrar nuevo Servicio</h1>
 <br>
@@ -280,20 +269,17 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label for="inputState">Status</label>
-         <select id="select" class="form-control" name="status" style="width: 150px;">        
+         <select id="select" class="form-control" name="status" style="width: 150px;">    
+            <option value="ABIERTO">ABIERTO</option>    
             <option value="CERRADO">CERRADO</option>
-            <option value="ABIERTO">ABIERTO</option>
          </select>
       </div>
 
-      <div id="pai">
-         <div id="CERRADO" class="mb-3">
+      <div id="pai" class="mb-3">
             <label class="form-label" style="color:orange">Si cambias a status CERRADO es necesario adjuntar el reporte</label>
             <br>
             <label class="form-label" style="color: orange;">Agregar reporte:</label>
             <input type="file" class="form-control" id="archivo1" name="archivo1" required>         
-         </div>
-         <div id="ABIERTO"></div>
       </div>
 
       <div class="mb-3">
@@ -309,14 +295,16 @@ if ($_POST) { //si ya se ingresaron los datos
     $('#select').on('change', function(){
         var selectValor = '#'+$(this).val();
 
-        if(selectValor == "#ABIERTO"){ //si el status es ABIERTO
-            document.querySelector('#archivo1').required = false; //quitar REQUIRED de input
-           }else{ //si el status es CERRADO
-            document.querySelector('#archivo1').required = true; //agregar REQUIRED al input
-           }
+        if(selectValor == "#ABIERTO"){ //si se asigno el status como ABIERTO
+            document.querySelector('#archivo1').required = false; //quitar el REQUIRED del input
 
-        $('#pai').children('div').hide(); //ocultar etiqueta html
-        $('#pai').children(selectValor).show(); //mostrar etiqueta html
+            document.getElementById('pai').style.display = 'none';//ocultar div
+      
+           }else{
+            document.querySelector('#archivo1').required = true; //agregar REQUIRED al input
+
+            document.getElementById('pai').style.display = 'block';//mostrar div
+           }
     })
 })
 </script>

@@ -200,28 +200,15 @@ if ($_POST) { //si ya se ingresaron los datos
 
 } //POST
 ?>
-<script>
-   $(document).ready(function(){
-    $('#select').on('change', function(){
-        var selectValor = '#'+$(this).val();
+<style>
+  #pai{
+    display: none;
+  }
+</style>
 
-        if(selectValor == "#ABIERTO"){  //si se asigno el status como ABIERTO
-            document.querySelector('#archivo1').required = false; //quitar el REQUIRED de los input
-            document.querySelector('#archivo2').required = false;
-           }else{
-            document.querySelector('#archivo1').required = true; //agregar REQUIRED a los input
-            document.querySelector('#archivo2').required = true;
-           }
-
-        $('#pai').children('div').hide(); //ocultar etiqueta html
-        $('#pai').children(selectValor).show(); //mostrar etiqueta html
-    })
-})
-</script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4">Registrar nueva Reparación</h1>
 <br>
-
 <div class="container mt-3">
    <form action="" method="POST" enctype="multipart/form-data">
 
@@ -309,14 +296,13 @@ if ($_POST) { //si ya se ingresaron los datos
 
       <div class="mb-3">
          <label for="inputState">Status</label>
-         <select id="select" class="form-control" name="status" style="width: 150px;">        
-            <option value="CERRADO">CERRADO</option>
+         <select id="select" class="form-control" name="status" style="width: 150px;">         
             <option value="ABIERTO">ABIERTO</option>
+            <option value="CERRADO">CERRADO</option>
          </select>
       </div>
 
-      <div id="pai">
-         <div id="CERRADO" class="mb-3">
+      <div id="pai" class="mb-3">
             <label class="form-label" style="color:orange">Si cambias a status CERRADO es necesario adjuntar el reporte y shipper</label>
             <br>
             <label class="form-label" style="color: orange;">Agregar reporte:</label>
@@ -324,8 +310,6 @@ if ($_POST) { //si ya se ingresaron los datos
             <br>
             <label class="form-label " style="color: orange;">Agregar shipper:</label>
             <input type="file" class="form-control" id="archivo2" name="archivo2" required>
-         </div>
-         <div id="ABIERTO"></div>
       </div>
 
       <div class="mb-3">
@@ -345,13 +329,15 @@ if ($_POST) { //si ya se ingresaron los datos
         if(selectValor == "#ABIERTO"){ //si se asigno el status como ABIERTO
             document.querySelector('#archivo1').required = false; //quitar el REQUIRED del input
             document.querySelector('#archivo2').required = false;
+
+            document.getElementById('pai').style.display = 'none';//ocultar div
+      
            }else{
             document.querySelector('#archivo1').required = true; //agregar REQUIRED al input
             document.querySelector('#archivo2').required = true;
-           }
 
-        $('#pai').children('div').hide(); //ocultar etiqueta html
-        $('#pai').children(selectValor).show(); //mostrar etiqueta html
+            document.getElementById('pai').style.display = 'block';//mostrar div
+           }
     })
 })
 </script>

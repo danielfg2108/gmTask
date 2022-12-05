@@ -88,9 +88,7 @@ $fecha_sistema = date('d/m/Y h:i:s a', time()); //establecer formato de la fecha
     
         notificacion_colaborador($colaborador, $fecha_sistema, $id_tarea, $id, $con, $mysqli); //agregar notificacion de nuevo colaborador
       }
-      if( (!empty($colaborador2)) && ($colaborador2 != "0") && 
-          ($colaborador2 != $colaborador) && ($colaborador2 != $colaborador3)){
-
+      if( (!empty($colaborador2)) && ($colaborador2 != "0") && ($colaborador2 != $colaborador)){
         $sql_colaborador2 = "INSERT INTO colaboradores_tareas (id_tarea, id_usuario)
                             VALUES ('$id_tarea','$colaborador2')"; //generar query
         $resultado_colaborador2 = mysqli_query($con, $sql_colaborador2); //ejecutar query

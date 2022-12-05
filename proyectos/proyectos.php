@@ -1,6 +1,8 @@
 <?php require_once '../header.php'; ?>
 <?php
-$sql = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //generar consulta
+$sql = "SELECT id_proyecto FROM proyectos WHERE privacidad ='PUBLICO'
+        UNION
+        SELECT id_proyecto FROM colaboradores_proyectos WHERE id_usuario ='$id'";
 $resultado = $mysqli->query($sql); //guardar consulta
 ?>
 <h1 id="saludo" class="mt-4">Mis Proyectos</h1>
@@ -43,17 +45,26 @@ $resultado = $mysqli->query($sql); //guardar consulta
             <tbody class="table-dark">
                 <?php
                 while ($row = mysqli_fetch_array($resultado)) {
+                    $id_p = $row['id_proyecto']; //guardar id en variable
+               
+                    $sql_proyecto = "SELECT * FROM proyectos WHERE id_proyecto='$id_p'"; //consulta para obtener los datos de la tarea
+                    $resultado_proyecto = $mysqli->query($sql_proyecto); //guardar consulta
+                    $row_proyecto = mysqli_fetch_array($resultado_proyecto); //ejecutar consulta (fetch devuelve un solo registro)
+                    $num_proyecto = $resultado_proyecto->num_rows; //si la consulta genero resultados  
+    
+                    if ($num_proyecto > 0) {              
                 ?>
                     <tr>
                         <td style="width: 1px;">
                             <a type="button" href="detalles_proyecto.php?id_proyecto=<?php echo $row['id_proyecto'] ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                         </td>
-                        <td><?php echo $row['nombre'] ?></td>
-                        <td><?php echo $row['correo_creador'] ?></td>
-                        <td><?php echo $row['privacidad'] ?></td>
+                        <td><?php echo $row_proyecto['nombre'] ?></td>
+                        <td><?php echo $row_proyecto['correo_creador'] ?></td>
+                        <td><?php echo $row_proyecto['privacidad'] ?></td>
                     </tr>
                 <?php
-                }
+                } //if
+                }//while
                 ?>
             </tbody>
         </table>

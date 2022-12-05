@@ -19,7 +19,15 @@ $resultado_secciones3 = $mysqli->query($sql_secciones3); //guardar consulta
 $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto' ORDER BY id_tarea DESC"; //generar tareas del proyecto
 $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 
+$sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios WHERE id_usuario !='$id'"; //generar consulta usuarios para poder agrgar colaborador
+$resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta
 ?>
+<style>
+  #pai{
+    display: none;
+  }
+</style>
+
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <h1 class="mt-4"></h1>
 <ol class="breadcrumb mb-4">
@@ -36,10 +44,10 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
 <a type="button" class="btn btn-danger" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalEliminar_p">Eliminar</a>
 <br>
 <div style="text-align: right;">
-    <form action="busqueda.php?id_proyecto=<?php echo $id_proyecto?>" method="POST" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="busqueda.php?id_proyecto=<?php echo $id_proyecto ?>" method="POST" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Ingrese palabra clave ..." name="busqueda"/>
-            <input type="submit" class="btn btn-primary" value="Buscar"/>
+            <input class="form-control" type="text" placeholder="Ingrese palabra clave ..." name="busqueda" />
+            <input type="submit" class="btn btn-primary" value="Buscar" />
         </div>
     </form>
     <a type="button" class="btn btn-secondary" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalSeccion">Agregar sección</a>
@@ -78,14 +86,14 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                             $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_imagen = $resultado_imagen->num_rows; //si la consulta genero resultados          
 
-                            if($num_imagen > 0){
-                                $ruta_imagen =  "archivos_tareas/".$id_tarea_sin."/".$row_imagen['nombre'];
-                            }else{
+                            if ($num_imagen > 0) {
+                                $ruta_imagen =  "archivos_tareas/" . $id_tarea_sin . "/" . $row_imagen['nombre'];
+                            } else {
                                 $ruta_imagen = "images/tarea.jpg";
                             }
                             ?>
-                            <img src="../<?php echo $ruta_imagen?>" class="product-thumb" alt="">
-                            <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $id_tarea_sin?>')">MOVER A SECCIÓN</a>
+                            <img src="../<?php echo $ruta_imagen ?>" class="product-thumb" alt="">
+                            <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $id_tarea_sin ?>')">MOVER A SECCIÓN</a>
                         </div>
 
                         <div class="product-info">
@@ -102,9 +110,9 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta
                             <?php
                             }
                             ?>
-                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>                           
+                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>
                             <p class="price"><?php echo $row_todas['nombre'] ?></p>
-                    
+
                         </div>
                     </div>
         <?php
@@ -149,23 +157,23 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
             ?>
                     <div class="product-card">
                         <div class="product-image">
-                        <?php
+                            <?php
                             $sql_imagen = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_t' AND nombre LIKE '%.%g' LIMIT 1"; //generar el primer archivo jpg/png
                             $resultado_imagen = $mysqli->query($sql_imagen); //guardar consulta
                             $row_imagen = mysqli_fetch_array($resultado_imagen); //ejecutar consulta (fetch devuelve un solo registro)
                             $num_imagen = $resultado_imagen->num_rows; //si la consulta genero resultados          
-                            if($num_imagen > 0){
-                                $ruta_imagen2 =  "archivos_tareas/".$id_t."/".$row_imagen['nombre'];
-                            }else{
+                            if ($num_imagen > 0) {
+                                $ruta_imagen2 =  "archivos_tareas/" . $id_t . "/" . $row_imagen['nombre'];
+                            } else {
                                 $ruta_imagen2 = "images/tarea.jpg";
                             }
                             ?>
-                            <img src="../<?php echo $ruta_imagen2?>" class="product-thumb" alt="">
+                            <img src="../<?php echo $ruta_imagen2 ?>" class="product-thumb" alt="">
                             <a type="button" class="btn btn-secondary" onclick="CambiarSeccion('<?php echo $row_t['id_tarea'] ?>')">MOVER DE SECCIÓN</a>
                         </div>
                         <div class="product-info">
                             <p class="product-short-description" style="display: inline; text-align: left;"><?php echo $row_t['fecha_entrega'] ?></p>
-                            
+
 
                             <?php
                             if (($row_t['status'] == "ACTIVA") || ($row_t['status'] == "activa")) { //si el status es ACTIVA            
@@ -215,11 +223,25 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
 
                     <div class="mb-3">
                         <label for="inputState">Privacidad</label>
-                        <select class="form-control" name="privacidad" required>
+                        <select id="privacidad" class="form-control" name="privacidad" required>
                             <option>PUBLICO</option>
                             <option>PRIVADO</option>
                         </select>
                     </div>
+               
+                        <div class="mb-3" id="pai">
+                            <label for="inputState">Agregar miembro a proyecto</label>
+                            <select class="form-control" name="miembro">
+                                <option value="0">ninguno</option>
+                                <?php
+                                while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) {
+                                ?>
+                                    <option value="<?php echo $row_usuarios['id_usuario'] ?>"><?php echo $row_usuarios['nombre'] ?> - <?php echo $row_usuarios['correo'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -350,10 +372,10 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="../secciones/cambiar_seccion.php?id_proyecto=<?php echo $id_proyecto?>" method="POST">
+                <form action="../secciones/cambiar_seccion.php?id_proyecto=<?php echo $id_proyecto ?>" method="POST">
 
                     <div class="mb-3">
-                       <label for="recipient-name" class="col-form-label">Mover a:</label>
+                        <label for="recipient-name" class="col-form-label">Mover a:</label>
                         <select class="form-control" name="cambio_seccion" style="width: 300px;">
                             <option value="SIN SECCION">SIN SECCION</option>
                             <?php
@@ -424,8 +446,6 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         });
     })
 
-
-
     function Delete(updateid) {
         $('#hiddendata2').val(updateid); //ponerle de texto el id al input oculto del modal
         $('#modalSeccionDelete').modal('show'); //mostrar modal
@@ -447,5 +467,19 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
         $('#hiddendata3').val(updateid); //ponerle de texto el id al input oculto del modal
         $('#modalCambiarSeccion').modal('show'); //mostrar modal
     }
+</script>
+<script>
+   $(document).ready(function(){
+    $('#privacidad').on('change', function(){
+        var selectValor = '#'+$(this).val(); //obtener value de select
+
+        if(selectValor == "#PRIVADO"){
+          document.getElementById('pai').style.display = 'block';//mostrar div
+        }else
+        if(selectValor == "#PUBLICO"){
+          document.getElementById('pai').style.display = 'none';//ocultar div
+        }
+    })
+})
 </script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
