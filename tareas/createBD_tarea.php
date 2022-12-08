@@ -49,6 +49,12 @@ $fecha_sistema = date('d/m/Y h:i:s a', time()); //establecer formato de la fecha
                  VALUES ('$id_tarea', '$id')"; //generar query para insertar como colaborador al creador de la tareas
     $result_user = mysqli_query($con, $sql_user); //ejecutar query insercion en colaboradores_tareas
 
+    $cadena = 'Creo la tarea el '.$fecha_sistema;
+
+    $sql_comentario = "INSERT INTO comentarios_tareas (descripcion, fecha, id_tarea, id_usuario)
+    VALUES ('$cadena','$fecha_sistema', '$id_tarea', '$id')";
+    $result_comentario = mysqli_query($con, $sql_comentario); //ejecutar query
+
     notificacion_creador_tarea($fecha_sistema, $id_tarea, $id, $con);
 
     if ($result && $result_user) { //si se ejecuto correctamente el query 
@@ -64,6 +70,7 @@ $fecha_sistema = date('d/m/Y h:i:s a', time()); //establecer formato de la fecha
           $_POST['descripcion'] = "";
           $_POST['fecha_entrega'] = "";
           $_POST['proyecto'] = "";
+          $cadena="";
         } else {
 
           $sql_pt = "INSERT INTO proyectos_tareas (id_proyecto, id_tarea)

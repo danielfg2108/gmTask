@@ -17,8 +17,11 @@ $sql_archivos = "SELECT * FROM archivos_tareas WHERE id_tarea='$id_tarea'"; //ge
 $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
 $num_archivos = $resultado_archivos->num_rows; //si la consulta genero resultados
 
-$sql_proyectos = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO'"; //obteenr proyectos
+$sql_proyectos = "SELECT * FROM proyectos"; //obtener proyectos
 $resultado_proyectos = $mysqli->query($sql_proyectos); //guardar consulta de archivos
+
+$sql_proyectos2 = "SELECT * FROM proyectos"; //obtener proyectos
+$resultado_proyectos2 = $mysqli->query($sql_proyectos2); //guardar consulta de archivos
 
 $sql_usuarios = "SELECT id_usuario, nombre, apellidos, correo FROM usuarios"; //generar consulta usuarios
 $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyectos
@@ -89,7 +92,10 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
                 $resultado_p = $mysqli->query($sql_p); //guardar consulta
                 $row_p = mysqli_fetch_array($resultado_p); //ejecutar consulta (fetch devuelve un solo registro)
             ?>
-                <td><?php echo $row_p['nombre'] ?></td>
+                <td><?php echo $row_p['nombre'] ?>
+                    <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#modalCambiarProyecto" data-bs-whatever="@mdo">
+                        Cambiar de proyecto</a>
+                </td>
             <?php
             } else {
             ?>
@@ -113,11 +119,12 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
             <?php
             } else {
             ?>
-                <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?></td>
+                <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?>
+                <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 60px;" href="status_activa.php?id_tarea=<?php echo $row['id_tarea'] ?>">Marcar como activa</a>
+                </td>
             <?php
             }
             ?>
-
         </tr>
         <?php
         while ($row_c = mysqli_fetch_array($resultado_colaboradores)) {
@@ -435,4 +442,41 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
     </div>
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
+
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+<div class="modal fade" id="modalCambiarProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Asignar proyecto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="../proyectos/cambiar_proyecto.php?id_tarea=<?php echo $id_tarea ?>" method="POST">
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Cambiar a:</label>
+                        <select class="form-control" name="cambiar_proyecto" style="width: 300px;">
+
+                            <?php
+                            while ($row_proyectos2 = mysqli_fetch_array($resultado_proyectos2)) {
+                            ?>
+                                <option value="<?php echo $row_proyectos2['id_proyecto'] ?>"><?php echo $row_proyectos2['nombre'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Asignar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
+
 <!-- Autor: Jafet Daniel Fonseca Garcia -->

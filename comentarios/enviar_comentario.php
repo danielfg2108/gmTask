@@ -17,9 +17,6 @@ $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
 $comentario = $_POST['comentario'];
 $etiqueta_persona = $_POST['etiqueta_persona'];
 
-date_default_timezone_set('America/Mexico_City');
-$fecha = date('d-m-Y h:i:s a', time());
-
 $sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tarea'"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta proyectos
 
@@ -33,12 +30,12 @@ if (!empty($comentario)) { //validar que los campos no esten vacios
         $cadena = "@".$row_usuario['nombre']." ".$row_usuario['apellidos']." - ".$comentario;
 
         $sql = "INSERT INTO comentarios_tareas (descripcion, fecha, id_tarea, id_usuario)
-        VALUES ('$cadena','$fecha', '$id_tarea', '$id')";
+        VALUES ('$cadena','$fecha_sistema', '$id_tarea', '$id')";
 
        notificacion_etiqueta_persona($etiqueta_persona, $fecha_sistema, $id_tarea, $id, $con);
     } else {
         $sql = "INSERT INTO comentarios_tareas (descripcion, fecha, id_tarea, id_usuario)
-        VALUES ('$comentario','$fecha', '$id_tarea', '$id')";
+        VALUES ('$comentario','$fecha_sistema', '$id_tarea', '$id')";
     }//si se etiqueto a una persona
 
     $query = mysqli_query($con, $sql); //ejecutar consulta
