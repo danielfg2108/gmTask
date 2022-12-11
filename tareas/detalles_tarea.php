@@ -265,6 +265,10 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
                                 <b><img src="../<?php echo $row_imagen_perfil['nombre'] ?>" id="image_perfil"></b>
                                 <b><?php echo $row_usu_comentario['nombre'] ?> <?php echo $row_usu_comentario['apellidos'] ?>
                                 </b> (<?php echo $row_comentario['fecha'] ?>)
+
+                                <a type="button" onclick="GetDetails('<?php echo $row_comentario['id_comentario'] ?>')" style="color:blue;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a type="button" onclick="Delete('<?php echo $row_comentario['id_comentario'] ?>')" style="color:red;"><i class="fa-solid fa-trash-can"></i></a>
+                                
                                 <br>
                                 <?php echo $row_comentario['descripcion'] ?>
                                 <br>
@@ -479,4 +483,99 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
 </div>
 <!-- MODAL MODAL MODAL MODAL MODAL  MODAL MODAL MODAL MODAL MODAL MODAL MODAL-->
 
+<!-- MODAL editar comentario MODAL-->
+<div class="modal fade" id="modalComentarioUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar comentario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formUpdateComentario">
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Comentario:</label>
+                        <input name="descripcion_comentario_update" id="descripcion_comentario_update" type="text" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Modificar">
+                        <input type="hidden" id="hiddendata">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL editar comentario MODAL-->
+
+<!-- MODAL eliminar comentario MODAL-->
+<div class="modal fade" id="modalComentarioDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar comentario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formDeleteComentario">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">¿Esta seguro que desea eliminar este comentario?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                        <input type="hidden" id="hiddendata2">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL eliminar comentario MODAL-->
+
+<script>
+        function GetDetails(updateid) { //funcion para obtener datos de una seccion elegida y mostrarlos en modal
+        $('#hiddendata').val(updateid); //ponerle de texto el id al input oculto del modal
+
+        $.post("../comentarios/consulta_update_com_tarea.php", {
+            updateid: updateid
+        }, function(data, status) {
+            var userid = JSON.parse(data); //guardar consulta extraida
+            $('#descripcion_comentario_update').val(userid.descripcion); //mostrar valor en input
+        });
+        $('#modalComentarioUpdate').modal('show'); //mostrar modal
+    }
+
+    $("#formUpdateComentario").submit(function(e) { //si se presiono el boton
+        e.preventDefault();
+        var id = $('#hiddendata').val(); //obteenr id
+        var descripcion_comentario_update = $('#descripcion_comentario_update').val(); //obtener nombre
+
+        $.post("../comentarios/update_comentario_tarea.php", { //llamar a pagina update
+            id_comentario: id, //pasando paramatros
+            descripcion: descripcion_comentario_update
+        }, function(data, status) {
+            location.reload(true); //recargar la pagina
+        });
+    })
+
+    function Delete(updateid) {
+        $('#hiddendata2').val(updateid); //ponerle de texto el id al input oculto del modal
+        $('#modalComentarioDelete').modal('show'); //mostrar modal
+    }
+
+    $("#formDeleteComentario").submit(function(e) { //si se presiono el boton
+        e.preventDefault();
+        var id = $('#hiddendata2').val(); //obteenr id
+
+        $.post("../comentarios/delete_comentario_tarea.php", { //llamar a pagina update
+            id_comentario: id //pasando paramatros
+        }, function(data, status) {
+            location.reload(true); //recargar la pagina
+        });
+    })
+</script>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->

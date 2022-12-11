@@ -111,7 +111,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta
                             }
                             ?>
                             <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_todas['id_tarea'] ?>">Ver</a>
-                            <p class="price"><?php echo $row_todas['nombre'] ?></p>
+                            <p class="price" style="text-align: center;"><?php echo $row_todas['nombre'] ?></p>
 
                         </div>
                     </div>
@@ -187,7 +187,7 @@ while ($row_secciones = mysqli_fetch_array($resultado_secciones)) {
                             }
                             ?>
                             <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_t['id_tarea'] ?>&id_proyecto=<?php echo $id_proyecto ?>">Ver</a>
-                            <p class="price"><?php echo $row_t['nombre'] ?></p>
+                            <p class="price" style="text-align: center;"><?php echo $row_t['nombre'] ?></p>
                         </div>
                     </div>
             <?php
