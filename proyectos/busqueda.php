@@ -7,7 +7,6 @@ require_once '../header.php';
 $con = conectar();
 
 $id_proyecto = $_GET['id_proyecto'];
-
 $busqueda = addslashes($_POST['busqueda']); //protege la busqueda de caracteres especiales
 
 $sql_tareas = "SELECT * FROM proyectos_tareas WHERE id_proyecto='$id_proyecto'"; //generar tareas del proyecto
@@ -74,21 +73,21 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
                         </div>
 
                         <div class="product-info">
-                            <p class="product-short-description"><?php echo $row_busqueda1['fecha_entrega'] ?></p>
-                            <p class="price"><?php echo $row_busqueda1['nombre'] ?></p>
-
+                            <p class="product-short-description" style="display: inline; text-align: left;"><?php echo $row_busqueda1['fecha_entrega'] ?></p>
+                            
                             <?php
                             if (($row_busqueda1['status'] == "ACTIVA") || ($row_busqueda1['status'] == "activa")) { //si el status es ACTIVA            
                             ?>
-                                <p class="price" style="font-size: 13px; color: green; font-weight: bold;"><?php echo $row_busqueda1['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 40%"><?php echo $row_busqueda1['status'] ?></p>
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold;"><?php echo $row_busqueda1['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 30%"><?php echo $row_busqueda1['status'] ?></p>
                             <?php
                             }
                             ?>
-                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_busqueda1['id_tarea'] ?>&id_proyecto=<?php echo $id_proyecto ?>">Ver</a>
+                            <a href="../tareas/detalles_tarea.php?id_tarea=<?php echo $row_busqueda1['id_tarea']?>">Ver</a>
+                            <p class="price"><?php echo $row_busqueda1['nombre'] ?></p>
                         </div>
                     </div>
         <?php
@@ -105,10 +104,7 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
         ?>
     </div>
 </section><!-- TAREAS SIN SECCIÓN-->
-
 <?php require_once '../footer.php'; ?>
-
-
 
 <!-- MODAL mover tarea de seccion MODAL-->
 <div class="modal fade" id="modalCambiarSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

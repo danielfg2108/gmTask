@@ -42,6 +42,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,25 +54,27 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
     <link href="librerias/jsdelivr_simple_datatables_dist_style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="librerias/fontawesome.js"></script>
-    <link href="css/carrusel_personas.css" rel="stylesheet"/>
+    <link href="css/carrusel_personas.css" rel="stylesheet" />
 </head>
 <style>
     @-webkit-keyframes aitf {
         0% {
             background-position: 0% 50%;
         }
+
         100% {
             background-position: 100% 50%;
         }
     }
-    #mant{
+
+    #mant {
         text-transform: uppercase;
         border: 4px double rgba(255, 255, 255, .25);
         text-align: center;
         font-size: 130%;
     }
-   
-    #mantenimiento{
+
+    #mantenimiento {
         font: 900 4em/1 'Oswald', Tangerine;
         padding: .25em 0 .325em;
         text-shadow: 0 0 80px rgba(255, 255, 255, .5);
@@ -89,35 +92,41 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         -webkit-transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
     }
-    #image_perfil{
+
+    #image_perfil {
         width: 25px;
         height: 25px;
         border-radius: 12.5px;
     }
-    .badge { /* contador de notificaciones*/
+
+    .badge {
+        /* contador de notificaciones*/
         position: relative;
         top: -15px;
         left: -3px;
         border: 1px solid white;
         background-color: orangered;
         border-radius: 50%;
-       }
-       #nombres{
+    }
+
+    #nombres {
         text-align: center;
-       }
-       #div_img{
+    }
+
+    #div_img {
         text-align: center;
         background: radial-gradient(white, #3acfd5, #2c6dc3, #0c5980);
         border-radius: 10px;
-       }
-       #imagen_footer{
+    }
+
+    #imagen_footer {
         margin-top: 20px;
         margin-bottom: 20px;
         opacity: 0.6;
         border-radius: 50%;
         height: 60%;
         width: 40%;
-       }
+    }
 </style>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
 
@@ -148,7 +157,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?php echo $nombre; ?>
-                    <img id="image_perfil" src="<?php echo $row_imagen['nombre']?>">
+                    <img id="image_perfil" src="<?php echo $row_imagen['nombre'] ?>">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="usuarios/usuarios.php">Configuración</a></li>
@@ -176,11 +185,11 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                             Bandeja de entrada
                             <?php
-                               if($num_notificaciones > 0){
+                            if ($num_notificaciones > 0) {
                             ?>
-                            <span class="badge badge-light"><?php echo $num_notificaciones?></span>
+                                <span class="badge badge-light"><?php echo $num_notificaciones ?></span>
                             <?php
-                               }
+                            }
                             ?>
                         </a>
 
@@ -202,9 +211,9 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Estadísticas
                         </a>
-                        
+
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
-                        
+
                         <!-- seccion "reportes" del menu lateral-->
                         <div class="sb-sidenav-menu-heading">Reporte de Servicios</div>
                         <a class="nav-link" href="reportes/reportes.php">
@@ -220,7 +229,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                         <a class="nav-link" href="reportes/status_reporte.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Status de servicios
-                        </a>                   
+                        </a>
 
                         <hr size="3px" color="white" style="margin-bottom: 0px;">
 
@@ -248,21 +257,33 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-
                     <p id="mant">
                         <span id="mantenimiento">Mantenimiento</span>
                     </p>
+                    <div>
+                        <h1 class="mt-4" style="display: inline;">Task</h1>
 
-                    <h1 class="mt-4">Task</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">general motors</li>
-                    </ol>
-                    <h5 id="fecha"><?php echo $fecha_sistema?></h5>
+                        <div style="display: inline; margin-left: 69%;">
+                            <form action="tareas/busqueda_general.php" method="POST" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Buscar una tarea" name="busqueda"/>
+                                    <input type="submit" class="btn btn-primary" value="Buscar"/>
+                                </div>
+                            </form>
+                        </div>
+
+                        <ol class="breadcrumb mb-4" style="display: inline;">
+                            <li class="breadcrumb-item active">general motors</li>
+                        </ol>
+                    </div>
+
+                    <h5 id="fecha"><?php echo $fecha_sistema ?></h5>
                     <h1 id="saludo" class="mt-4" style="font-family: 'Tangerine', serif; text-shadow: 4px 4px 4px #aaa;">Welcome <?php echo $nombre . ' ' . $apellidos; ?></h1>
                     <br>
 
                     <div class="row">
-                        <div class="col-xl-6"> <!-- tabla de tareas recientes --> 
+                        <div class="col-xl-6">
+                            <!-- tabla de tareas recientes -->
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -271,7 +292,7 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                                 <div class="card-body">
                                     <table class="table table-primary table-striped">
                                         <tbody>
-                                          
+
                                             <?php
                                             while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {
 
@@ -301,7 +322,8 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             </div>
                         </div>
 
-                        <div class="col-xl-6"><!-- tabla de proyectos recientes --> 
+                        <div class="col-xl-6">
+                            <!-- tabla de proyectos recientes -->
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
@@ -332,27 +354,28 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
             </main>
 
             <h4 style="text-align: center;">Personas</h4>
-            <section class="product"><!-- CARRUSEL de personas -->             
+            <section class="product">
+                <!-- CARRUSEL de personas -->
                 <div class="product-container">
                     <?php
-                        while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) { //mientras devuelva resultados la consulta
+                    while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)) { //mientras devuelva resultados la consulta
                     ?>
-                     <div class="product-card">
-                        <div class="product-image">               
-                            <img src="<?php echo $row_usuarios['nombre_foto']?>" class="product-thumb">       
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="<?php echo $row_usuarios['nombre_foto'] ?>" class="product-thumb">
+                            </div>
+                            <div class="product-info">
+                                <p id="nombres"><?php echo $row_usuarios['nombre'] . ' ' . $row_usuarios['apellidos'] ?></p>
+                            </div>
                         </div>
-                        <div class="product-info">    
-                            <p id="nombres"><?php echo $row_usuarios['nombre'].' '.$row_usuarios['apellidos']?></p>
-                        </div>
-                    </div>
                     <?php
-                        }//while
+                    } //while
                     ?>
                 </div>
             </section><!-- CARRUSEL de personas-->
 
             <!-- imagen de pie de pagina -->
-            <div  id="div_img" class="container-fluid px-4">
+            <div id="div_img" class="container-fluid px-4">
                 <img src="images/gm_marcas_.jpg" id="imagen_footer">
             </div>
 
@@ -378,5 +401,6 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
     <script src="librerias/jsdelivr_simple_datatables.js"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
+
 </html>
 <!-- Autor: Jafet Daniel Fonseca Garcia -->
