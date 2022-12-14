@@ -24,15 +24,9 @@ $num_busqueda = $resultado_busqueda->num_rows; //si la consulta genero resultado
 </ol>
 <h2 style="display:inline;">Resultados de la Busqueda "<?php echo $busqueda?>"</h2>
 <br>
-
 <link rel="stylesheet" href="../css/estilos_cards.css">
 
 <section class="product">
-    <?php
-     if(!empty($busqueda)){
-    ?>
-    <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>
-    <button class="nxt-btn"><img src="../images/arrow.png" alt=""></button>
     <div class="product-container">
         <?php
         while ($row = mysqli_fetch_array($resultado_busqueda)) { //id de todas las tareas que tiene el proyecto
@@ -78,13 +72,6 @@ $num_busqueda = $resultado_busqueda->num_rows; //si la consulta genero resultado
         <?php
             }// if num
         } //while id de todas las tareas
-    } //si hay texto en el buscador
-    else{
-        ?>
-        <br><br><br><br>
-        <h2 style="color: gray;">SIN RESULTADOS</h2>
-        <?php
-        }
         ?>
     </div>
 </section><!-- TAREAS SIN SECCIÓN-->

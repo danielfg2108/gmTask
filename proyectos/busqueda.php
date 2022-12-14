@@ -30,11 +30,6 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
 
 <!-- TAREAS SIN SECCIÓN-->
 <section class="product">
-    <?php
-     if(!empty($busqueda)){
-    ?>
-    <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>
-    <button class="nxt-btn"><img src="../images/arrow.png" alt=""></button>
     <div class="product-container">
         <?php
         while ($row_tareas = mysqli_fetch_array($resultado_tareas)) { //id de todas las tareas que tiene el proyecto
@@ -94,13 +89,6 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
                 } //while de busqueda
             }// if num
         } //while id de todas las tareas
-    } //si hay texto en el buscador
-    else{
-        ?>
-        <br><br><br><br>
-        <h2 style="color: gray;">SIN RESULTADOS</h2>
-        <?php
-        }
         ?>
     </div>
 </section><!-- TAREAS SIN SECCIÓN-->
