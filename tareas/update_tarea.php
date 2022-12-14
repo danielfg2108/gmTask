@@ -29,7 +29,7 @@ $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consult
 $sql_colaboradores2 = "SELECT * FROM colaboradores_tareas WHERE id_tarea='$id_tarea'"; //generar consulta colaboradores
 $resultado_colaboradores2 = $mysqli->query($sql_colaboradores2); //guardar consulta proyectos
 
-if (!empty($nombre_tarea) && !empty($descripcion) && !empty($fecha_entrega)) { //validar que los campos no esten vacios
+if (!empty($nombre_tarea) && !empty($descripcion)) { //validar que los campos no esten vacios
 
     if($row_tarea['fecha_entrega'] != $fecha_entrega){
         while ($row_colaboradores = mysqli_fetch_array($resultado_colaboradores)) {

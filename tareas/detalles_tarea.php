@@ -372,7 +372,7 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Fecha de entega:</label>
-                        <input type="text" class="form-control" name="fecha_entrega" required value="<?php echo ltrim($row['fecha_entrega']) ?>" style="width: 150px;">
+                        <input type="text" class="form-control" name="fecha_entrega" value="<?php echo ltrim($row['fecha_entrega']) ?>" style="width: 150px;">
                     </div>
 
                     <div class="modal-footer">
