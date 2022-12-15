@@ -266,9 +266,14 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
                                 <b><?php echo $row_usu_comentario['nombre'] ?> <?php echo $row_usu_comentario['apellidos'] ?>
                                 </b> (<?php echo $row_comentario['fecha'] ?>)
 
+                                <?php 
+                                  if($row_comentario['id_usuario'] == $id){
+                                ?>
                                 <a type="button" onclick="GetDetails('<?php echo $row_comentario['id_comentario'] ?>')" style="color:blue;"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a type="button" onclick="Delete('<?php echo $row_comentario['id_comentario'] ?>')" style="color:red;"><i class="fa-solid fa-trash-can"></i></a>
-                                
+                                <?php
+                                  }
+                                ?>
                                 <br>
                                 <?php echo $row_comentario['descripcion'] ?>
                                 <br>

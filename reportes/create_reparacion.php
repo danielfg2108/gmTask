@@ -306,10 +306,10 @@ if ($_POST) { //si ya se ingresaron los datos
             <label class="form-label" style="color:orange">Si cambias a status CERRADO es necesario adjuntar el reporte y shipper</label>
             <br>
             <label class="form-label" style="color: orange;">Agregar reporte:</label>
-            <input type="file" class="form-control" id="archivo1" name="archivo1" required>
+            <input type="file" class="form-control" id="archivo1" name="archivo1">
             <br>
             <label class="form-label " style="color: orange;">Agregar shipper:</label>
-            <input type="file" class="form-control" id="archivo2" name="archivo2" required>
+            <input type="file" class="form-control" id="archivo2" name="archivo2">
       </div>
 
       <div class="mb-3">

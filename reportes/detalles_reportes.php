@@ -1,9 +1,9 @@
 <?php require_once '../header.php'; ?>
 <?php
 $con = conectar();
-$id = $_GET['id'];
-$sql = "SELECT * FROM reporte_servicios WHERE id_servicio='$id'"; //generar consulta
-$sql_archivos = "SELECT * FROM archivos_reporte_servicios WHERE id_servicio='$id'"; //generar consulta archivos
+$id_r = $_GET['id'];
+$sql = "SELECT * FROM reporte_servicios WHERE id_servicio='$id_r'"; //generar consulta
+$sql_archivos = "SELECT * FROM archivos_reporte_servicios WHERE id_servicio='$id_r'"; //generar consulta archivos
 
 $resultado = $mysqli->query($sql); //guardar consulta
 $resultado_archivos = $mysqli->query($sql_archivos); //guardar consulta de archivos
@@ -26,7 +26,7 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id_BD <?php echo $id ?></th>
+      <th>Id_BD <?php echo $id_r ?></th>
       <th>Descripción</th>
     </tr>
   </thead>
@@ -182,7 +182,7 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
           ) {
           ?>
             <br>
-            <img src="../archivos_servicios/<?php echo $id ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
+            <img src="../archivos_servicios/<?php echo $id_r ?>/<?php echo $row_archivos['descripcion'] ?>" width="200px" height="150px">
           <?php
           } //si el archivo es una imagen
           ?>
@@ -190,7 +190,7 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
 
         <td>
           <a type="button" class="btn btn-success" href="../archivos_servicios/<?php echo $row_archivos['id_servicio'] ?>/<?php echo $row_archivos['descripcion'] ?>" target="_blank" rel="noreferrer noopener"><i class="fa-solid fa-eye"></i></a>
-          <a type="button" class="btn btn-danger" href="eliminar_archivo.php?id_archivo=<?php echo $row_archivos['id_archivo'] ?>&id_servicio=<?php echo $id ?>"><i class="fa-solid fa-trash-can"></i></a>
+          <a type="button" class="btn btn-danger" href="eliminar_archivo.php?id_archivo=<?php echo $row_archivos['id_archivo'] ?>&id_servicio=<?php echo $id_r ?>"><i class="fa-solid fa-trash-can"></i></a>
         </td>
         <td>
       </tr>
@@ -209,14 +209,14 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
 
 <h5 class="mt-4">Comentarios</h5>
 <!-- Comentario section-->
-<form method="POST" action="../comentarios/enviar_comentario_servicios.php?id_servicio=<?php echo $id ?>">
+<form method="POST" action="../comentarios/enviar_comentario_servicios.php?id_servicio=<?php echo $id_r ?>">
   <section id="contact">
     <div class="container px-4">
       <div class="row gx-4 justify-content-center">
         <div class="col-lg-8">
           <div class="col-xs-12">
             <?php
-            $sql_comentarios = "SELECT * FROM comentarios_servicios WHERE id_servicio='$id'"; //generar consulta
+            $sql_comentarios = "SELECT * FROM comentarios_servicios WHERE id_servicio='$id_r'"; //generar consulta
             $resultado_comentarios = $mysqli->query($sql_comentarios); //guardar consulta
 
             while ($row_comentario = mysqli_fetch_array($resultado_comentarios)) {
@@ -238,10 +238,14 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
                 <b><img src="../<?php echo $row_imagen_perfil['nombre'] ?>" id="image_perfil"></b>
                 <b><?php echo $row_usu_comentario['nombre'] ?> <?php echo $row_usu_comentario['apellidos'] ?>
                 </b> (<?php echo $row_comentario['fecha'] ?>)
-
+                <?php 
+                  if($row_comentario['id_usuario'] == $id){
+                ?>
                 <a type="button" onclick="GetDetails('<?php echo $row_comentario['id_comentario_servicio'] ?>')" style="color:blue;"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a type="button" onclick="Delete('<?php echo $row_comentario['id_comentario_servicio'] ?>')" style="color:red;"><i class="fa-solid fa-trash-can"></i></a>
-
+                <?php 
+                  }
+                ?>
                 <br>
                 <?php echo $row_comentario['descripcion'] ?>
                 <br>
