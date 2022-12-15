@@ -11,10 +11,10 @@ $id = $_SESSION['id'];
 
 require "bd/conexion.php"; //llamar a la conexion
 
-$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' LIMIT 4"; //generar consulta colaboradores
+$sql_colaboradores = "SELECT * FROM colaboradores_tareas WHERE id_usuario='$id' ORDER BY id_tarea DESC LIMIT 4"; //generar consulta colaboradores
 $resultado_colaboradores = $mysqli->query($sql_colaboradores); //guardar consulta
 
-$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' LIMIT 4"; //generar consulta proyectos
+$sql_proy = "SELECT * FROM proyectos WHERE id_usuario='$id' OR privacidad ='PUBLICO' ORDER BY id_proyecto DESC LIMIT 4"; //generar consulta proyectos
 $resultado_proy = $mysqli->query($sql_proy); //guardar consulta
 
 //para mostrar imagen de perfil
