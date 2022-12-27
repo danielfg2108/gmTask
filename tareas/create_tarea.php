@@ -77,12 +77,12 @@ $resultado_usuarios3 = $mysqli->query($sql_usuarios3); //guardar consulta
 
     <div class="mb-3">
       <label for="recipient-name" class="col-form-label">Descripcion:</label>
-      <textarea  type="text" class="form-control" name="descripcion" rows="5" required style="width: 400px;"></textarea>
+      <textarea  type="text" class="form-control" name="descripcion" rows="5" style="width: 400px;"></textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Fecha de Entrega:</label>
-      <input type="date" class="form-control" name="fecha_entrega" required style="width: 150px;">
+      <input type="date" class="form-control" name="fecha_entrega" style="width: 150px;">
     </div>
 
          <div class="mb-3">
