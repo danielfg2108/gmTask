@@ -7,7 +7,7 @@ if($_POST){//si ya se ingresaron los datos
 	$correo = $_POST['correo']; //obtener correo ingresado
 	$password = $_POST['password']; //obtener password ingresada
 
-	$sql = "SELECT id_usuario, nombre, apellidos, correo, password FROM usuarios WHERE correo ='$correo'"; //generar consulta para obtener datos del usuario
+	$sql = "SELECT id_usuario, nombre, apellidos, correo, password, tipo_usuario FROM usuarios WHERE correo ='$correo'"; //generar consulta para obtener datos del usuario
 
 	$resultado = $mysqli->query($sql); //guardar consulta
 	$num = $resultado->num_rows; //si la consulta genero resultados
@@ -24,6 +24,7 @@ if($_POST){//si ya se ingresaron los datos
 			$_SESSION['apellidos'] = $row['apellidos'];
 			$_SESSION['correo'] = $row['correo'];
 			$_SESSION['id'] = $row['id_usuario'];
+			$_SESSION['tipo_usuario'] = $row['tipo_usuario'];
 
 			header("Location: loader.php"); //mandar llamar a la siguiente pagina
 			$mensaje = "";

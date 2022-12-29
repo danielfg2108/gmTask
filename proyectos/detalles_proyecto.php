@@ -41,7 +41,13 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta
 <br>
 <br>
 <a type="button" class="btn btn-warning" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalProyecto">Editar proyecto</a>
+<?php
+if($tipo_usuario == 2){
+?>
 <a type="button" class="btn btn-danger" style="height: 30px; padding-top: 3px;" data-bs-toggle="modal" data-bs-target="#modalEliminar_p">Eliminar</a>
+<?php
+}
+?>
 <br>
 <div style="text-align: right;">
     <form action="busqueda.php?id_proyecto=<?php echo $id_proyecto ?>" method="POST" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">

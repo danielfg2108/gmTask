@@ -10,6 +10,7 @@ $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
 $apellidos = $_SESSION['apellidos']; //obtener apellidos
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];  //obtener el id de la sesion del usuario
+$tipo_usuario = $_SESSION['tipo_usuario'];  //obtener el tipo de usuario
 
 //para mostrar imagen de perfil
 $sql_imagen = "SELECT nombre FROM imagenes_perfil WHERE id_usuario='$id'"; //generar consulta imagen perfil
