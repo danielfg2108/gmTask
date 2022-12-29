@@ -77,12 +77,12 @@ input{
                   <?php
                   if($row_tarea['status'] == "ACTIVA"){
                   ?>
-                  <span class="active">ACTIVA</span>
+                  <span class="waiting">ACTIVA</span>
                   <?php
                    }else
                    if($row_tarea['status'] == "FINALIZADA"){            
                   ?>
-                  <span class="waiting">FINALIZADA</span>
+                  <span class="active">FINALIZADA</span>
                   <?php
                    }
                   ?>

@@ -60,11 +60,11 @@ $num_busqueda = $resultado_busqueda->num_rows; //si la consulta genero resultado
                             <?php
                             if (($row['status'] == "ACTIVA") || ($row['status'] == "activa")) { //si el status es ACTIVA            
                             ?>
-                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 40%;"><?php echo $row['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 40%;"><?php echo $row['status'] ?></p>
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 30%;"><?php echo $row['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 30%;"><?php echo $row['status'] ?></p>
                             <?php
                             }
                             ?>

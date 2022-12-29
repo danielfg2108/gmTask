@@ -76,11 +76,11 @@ $resultado_secciones = $mysqli->query($sql_secciones); //guardar consulta
                             <?php
                             if (($row_busqueda1['status'] == "ACTIVA") || ($row_busqueda1['status'] == "activa")) { //si el status es ACTIVA            
                             ?>
-                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 40%"><?php echo $row_busqueda1['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 40%"><?php echo $row_busqueda1['status'] ?></p>
                             <?php
                             } else { //si es status es FINALIZADA   
                             ?>
-                                <p class="price" style="font-size: 13px; color: red; font-weight: bold; display: inline; margin-left: 30%"><?php echo $row_busqueda1['status'] ?></p>
+                                <p class="price" style="font-size: 13px; color: green; font-weight: bold; display: inline; margin-left: 30%"><?php echo $row_busqueda1['status'] ?></p>
                             <?php
                             }
                             ?>

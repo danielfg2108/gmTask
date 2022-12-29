@@ -113,13 +113,13 @@ $resultado_etiqueta_usuario = $mysqli->query($sql_etiqueta_usuario); //guardar c
             <?php
             if (($row['status'] == "ACTIVA") || ($row['status'] == "activa")) {
             ?>
-                <td style="color: green; font-weight: bold;"><?php echo $row['status'] ?>
+                <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?>
                     <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 60px;" href="status_finalizada.php?id_tarea=<?php echo $row['id_tarea'] ?>">Marcar como finalizada</a>
                 </td>
             <?php
             } else {
             ?>
-                <td style="color: red; font-weight: bold;"><?php echo $row['status'] ?>
+                <td style="color: green; font-weight: bold;"><?php echo $row['status'] ?>
                 <a type="button" class="btn btn-warning" style="height: 25px; padding-top: 1px; margin-left: 60px;" href="status_activa.php?id_tarea=<?php echo $row['id_tarea'] ?>">Marcar como activa</a>
                 </td>
             <?php

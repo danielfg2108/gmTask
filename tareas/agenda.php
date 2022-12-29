@@ -59,11 +59,11 @@ $resultado_tareas = $mysqli->query($sql_tareas); //guardar consulta proyectos
                                     <?php
                                          if (($row_tareas['status'] == "ACTIVA") || ($row_tareas['status'] == "activa")) {
                                      ?>
-                                    <td class="status"><span class="active">Activa</span></td>
+                                    <td class="status"><span class="waiting">Activa</span></td>
                                     <?php
                                          }else{
                                      ?>
-                                     <td class="status"><span class="waiting">Finalizada</span></td>
+                                     <td class="status"><span class="active">Finalizada</span></td>
                                      <?php
                                          }
                                      ?>
