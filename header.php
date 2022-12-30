@@ -131,10 +131,16 @@ $num_notificaciones = $resultado_notificaciones->num_rows; //si la consulta gene
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                             Mis tareas
                         </a>
+                        <?php
+                        if($tipo_usuario == 2){
+                        ?>
                         <a class="nav-link" href="../tareas/agenda.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                             Agenda de Tareas
                         </a>
+                        <?php
+                        }
+                        ?>
                         <a class="nav-link" href="../estadisticas/estadisticas_tareas.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Estadísticas

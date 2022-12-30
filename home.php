@@ -8,6 +8,7 @@ $nombre = $_SESSION['nombre']; //obtener el nombre de la sesion del usuario
 $apellidos = $_SESSION['apellidos']; //obtener apellidos de la sesion usuario
 $correo = $_SESSION['correo'];  //obtener el correo de la sesion del usuario
 $id = $_SESSION['id'];
+$tipo_usuario = $_SESSION['tipo_usuario'];
 
 require "bd/conexion.php"; //llamar a la conexion
 
@@ -202,11 +203,16 @@ $resultado_usuarios = $mysqli->query($sql_usuarios); //guardar consulta proyecto
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-check"></i></div>
                             Mis tareas
                         </a>
-
+                        <?php
+                        if($tipo_usuario == 2){
+                        ?>
                         <a class="nav-link" href="tareas/agenda.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                             Agenda de Tareas
                         </a>
+                        <?php
+                        }
+                        ?>
                         <a class="nav-link" href="estadisticas/estadisticas_tareas.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Estadísticas
